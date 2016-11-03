@@ -1,0 +1,1 @@
+- Put the header in a dedicated component, so the code gets easier to read
