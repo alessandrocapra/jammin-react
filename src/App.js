@@ -19,9 +19,15 @@ class App extends Component {
         <Button bsStyle="primary">NOOO</Button>
         <Grid fluid="true">
            <Row>
-               <Col xs={6}><p>Nessun rimorso</p></Col>
-               <Col xs={6}><div>LOL</div></Col>
+               <Col xs={4}><p>Nessun rimorso</p></Col>
+               <Col xs={4}><div>LOL</div></Col>
+               <Col xs={4}><p>PRRRRRRRRRRRRRRRR</p></Col>
            </Row>
+            <Row>
+                <Col xs={4}><p>Nessun rimorso</p></Col>
+                <Col xs={4}><div>LOL</div></Col>
+                <Col xs={4}><div>PRRRRRRRRRRRRRRRR</div></Col>
+            </Row>
         </Grid>
       </div>
     );
