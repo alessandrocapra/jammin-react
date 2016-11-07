@@ -1,27 +1,26 @@
-/*.App {
-  text-align: center;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  font-size: 1.8em;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+/* Header */
+.main-container > header {
+  padding: 1.5em;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.main-menu ul {
+  display: block;
+  list-style: none;
+  float: right;
 }
 
-.App-intro {
-  font-size: large;
+.main-menu ul li {
+  display: inline;
+  padding-left: 2em;
+  text-transform: uppercase;
 }
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}*/
 
 /* Jumbotron */
 .jumbotron {
