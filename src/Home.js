@@ -1,33 +1,17 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './Home.css';
+
+// Import components
+import Header from './Header';
 
 // Example to import element from React-Bootstrap
-import { Grid, Row, Col, Button } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 
-class App extends Component {
+class Home extends Component {
   render() {
     return (
       <Grid fluid="true" className="main-container">
-        <header>
-          <Row>
-            <Col xs={5}>
-              <h1>Jammin</h1>
-              <div className="subtitle">
-                <h2>Where musicians meet</h2>
-              </div>
-            </Col>
-            <Col xs={7}>
-              <nav className="main-menu">
-                <ul>
-                  <li>Venues</li>
-                  <li>Profile</li>
-                  <li>FAQ</li>
-                </ul>
-              </nav>
-            </Col>
-          </Row>
-        </header>
+        <Header />
         <main>
           <Row>
             <Col xs={12} className="jumbotron">
@@ -81,4 +65,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Home;

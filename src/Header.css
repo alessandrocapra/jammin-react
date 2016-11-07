@@ -1,0 +1,16 @@
+/* Header */
+.main-container > header {
+  padding: 1.5em;
+}
+
+.main-menu ul {
+  display: block;
+  list-style: none;
+  float: right;
+}
+
+.main-menu ul li {
+  display: inline;
+  padding-left: 2em;
+  text-transform: uppercase;
+}
