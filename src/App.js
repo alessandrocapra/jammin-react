@@ -9,23 +9,25 @@ class App extends Component {
   render() {
     return (
       <Grid fluid="true" className="main-container">
-        <Row>
-          <Col xs={5}>
-            <h1>Jammin</h1>
-            <div className="subtitle">
-              <h2>Where musicians meet</h2>
-            </div>
-          </Col>
-          <Col xs={7}>
-            <nav className="main-menu">
-              <ul>
-                <li>Venues</li>
-                <li>Profile</li>
-                <li>FAQ</li>
-              </ul>
-            </nav>
-          </Col>
-        </Row>
+        <header>
+          <Row>
+            <Col xs={5}>
+              <h1>Jammin</h1>
+              <div className="subtitle">
+                <h2>Where musicians meet</h2>
+              </div>
+            </Col>
+            <Col xs={7}>
+              <nav className="main-menu">
+                <ul>
+                  <li>Venues</li>
+                  <li>Profile</li>
+                  <li>FAQ</li>
+                </ul>
+              </nav>
+            </Col>
+          </Row>
+        </header>
       </Grid>
       // <div className="App">
       //   <div className="App-header">
