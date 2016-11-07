@@ -1,10 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Home from './Home';
-import 'bootstrap/dist/css/bootstrap.css';
-import './index.css';
+import {render} from 'react-dom';
 
-ReactDOM.render(
-  <Home />,
-  document.getElementById('root')
-);
+import 'bootstrap/dist/css/bootstrap.css';
+import './css/style.css';
+
+// Routes
+import routes from './router';
+
+render(routes, document.getElementById('root'));
