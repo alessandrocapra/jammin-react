@@ -24,6 +24,24 @@
 }*/
 
 /* Header */
-.main-menu {
+.main-container > header {
+  padding-right: 1.5em;
+  padding-left: 1.5em;
+  padding-top: 1.5em;
+}
 
+.main-menu ul {
+  display: block;
+  list-style: none;
+  float: right;
+}
+
+.main-menu ul li {
+  display: inline;
+  padding-left: 1em;
+  text-transform: uppercase;
+}
+
+.main-menu ul li:last-child {
+  /*padding-right: 2em;*/
 }
