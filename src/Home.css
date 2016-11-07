@@ -25,9 +25,7 @@
 
 /* Header */
 .main-container > header {
-  padding-right: 1.5em;
-  padding-left: 1.5em;
-  padding-top: 1.5em;
+  padding: 1.5em;
 }
 
 .main-menu ul {
@@ -38,10 +36,35 @@
 
 .main-menu ul li {
   display: inline;
-  padding-left: 1em;
+  padding-left: 2em;
   text-transform: uppercase;
 }
 
-.main-menu ul li:last-child {
-  /*padding-right: 2em;*/
+/* Jumbotron */
+.jumbotron {
+  display: block;
+  margin: 0 auto;
+}
+
+.jumbotron form, .jumbotron h2 {
+  text-align: center;
+}
+
+.jumbotron h2 {
+  margin-bottom: 1.5em;
+}
+
+.jumbotron form input, .jumbotron form button {
+  display: inline-block;
+  margin-right: 1.5em;
+}
+
+/* main content */
+.facts {
+  text-align: center;
+}
+
+.facts p {
+  text-align: justify;
+  padding: 1em 1.5em;
 }
