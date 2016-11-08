@@ -38,6 +38,9 @@ class Home extends Component {
             </form>
           </Col>
         </Row>
+        <Row>
+          <Col xs={12} style={{'text-align': 'center'}}><h2>How Jammin works</h2></Col>
+        </Row>
         <Row className="facts">
           <Col xs={4}>
             <h3>The Incredible Perks</h3>

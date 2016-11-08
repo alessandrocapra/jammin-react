@@ -20,7 +20,7 @@ class App extends Component {
               <nav className="main-menu">
                 <ul>
                   <li><NavLink to="/venues">Venues</NavLink></li>
-                  <li><NavLink to="/profile/:username">Profile</NavLink></li>
+                  <li><NavLink to="/profile">Profile</NavLink></li>
                   <li><NavLink to="/faq">FAQ</NavLink></li>
                 </ul>
               </nav>
