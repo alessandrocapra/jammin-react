@@ -14,6 +14,7 @@ class Home extends Component {
       var username=e.target[0].value;
       var mail=e.target[1].value;
 
+      // How to write in the DB
       database.ref('users/' + username).set({
           username: username,
           email: mail,
@@ -28,12 +29,10 @@ class Home extends Component {
             <h2>Find some talents to jam with in your area!</h2>
             <form onSubmit={this.saveUser}>
               <Autocomplete
-                style={{width: '40%'}}
                 onPlaceSelected={(place) => {
                   console.log(place);
                 }}
                 types={['(regions)']} />
-              <input type="text" placeholder="Select a location"/>
               <input type="text" placeholder="Which instrument/s do you play?"/>
               <button type="submit">Search Jammers</button>
             </form>

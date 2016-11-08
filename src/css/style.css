@@ -41,6 +41,16 @@ body {
   margin-right: 1.5em;
 }
 
+.jumbotron form input {
+  width: 20em;
+}
+
+/* Override autocomplete div surrounding the input*/
+.jumbotron form div {
+  width: auto;
+  display: inline-block;
+}
+
 /* main content */
 .facts {
   text-align: center;
