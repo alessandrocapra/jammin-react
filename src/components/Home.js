@@ -1,16 +1,32 @@
 import React, { Component } from 'react';
+import Firebase from 'firebase';
 
 // Example to import element from React-Bootstrap
 import { Row, Col } from 'react-bootstrap';
 
 class Home extends Component {
+  saveUser(e) {
+      e.preventDefault();
+
+      var database = Firebase.database();
+
+      var username=e.target[0].value;
+      var mail=e.target[1].value;
+      console.log(username, mail);
+
+      Firebase.database().ref('users/' + username).set({
+          username: username,
+          email: mail,
+      });
+  }
+
   render() {
     return (
       <div>
         <Row>
           <Col xs={12} className="jumbotron">
             <h2>Find some talents to jam with in your area!</h2>
-            <form>
+            <form onSubmit={this.saveUser}>
               <input type="text" placeholder="Select a location"/>
               <input type="text" placeholder="Which instrument/s do you play?"/>
               <button type="submit">Search Jammers</button>
@@ -32,28 +48,6 @@ class Home extends Component {
           </Col>
         </Row>
       </div>
-      // <div className="App">
-      //   <div className="App-header">
-      //     <img src={logo} className="App-logo" alt="logo" />
-      //     <h2>Welcome to React</h2>
-      //   </div>
-      //   <p className="App-intro">
-      //     To get started, edit <code>src/App.js</code> and save to reload.
-      //   </p>
-      //   <Button bsStyle="primary">NOOO</Button>
-      //   <Grid fluid="true">
-      //      <Row>
-      //          <Col xs={4}><p>Nessun rimorso</p></Col>
-      //          <Col xs={4}><div>LOL</div></Col>
-      //          <Col xs={4}><p>PRRRRRRRRRRRRRRRR</p></Col>
-      //      </Row>
-      //       <Row>
-      //           <Col xs={4}><p>Nessun rimorso</p></Col>
-      //           <Col xs={4}><div>LOL</div></Col>
-      //           <Col xs={4}><div>PRRRRRRRRRRRRRRRR</div></Col>
-      //       </Row>
-      //   </Grid>
-      // </div>
     );
   }
 }
