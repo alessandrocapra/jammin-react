@@ -101,3 +101,14 @@ main {
 .left-sidebar section.reviews article footer p {
   font-size: 0.8em;
 }
+
+section.instruments article {
+  margin-bottom: 1.5em;
+}
+
+section.instruments article img {
+  /*width: 90%;*/
+  /*height: auto*/
+  border: 1px solid grey;
+  border-radius: 50%;
+}

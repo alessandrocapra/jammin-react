@@ -4,6 +4,7 @@ import FontAwesome from 'react-fontawesome';
 
 // import components
 import Review from './Review';
+import Instrument from './Instrument';
 
 class Profile extends Component {
   render(){
@@ -29,7 +30,17 @@ class Profile extends Component {
               </Col>
             </Row>
           </Col>
-          <Col xs={8}></Col>
+          <Col xs={8}>
+          <section>
+            <h3>About me</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </section>
+          <section className="instruments">
+            <h3>My instruments</h3>
+            <Instrument />
+            <Instrument />
+          </section>
+          </Col>
         </Row>
       </div>
     );

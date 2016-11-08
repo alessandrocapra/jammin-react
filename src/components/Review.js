@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Col, Row} from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 
 class Review extends Component {
