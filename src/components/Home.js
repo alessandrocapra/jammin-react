@@ -39,7 +39,7 @@ class Home extends Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={12} style={{'text-align': 'center'}}><h2>How Jammin works</h2></Col>
+          <Col xs={12} className="text-center"><h2>How Jammin works</h2></Col>
         </Row>
         <Row className="facts">
           <Col xs={4}>

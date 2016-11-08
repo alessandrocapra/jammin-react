@@ -2,7 +2,7 @@ import {render} from 'react-dom';
 import Firebase from 'firebase';
 
 import 'bootstrap/dist/css/bootstrap.css';
-import '/css/style.css';
+import './css/style.css';
 
 // Initialize Firebase
 var config = {
