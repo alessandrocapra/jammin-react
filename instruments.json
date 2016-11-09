@@ -1,0 +1,14 @@
+{
+	"instruments": {
+		"Banjo": {
+			image: "img/banjo.svg"
+		},
+		"Electric guitar":{
+			image="img/electric-guitar.svg"
+		},
+		"Drums": {
+			image="img/drum-set.svg"
+		}
+	}
+}
+		
