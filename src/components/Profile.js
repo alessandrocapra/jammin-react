@@ -8,7 +8,7 @@ import Review from './Review';
 import Instrument from './Instrument';
 
 // Load data from database
-var INSTRUMENTS_DB = FBApp.ref('/instruments');
+var INSTRUMENTS_DB = FBApp.ref('/instruments/');
 
 class Profile extends Component {
     constructor(props){
@@ -31,12 +31,17 @@ class Profile extends Component {
             // });
 
             // console.log('instruments state - componentDidMount', this.state.instruments);
-            // this.setState({
-            //     instruments: this.state.instruments
-            // }).bind(this);
-        }).bind(this);
+            this.setState({
+                instruments: this.state.instruments
+            });
+        }.bind(this));
     }
     render(){
+        var rows = [];
+        for (var obj in this.state.instruments[0]){
+            rows.push(<Instrument name={this.state.instruments[0][obj].name} image={this.state.instruments[0][obj].image} />);
+        }
+
         return(
             <div>
                 <Row>
@@ -66,6 +71,7 @@ class Profile extends Component {
                         </section>
                         <section className="instruments">
                             <h3>My instruments</h3>
+                            {rows}
                         </section>
                     </Col>
                 </Row>
