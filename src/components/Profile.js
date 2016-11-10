@@ -13,7 +13,9 @@ var INSTRUMENTS_DB = FBApp.ref('/instruments/');
 class Profile extends Component {
     constructor(props){
         super(props);
-        this.state = {instruments: []}
+        this.state = {
+            instruments: [],
+        }
     }
 
     componentDidMount(){
@@ -41,7 +43,7 @@ class Profile extends Component {
 
         var rows = [];
         for (var obj in this.state.instruments[0]){
-            rows.push(<Instrument name={this.state.instruments[0][obj].name} image={this.state.instruments[0][obj].image} />);
+            rows.push(<Instrument name={this.props.instruments} />);
         }
 
         return(
@@ -50,18 +52,17 @@ class Profile extends Component {
                     <Col xs={4}>
                         <Row>
                             <Col xs={12} className="left-sidebar">
-                                <img src="#" alt='lol'/>
-                                <h2 className="name">John Doe</h2>
-                                <h4>Male, 23 years old</h4>
-                                <h4> <FontAwesome name='globe' /> Location </h4>
+                                <img src={this.props.image} alt={this.props.name}/>
+                                <h2 className="name">{this.props.name} {this.props.surname}</h2>
+                                <h4>{this.props.gender}, {this.props.age} years old</h4>
+                                <h4> <FontAwesome name='globe' /> {this.props.location} </h4>
                                 <section>
                                     <h3>Availability</h3>
-                                    <p>3 times per week</p>
+                                    <p>{this.props.availability} times per week</p>
                                 </section>
                                 <section className="reviews">
                                     <h3>Reviews</h3>
-                                    <Review />
-                                    <Review />
+                                    <Review username={this.props.username} />
                                 </section>
                             </Col>
                         </Row>
@@ -69,7 +70,7 @@ class Profile extends Component {
                     <Col xs={8}>
                         <section>
                             <h3>About me</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            <p>{this.props.about}</p>
                         </section>
                         <section className="instruments">
                             <h3>My instruments</h3>
