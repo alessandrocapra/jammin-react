@@ -56,7 +56,6 @@ class SearchResultPage extends Component {
                                 <input type="checkbox" name="musicListened"/> Ostia <br/>
                                 <input type="checkbox" name="musicListened"/> Ostia <br/>
                                 <input type="checkbox" name="musicListened"/> Ostia <br/>
-
                             </Col>
                         </Row>
 
