@@ -17,7 +17,7 @@ class Profile extends Component {
     }
 
     componentDidMount(){
-        INSTRUMENTS_DB.on('value', function(snapshot) {
+        INSTRUMENTS_DB.once('value').then(function(snapshot) {
             console.log('snapshot.val()', snapshot.val());
 
             this.state.instruments.push(snapshot.val());
@@ -36,7 +36,9 @@ class Profile extends Component {
             });
         }.bind(this));
     }
+
     render(){
+
         var rows = [];
         for (var obj in this.state.instruments[0]){
             rows.push(<Instrument name={this.state.instruments[0][obj].name} image={this.state.instruments[0][obj].image} />);
