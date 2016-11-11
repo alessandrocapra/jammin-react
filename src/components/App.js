@@ -8,13 +8,15 @@ class App extends Component {
 
     render() {
         return(
-            <Grid fluid={true} className="container">
+            <Grid className="contenitore" fluid={true}>
                 <header>
                     <Row>
                         <Col xs={5}>
-                            <NavLink to="/"><h1>Jammin</h1></NavLink>
+                            <div className="title">
+                                <NavLink to="/"><h1>Jammin</h1></NavLink>
+                            </div>
                             <div className="subtitle">
-                                <h2>Where musicians meet</h2>
+                                <h2>Where musicians meet!</h2>
                             </div>
                         </Col>
                         <Col xs={7}>

@@ -27,7 +27,7 @@ class Home extends Component {
     return (
       <div>
         <Row>
-          <Col xs={12} className="jumbotron">
+          <Col xs={12} className="headline">
             <h2>Find some talents to jam with in your area!</h2>
             <form onSubmit={this.saveUser}>
               <Autocomplete
