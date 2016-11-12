@@ -55,7 +55,10 @@ class Profile extends Component {
                             </section>
                             <section className="reviews">
                                 <h3>Reviews</h3>
-                                <Review name="Lorren McWuts" />
+                                <Review name="Eric Cartman" title="Amazing performance!" rating="rocket" instrument="Electric guitar" />
+                                <Review name="Stan Marsh" title="Ok-ish" rating="thumbs-up" instrument="Drums" />
+                                <Review name="Kyle Broflovski" title="WOW, just wow!" rating="rocket" instrument="Electric guitar" />
+
                             </section>
                         </Col>
                     </Row>
@@ -95,12 +98,12 @@ class Profile extends Component {
                         <h3>Videos</h3>
                         <Row>
                             <Col xs={12} sm={9} className="main_video">
-                                <Video source="https://www.youtube.com/watch?v=rVDVWFQ2IO8" />
+                                <Video source="https://www.youtube.com/embed/auLBLk4ibAk" />
                             </Col>
                             <Col xs={12} sm={3}>
-                                <Video source="https://www.youtube.com/watch?v=auLBLk4ibAk" />
+                                <Video source="https://www.youtube.com/embed/rVDVWFQ2IO8" />
                                 <Video source="https://www.youtube.com/embed/TgntkGc5iBo" />
-                                <Video source="https://www.youtube.com/watch?v=D2yymMhjRu8" />
+                                <Video source="https://www.youtube.com/embed/D2yymMhjRu8" />
                             </Col>
                         </Row>
                     </section>

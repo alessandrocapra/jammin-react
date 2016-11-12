@@ -210,6 +210,16 @@ button {
 .left-sidebar section.reviews article header h4 {
     display: inline-block;
     padding-left: 1.5em;
+
+    font-size:1.8em;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.left-sidebar section.reviews article header p {
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #B21F10;
 }
 
 .left-sidebar section.reviews article footer p {
