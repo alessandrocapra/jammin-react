@@ -6,7 +6,6 @@ body {
     margin: 0;
     padding: 0;
     font-size: 1.6em;
-
     color: #262626;
 }
 
@@ -24,11 +23,23 @@ body {
 
 /* General styling */
 h1, h2, h3 {
-    text-transform: uppercase;
+    font-family: 'Lobster', cursive;
+    font-weight: 400;
+    text-transform: capitalize;
+    color: #B21F10;
 }
 
 h1 {
     font-size: 3em;
+}
+
+h2 {
+    font-size: 3em;
+}
+
+h3 {
+    font-size: 2em;
+    color: #262626;
 }
 
 .title, .subtitle {
@@ -51,16 +62,9 @@ h1 {
 .subtitle h2{
     font-size:1.3em;
     font-weight:700;
-}
-/* Header */
-
-.contenitore > header {
-    padding-top: 1.5em;
-    padding-bottom: 1.5em;
-}
-
-.main-container > header {
-    padding: 1.5em;
+    font-family:'Lato', sans-serif;
+    color: #262626;
+    text-transform: uppercase;
 }
 
 .main-menu a {
@@ -93,7 +97,7 @@ h1 {
     text-transform: uppercase;
 }
 
-/* Jumbotron */
+/* Headline */
 .headline {
     display: block;
     margin: 0 auto;
@@ -109,6 +113,7 @@ h1 {
 
 .headline h2 {
     margin-bottom: 1.5em;
+    color: #fff;
 }
 
 .headline form input, .headline form button {
@@ -125,11 +130,6 @@ h1 {
 .headline form div {
     width: auto;
     display: inline-block;
-}
-
-main {
-    padding-top: 1.5em;
-    padding-bottom: 1.5em;
 }
 
 /* main content */
@@ -182,6 +182,10 @@ section.instruments article img {
     margin: 0 auto;
     background-color: #262626;
     color: #fff;
+}
+
+.contenitore > footer h2 {
+    text-align: center;
 }
 
 .contenitore > footer .row {
