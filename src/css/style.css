@@ -10,6 +10,18 @@ body {
     color: #262626;
 }
 
+/* Bootstrap overriding */
+.row {
+    padding-top:2em;
+    padding-bottom:2em;
+}
+
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
 /* General styling */
 h1, h2, h3 {
     text-transform: uppercase;
@@ -17,6 +29,10 @@ h1, h2, h3 {
 
 h1 {
     font-size: 3em;
+}
+
+.title, .subtitle {
+    padding-left:2em;
 }
 
 .title a {
@@ -49,6 +65,13 @@ h1 {
 
 .main-menu a {
     text-decoration: none;
+    font-size: 1.3em;
+    color: #262626;
+    font-weight:700;
+}
+
+.main-menu a:hover {
+    color: #B21F10;
 }
 
 .main-menu a.active {
@@ -59,11 +82,14 @@ h1 {
     display: block;
     list-style: none;
     float: right;
+
+    padding-top:3.5em;
+    padding-right: 1.5em;
 }
 
 .main-menu ul li {
     display: inline;
-    padding-left: 2em;
+    padding-left: 4em;
     text-transform: uppercase;
 }
 
@@ -71,8 +97,8 @@ h1 {
 .headline {
     display: block;
     margin: 0 auto;
-    padding-top:1.5em;
-    padding-bottom:3em;
+    padding: 5em 3em;
+
     background-color: #262626;
     color: #fff;
 }
@@ -149,4 +175,17 @@ section.instruments article img {
 }
 
 /* Search results */
+
+/* Footer */
+.contenitore > footer {
+    display: block;
+    margin: 0 auto;
+    background-color: #262626;
+    color: #fff;
+}
+
+.contenitore > footer .row {
+    margin-left: 0;
+    margin-right: 0;
+}
 

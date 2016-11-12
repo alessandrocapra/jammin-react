@@ -42,11 +42,12 @@ class Profile extends Component {
     render(){
 
         var rows = [];
-        for (var obj in this.state.instruments[0]){
-            rows.push(<Instrument name={this.props.instruments} />);
+        for (var obj in this.state.instruments[0]) {
+            rows.push(<Instrument name={this.state.instruments[0][obj].name}
+                                  image={this.state.instruments[0][obj].image}/>);
         }
 
-        return(
+            return(
             <div>
                 <Row>
                     <Col xs={4}>
