@@ -33,6 +33,12 @@ h1 {
 
 h2 {
     font-size: 3em;
+    text-shadow:
+            3px 3px 0 #fff,
+            -1px -1px 0 #fff,
+            1px -1px 0 #fff,
+            -1px 1px 0 #fff,
+            1px 1px 0 #fff;
 }
 
 h3 {
@@ -42,6 +48,16 @@ h3 {
 
 a.tag {
     color: #262626;
+    cursor: pointer;
+
+    display: inline-block;
+    padding:0.5em;
+    margin:0.2em;
+
+    border:0.2em solid #B21F10;
+    border-radius: 0.5em;
+
+    text-decoration: none;
 }
 
 a.tag:hover {
@@ -50,17 +66,8 @@ a.tag:hover {
 }
 
 a.tag span{
-    display: inline-block;
-    padding:0.5em;
-    margin:0.2em;
-
     text-transform: uppercase;
     font-weight: 700;
-
-    cursor: pointer;
-
-    border:0.2em solid #B21F10;
-    border-radius: 0.5em;
 }
 
 /* Form stuff */
@@ -237,6 +244,10 @@ section.instruments article img {
     font-size:3em;
 }
 
+/* Profile */
+.profile_content section:not(:first-child) {
+    margin-top:4em;
+}
 
 
 /* Search results */
@@ -273,9 +284,8 @@ section.instruments article img {
 }
 
 .videos .main_video iframe {
-    height:500px;
+    height:460px;
 }
-
 
 /* Footer */
 .contenitore > footer {

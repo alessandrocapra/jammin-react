@@ -60,7 +60,7 @@ class Profile extends Component {
                         </Col>
                     </Row>
                 </Col>
-                <Col xs={8}>
+                <Col xs={8} className="profile_content">
                     <section>
                         <h3>About me</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam aperiam culpa, cumque debitis dolorem dolores eos labore laudantium libero maxime nemo nulla obcaecati qui saepe similique temporibus veniam voluptates.</p>
@@ -95,12 +95,12 @@ class Profile extends Component {
                         <h3>Videos</h3>
                         <Row>
                             <Col xs={12} sm={9} className="main_video">
-                                <Video source="https://www.youtube.com/embed/TgntkGc5iBo" />
+                                <Video source="https://www.youtube.com/watch?v=rVDVWFQ2IO8" />
                             </Col>
                             <Col xs={12} sm={3}>
+                                <Video source="https://www.youtube.com/watch?v=auLBLk4ibAk" />
                                 <Video source="https://www.youtube.com/embed/TgntkGc5iBo" />
-                                <Video source="https://www.youtube.com/embed/TgntkGc5iBo" />
-                                <Video source="https://www.youtube.com/embed/TgntkGc5iBo" />
+                                <Video source="https://www.youtube.com/watch?v=D2yymMhjRu8" />
                             </Col>
                         </Row>
                     </section>
