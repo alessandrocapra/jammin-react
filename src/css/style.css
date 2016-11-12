@@ -9,15 +9,14 @@ body {
     color: #262626;
 }
 
-/* Bootstrap overriding */
-main > .row {
-    padding-top:2em;
-    padding-bottom:2em;
+main {
+    padding-left:1.5em;
+    padding-right:1.5em;
 }
 
+/* Bootstrap overriding */
 main > .row {
-    padding-left: 1.5em;
-    padding-right: 1.5em;
+    padding:2em 1.5em;
 }
 
 /* General styling */
@@ -165,6 +164,11 @@ button {
     text-transform: capitalize;
 }
 
+.left-sidebar img {
+    width:100%;
+    border-radius: 0.5em;
+}
+
 .left-sidebar section {
     margin-top: 2em;
 }
@@ -193,15 +197,19 @@ section.instruments article img {
     border-radius: 50%;
 }
 
+.instrument img {
+    width:100%;
+}
+
+.instrument h4 {
+    font-size:1.5em;
+}
+
 /* Search results */
 
 /* Venues */
-.venue {
-    margin-bottom:1.5em;
-}
-
-.venue > .col-xs-7 {
-    border-right: 0.5em solid #B21F10;
+.venue:not(:first-child) {
+    margin-top:2.5em;
 }
 
 .venue img {

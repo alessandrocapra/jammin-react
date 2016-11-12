@@ -11,75 +11,67 @@ import Instrument from './Instrument';
 var INSTRUMENTS_DB = FBApp.ref('/instruments/');
 
 class Profile extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            instruments: [],
-        }
-    }
+    // constructor(props){
+        // super(props);
+        // this.state = {
+        //     instruments: [],
+        // }
+    // }
 
     componentDidMount(){
-        INSTRUMENTS_DB.once('value').then(function(snapshot) {
-            console.log('snapshot.val()', snapshot.val());
-
-            this.state.instruments.push(snapshot.val());
-
-            // var items = [];
-            // items.push(snapshot.val());
-            // console.log('this.instrucasso', this.state.instruments);
-
-            // snapshot.map(function (item) {
-            //    items.push(item.name)
-            // });
-
-            // console.log('instruments state - componentDidMount', this.state.instruments);
-            this.setState({
-                instruments: this.state.instruments
-            });
-        }.bind(this));
+        // INSTRUMENTS_DB.once('value').then(function(snapshot) {
+        //     console.log('snapshot.val()', snapshot.val());
+        //
+        //     this.state.instruments.push(snapshot.val());
+        //     this.setState({
+        //         instruments: this.state.instruments
+        //     });
+        // }.bind(this));
     }
 
     render(){
 
-        var rows = [];
-        for (var obj in this.state.instruments[0]) {
-            rows.push(<Instrument name={this.state.instruments[0][obj].name}
-                                  image={this.state.instruments[0][obj].image}/>);
-        }
+        // This is to write instruments in the page
+        // var rows = [];
+        // for (var obj in this.state.instruments[0]) {
+        //     rows.push(<Instrument name={this.state.instruments[0][obj].name}
+        //                           image={this.state.instruments[0][obj].image}/>);
+        // }
 
-            return(
-            <div>
-                <Row>
-                    <Col xs={4}>
-                        <Row>
-                            <Col xs={12} className="left-sidebar">
-                                <img src={this.props.image} alt={this.props.name}/>
-                                <h2 className="name">{this.props.name} {this.props.surname}</h2>
-                                <h4>{this.props.gender}, {this.props.age} years old</h4>
-                                <h4> <FontAwesome name='globe' /> {this.props.location} </h4>
-                                <section>
-                                    <h3>Availability</h3>
-                                    <p>{this.props.availability} times per week</p>
-                                </section>
-                                <section className="reviews">
-                                    <h3>Reviews</h3>
-                                    <Review username={this.props.username} />
-                                </section>
-                            </Col>
-                        </Row>
-                    </Col>
-                    <Col xs={8}>
-                        <section>
-                            <h3>About me</h3>
-                            <p>{this.props.about}</p>
-                        </section>
-                        <section className="instruments">
-                            <h3>My instruments</h3>
-                            {rows}
-                        </section>
-                    </Col>
-                </Row>
-            </div>
+        return(
+
+            <Row>
+                <Col xs={4}>
+                    <Row>
+                        <Col xs={12} className="left-sidebar">
+                            <img src="img/profile.jpg" alt="Stoner Stanley"/>
+                            <h2 className="name">Stanley Stoner</h2>
+                            <h4>Male, 22 years old</h4>
+                            <h4> <FontAwesome name='globe' /> Helsinki </h4>
+                            <section>
+                                <h3>Availability</h3>
+                                <p>3 times per week</p>
+                            </section>
+                            <section className="reviews">
+                                <h3>Reviews</h3>
+                                <Review name="Lorren McWuts" />
+                            </section>
+                        </Col>
+                    </Row>
+                </Col>
+                <Col xs={8}>
+                    <section>
+                        <h3>About me</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam aperiam culpa, cumque debitis dolorem dolores eos labore laudantium libero maxime nemo nulla obcaecati qui saepe similique temporibus veniam voluptates.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam eius id labore neque nostrum? Aliquam, aperiam cumque eaque, eius esse impedit iste laborum mollitia nihil perferendis reprehenderit repudiandae rerum voluptatum?</p>
+                    </section>
+                    <section className="instruments">
+                        <h3>My instruments</h3>
+                        <Instrument name="Electric guitar" image="img/instruments/electric-guitar.svg"/>
+                        <Instrument name="Drums" image="img/instruments/drum-set.svg"/>
+                    </section>
+                </Col>
+            </Row>
         );
     }
 }
