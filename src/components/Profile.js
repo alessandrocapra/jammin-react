@@ -67,8 +67,8 @@ class Profile extends Component {
                     </section>
                     <section className="instruments">
                         <h3>My instruments</h3>
-                        <Instrument name="Electric guitar" image="img/instruments/electric-guitar.svg"/>
-                        <Instrument name="Drums" image="img/instruments/drum-set.svg"/>
+                        <Instrument name="Electric guitar" image="img/instruments/electric-guitar.svg" experience={3} rating="rocket" />
+                        <Instrument name="Drums" image="img/instruments/drum-set.svg" experience={1} rating="thumbs-up"/>
                     </section>
                 </Col>
             </Row>
