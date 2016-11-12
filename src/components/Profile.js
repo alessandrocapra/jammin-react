@@ -6,6 +6,7 @@ import {FBApp} from '../modules/firebase';
 // import components
 import Review from './Review';
 import Instrument from './Instrument';
+import Video from './Video';
 
 // Load data from database
 var INSTRUMENTS_DB = FBApp.ref('/instruments/');
@@ -67,8 +68,41 @@ class Profile extends Component {
                     </section>
                     <section className="instruments">
                         <h3>My instruments</h3>
-                        <Instrument name="Electric guitar" image="img/instruments/electric-guitar.svg" experience={3} rating="rocket" />
-                        <Instrument name="Drums" image="img/instruments/drum-set.svg" experience={1} rating="thumbs-up"/>
+                        <Instrument name="Electric guitar" image="img/instruments/electric-guitar.svg" experience={3} rating="rocket" percentage="98%"/>
+                        <Instrument name="Drums" image="img/instruments/drum-set.svg" experience={1} rating="thumbs-up" percentage="75%"/>
+                    </section>
+                    <Row>
+                        <Col xs={12} sm={6}>
+                            <section className="influences">
+                                <h3>Influences</h3>
+                                <a className="tag" href="#"><span>Jimi Hendrix</span></a>
+                                <a className="tag" href="#"><span>The Doors</span></a>
+                                <a className="tag" href="#"><span>KISS</span></a>
+                                <a className="tag" href="#"><span>Queen</span></a>
+                                <a className="tag" href="#"><span>David Bowie</span></a>
+                            </section>
+                        </Col>
+                        <Col xs={12} sm={6}>
+                            <section className="genres">
+                                <h3>Genres I like to play</h3>
+                                <a className="tag" href="#"><span>Blues</span></a>
+                                <a className="tag" href="#"><span>Classic Rock</span></a>
+                                <a className="tag" href="#"><span>Reggae</span></a>
+                            </section>
+                        </Col>
+                    </Row>
+                    <section className="videos">
+                        <h3>Videos</h3>
+                        <Row>
+                            <Col xs={12} sm={9} className="main_video">
+                                <Video source="https://www.youtube.com/embed/TgntkGc5iBo" />
+                            </Col>
+                            <Col xs={12} sm={3}>
+                                <Video source="https://www.youtube.com/embed/TgntkGc5iBo" />
+                                <Video source="https://www.youtube.com/embed/TgntkGc5iBo" />
+                                <Video source="https://www.youtube.com/embed/TgntkGc5iBo" />
+                            </Col>
+                        </Row>
                     </section>
                 </Col>
             </Row>

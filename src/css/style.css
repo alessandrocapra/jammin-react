@@ -40,6 +40,29 @@ h3 {
     color: #262626;
 }
 
+a.tag {
+    color: #262626;
+}
+
+a.tag:hover {
+    color: #fff;
+    background-color: #B21F10;
+}
+
+a.tag span{
+    display: inline-block;
+    padding:0.5em;
+    margin:0.2em;
+
+    text-transform: uppercase;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    border:0.2em solid #B21F10;
+    border-radius: 0.5em;
+}
+
 /* Form stuff */
 input[type=text], input, button {
     font-size:1.2em;
@@ -193,7 +216,7 @@ section.instruments article {
 section.instruments article img {
     /*width: 90%;*/
     /*height: auto*/
-    border: 1px solid #B21F10;
+    /*border: 1px solid #B21F10;*/
     border-radius: 0.5em;
 }
 
@@ -205,11 +228,16 @@ section.instruments article img {
     font-size:1.5em;
 }
 
-/*.instrument span.fa {*/
-    /*display: block;*/
-    /*width: 100%;*/
-    /*text-align: center;*/
-/*}*/
+.instrument .review_percentage {
+    font-size:1.8em;
+    margin-left:0.5em;
+}
+
+.instrument span.fa {
+    font-size:3em;
+}
+
+
 
 /* Search results */
 
@@ -236,6 +264,16 @@ section.instruments article img {
 
 .venue .details span.fa {
     margin-right: 0.5em;
+}
+
+/* Videos */
+.videos iframe {
+    width: 100%;
+    height:auto;
+}
+
+.videos .main_video iframe {
+    height:500px;
 }
 
 
