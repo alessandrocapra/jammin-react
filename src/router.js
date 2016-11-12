@@ -5,7 +5,7 @@ import { FBApp } from './modules/firebase'
 // importing components
 import App from './components/App';
 import Home from './components/Home';
-import Venues from './components/Venues';
+import Venues from './components/VenuePage';
 import Profile from './components/Profile';
 import SearchResultPage from './components/SearchResultPage';
 

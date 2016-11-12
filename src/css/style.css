@@ -10,16 +10,15 @@ body {
 }
 
 /* Bootstrap overriding */
-.row {
+main > .row {
     padding-top:2em;
     padding-bottom:2em;
 }
 
-.container-fluid {
-    padding-left: 0;
-    padding-right: 0;
+main > .row {
+    padding-left: 1.5em;
+    padding-right: 1.5em;
 }
-
 
 /* General styling */
 h1, h2, h3 {
@@ -39,6 +38,18 @@ h2 {
 
 h3 {
     font-size: 2em;
+    color: #262626;
+}
+
+/* Form stuff */
+input[type=text], input, button {
+    font-size:1.2em;
+    padding:0.5em;
+    border-radius: 0.2em;
+    border-style: none;
+}
+
+button {
     color: #262626;
 }
 
@@ -99,10 +110,8 @@ h3 {
 
 /* Headline */
 .headline {
-    display: block;
-    margin: 0 auto;
     padding: 5em 3em;
-
+    margin-top:1.5em;
     background-color: #262626;
     color: #fff;
 }
@@ -119,6 +128,16 @@ h3 {
 .headline form input, .headline form button {
     display: inline-block;
     margin-right: 1.5em;
+}
+
+.headline form button {
+    background-color: #262626;
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+.headline form button:hover {
+    background-color: #fff;
     color: #262626;
 }
 
@@ -176,12 +195,42 @@ section.instruments article img {
 
 /* Search results */
 
+/* Venues */
+.venue {
+    margin-bottom:1.5em;
+}
+
+.venue > .col-xs-7 {
+    border-right: 0.5em solid #B21F10;
+}
+
+.venue img {
+    width:100%;
+}
+
+.venue h2 {
+    margin-top:0;
+}
+
+.venue .details {
+    /*margin-bottom:1.2em;*/
+}
+
+.venue .details span {
+    margin-right:2em;
+}
+
+.venue .details span.fa {
+    margin-right: 0.5em;
+}
+
+
 /* Footer */
 .contenitore > footer {
-    display: block;
-    margin: 0 auto;
     background-color: #262626;
     color: #fff;
+    padding-top:1.5em;
+    padding-bottom:1.5em;
 }
 
 .contenitore > footer h2 {
