@@ -79,6 +79,7 @@ class Profile extends Component {
         //                           image={this.state.instruments[0][obj].image}/>);
         // }
 
+
         let instrumentList = this.props.route.instruments;
         let instruments = instrumentList.map((instrument) => {
             return <Instrument name={instrument.name}
@@ -95,7 +96,7 @@ class Profile extends Component {
                 <Col xs={12} sm={4}>
                     <Row>
                         <Col xs={12} className="left-sidebar">
-                            <img src="img/profile.jpg" alt="Stoner Stanley"/>
+                            <img src={this.state.image} alt={this.state.name + this.state.surname}/>
                             <h2 className="name">{this.state.name} {this.state.surname}</h2>
                             <h4>{this.state.gender}, {this.state.age} years old</h4>
                             <h4> <FontAwesome name='globe' /> {this.state.location} </h4>
