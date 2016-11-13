@@ -39,6 +39,16 @@ class Profile extends Component {
         //                           image={this.state.instruments[0][obj].image}/>);
         // }
 
+        let instrumentList = this.props.route.instruments;
+
+        let instruments = instrumentList.map((instrument) => {
+            return <Instrument name={instrument.name}
+                           experience={instrument.experience}
+                           image={instrument.image}
+                           rating={instrument.rating}
+                           percentage={instrument.percentage} />
+        });
+
         return(
 
             <Row>
@@ -71,8 +81,9 @@ class Profile extends Component {
                     </section>
                     <section className="instruments">
                         <h3>My instruments</h3>
-                        <Instrument name="Electric guitar" image="img/instruments/electric-guitar.svg" experience={3} rating="rocket" percentage="98%"/>
-                        <Instrument name="Drums" image="img/instruments/drum-set.svg" experience={1} rating="thumbs-up" percentage="75%"/>
+                        {instruments}
+                        {/*<Instrument name="Electric guitar" image="img/instruments/electric-guitar.svg" experience={3} rating="rocket" percentage="98%"/>*/}
+                        {/*<Instrument name="Drums" image="img/instruments/drum-set.svg" experience={1} rating="thumbs-up" percentage="75%"/>*/}
                     </section>
                     <Row>
                         <Col xs={12} sm={6}>

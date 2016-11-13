@@ -11,8 +11,8 @@ class Home extends Component {
 
       // var database = Firebase.database();
 
-      var location=e.target[0].value;
-      var instrument=e.target[1].value;
+      // var location=e.target[0].value;
+      // var instrument=e.target[1].value;
 
 
 
