@@ -42,7 +42,7 @@ class Profile extends Component {
         return(
 
             <Row>
-                <Col xs={4}>
+                <Col xs={12} sm={4}>
                     <Row>
                         <Col xs={12} className="left-sidebar">
                             <img src="img/profile.jpg" alt="Stoner Stanley"/>
@@ -63,7 +63,7 @@ class Profile extends Component {
                         </Col>
                     </Row>
                 </Col>
-                <Col xs={8} className="profile_content">
+                <Col xs={12} sm={8} className="profile_content">
                     <section>
                         <h3>About me</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam aperiam culpa, cumque debitis dolorem dolores eos labore laudantium libero maxime nemo nulla obcaecati qui saepe similique temporibus veniam voluptates.</p>

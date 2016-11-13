@@ -129,12 +129,38 @@ button {
 
     padding-top:3.5em;
     padding-right: 1.5em;
+
 }
 
 .main-menu ul li {
     display: inline;
     padding-left: 4em;
     text-transform: uppercase;
+}
+
+@media screen and (max-width: 480px) {
+    .main-menu ul {
+        padding: 1.5em 0 0 0;
+        width: 100%;
+    }
+
+    .main-menu ul li {
+        display: block;
+        background-color: #B21F10;
+        padding: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .main-menu a {
+        color: #fff;
+    }
+
+    .main-menu a:hover {
+        color: #B21F10;
+        background-color: #fff;
+        border:0.3em solid #B21F10;
+    }
 }
 
 /* Headline */
