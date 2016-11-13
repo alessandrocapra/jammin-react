@@ -34,11 +34,11 @@ h1 {
 h2 {
     font-size: 3em;
     text-shadow:
-            3px 3px 0 #fff,
-            -1px -1px 0 #fff,
-            1px -1px 0 #fff,
-            -1px 1px 0 #fff,
             1px 1px 0 #fff;
+            /*-1px -1px 0 #fff,*/
+            /*1px -1px 0 #fff,*/
+            /*-1px 1px 0 #fff,*/
+            /*1px 1px 0 #fff;*/
 }
 
 h3 {
@@ -136,6 +136,8 @@ button {
     display: inline;
     padding-left: 4em;
     text-transform: uppercase;
+
+    border:0.2em solid #fff;
 }
 
 @media screen and (max-width: 480px) {
@@ -145,21 +147,25 @@ button {
     }
 
     .main-menu ul li {
-        display: block;
+        display: inline-block;
         background-color: #B21F10;
         padding: 0;
-        width: 100%;
+        width: 33%;
         text-align: center;
+        margin-bottom:0.3em;
     }
 
     .main-menu a {
         color: #fff;
+        display: block;
+        width: 100%;
+        border:0.2em solid #B21F10;
     }
 
     .main-menu a:hover {
         color: #B21F10;
         background-color: #fff;
-        border:0.3em solid #B21F10;
+        border:0.2em solid #B21F10;
     }
 }
 
@@ -176,8 +182,11 @@ button {
 }
 
 .headline h2 {
-    margin-bottom: 1.5em;
+    margin-bottom: 1.4em;
     color: #fff;
+
+    font-family:'Lato', sans-serif;
+    text-shadow: none;
 }
 
 .headline form input, .headline form button {
@@ -311,6 +320,12 @@ section.instruments article img {
 
 .venue .details span.fa {
     margin-right: 0.5em;
+}
+
+@media screen and (max-width: 480px) {
+    .venue .details span:not(.fa){
+        display: inline-block;
+    }
 }
 
 /* Videos */
