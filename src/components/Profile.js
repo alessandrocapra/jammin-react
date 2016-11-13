@@ -8,18 +8,59 @@ import Review from './Review';
 import Instrument from './Instrument';
 import Video from './Video';
 
-// Load data from database
-var INSTRUMENTS_DB = FBApp.ref('/instruments/');
-
 class Profile extends Component {
-    // constructor(props){
-        // super(props);
-        // this.state = {
-        //     instruments: [],
-        // }
-    // }
+    constructor(props){
+        super(props);
+        this.state = {
+            name: "",
+            surname : "",
+            gender : "",
+            location : "",
+            age : "",
+            about : "",
+            availability : "",
+            image : "",
+            instruments : "",
+            music_listen : "",
+            music_play : "",
+            youtube : ""
+        }
+    }
 
-    componentDidMount(){
+    componentDidMount() {
+
+        // Load user data
+        let profileId = this.props.params.userId;
+        var USER_DB = FBApp.ref('users/' + profileId);
+
+        return USER_DB.once('value').then(function (snapshot) {
+            let user = snapshot.val();
+            console.log(user);
+            this.setState({
+                name: user.name,
+                surname : user.surname,
+                gender : user.gender,
+                location : user.location,
+                age : user.age,
+                about : user.about,
+                availability : user.availability,
+                image : user.image,
+                instruments : user.instruments,
+                music_listen : user.music_listen,
+                music_play : user.music_play,
+                youtube : user.youtube
+            });
+        }.bind(this));
+
+        // const user_values = this.state.user;
+        // USER_DB.map((key, index) => {
+        //     let user = user_values[key];
+        //     // You can now use instrument.name and instrument.image
+        //     console.log('user inside function: ', key);
+        // });
+
+    }
+
         // INSTRUMENTS_DB.once('value').then(function(snapshot) {
         //     console.log('snapshot.val()', snapshot.val());
         //
@@ -28,7 +69,6 @@ class Profile extends Component {
         //         instruments: this.state.instruments
         //     });
         // }.bind(this));
-    }
 
     render(){
 
@@ -40,13 +80,13 @@ class Profile extends Component {
         // }
 
         let instrumentList = this.props.route.instruments;
-
         let instruments = instrumentList.map((instrument) => {
             return <Instrument name={instrument.name}
                            experience={instrument.experience}
                            image={instrument.image}
                            rating={instrument.rating}
-                           percentage={instrument.percentage} />
+                           percentage={instrument.percentage}
+                           key={instrument.name} />
         });
 
         return(
@@ -56,12 +96,12 @@ class Profile extends Component {
                     <Row>
                         <Col xs={12} className="left-sidebar">
                             <img src="img/profile.jpg" alt="Stoner Stanley"/>
-                            <h2 className="name">Stanley Stoner</h2>
-                            <h4>Male, 22 years old</h4>
-                            <h4> <FontAwesome name='globe' /> Helsinki </h4>
+                            <h2 className="name">{this.state.name} {this.state.surname}</h2>
+                            <h4>{this.state.gender}, {this.state.age} years old</h4>
+                            <h4> <FontAwesome name='globe' /> {this.state.location} </h4>
                             <section>
                                 <h3>Availability</h3>
-                                <p>3 times per week</p>
+                                <p>{this.state.availability} times per week</p>
                             </section>
                             <section className="reviews">
                                 <h3>Reviews</h3>
@@ -76,8 +116,7 @@ class Profile extends Component {
                 <Col xs={12} sm={8} className="profile_content">
                     <section>
                         <h3>About me</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam aperiam culpa, cumque debitis dolorem dolores eos labore laudantium libero maxime nemo nulla obcaecati qui saepe similique temporibus veniam voluptates.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam eius id labore neque nostrum? Aliquam, aperiam cumque eaque, eius esse impedit iste laborum mollitia nihil perferendis reprehenderit repudiandae rerum voluptatum?</p>
+                        <p>{this.state.about}</p>
                     </section>
                     <section className="instruments">
                         <h3>My instruments</h3>
@@ -89,19 +128,13 @@ class Profile extends Component {
                         <Col xs={12} sm={6}>
                             <section className="influences">
                                 <h3>Influences</h3>
-                                <a className="tag" href="#"><span>Jimi Hendrix</span></a>
-                                <a className="tag" href="#"><span>The Doors</span></a>
-                                <a className="tag" href="#"><span>KISS</span></a>
-                                <a className="tag" href="#"><span>Queen</span></a>
-                                <a className="tag" href="#"><span>David Bowie</span></a>
+                                <a className="tag" href="#"><span>{this.state.music_listen}</span></a>
                             </section>
                         </Col>
                         <Col xs={12} sm={6}>
                             <section className="genres">
                                 <h3>Genres I like to play</h3>
-                                <a className="tag" href="#"><span>Blues</span></a>
-                                <a className="tag" href="#"><span>Classic Rock</span></a>
-                                <a className="tag" href="#"><span>Reggae</span></a>
+                                <a className="tag" href="#"><span>{this.state.music_play}</span></a>
                             </section>
                         </Col>
                     </Row>

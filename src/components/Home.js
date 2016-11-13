@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Firebase from 'firebase';
 import Autocomplete from 'react-google-autocomplete';
 
 // Example to import element from React-Bootstrap

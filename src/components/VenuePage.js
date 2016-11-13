@@ -8,8 +8,6 @@ import Venue from './Venue';
 // Venues from DB
 var VENUES_DB = FBApp.ref('/venues/venue1');
 
-let venueName;
-
 class VenuePage extends Component {
 
     componentDidMount(){

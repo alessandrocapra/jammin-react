@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Autocomplete from 'react-google-autocomplete';
-import {InputRange} from 'react-input-range'
+// import {InputRange} from 'react-input-range'
 
 // Load components
 import SearchResultList from './SearchResultList';
@@ -15,11 +15,11 @@ class SearchResultPage extends Component {
         };
     }
 
-    handleValueChange(component, value) {
-        this.setState({
-            value: value,
-        });
-    }
+    // handleValueChange(component, value) {
+    //     this.setState({
+    //         value: value,
+    //     });
+    // }
 
     render(){
         return (
