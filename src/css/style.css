@@ -21,18 +21,18 @@ main > .row {
 
 /* General styling */
 h1, h2, h3 {
-    font-family: 'Lobster', cursive;
-    font-weight: 400;
     text-transform: capitalize;
     color: #B21F10;
 }
 
 h1 {
     font-size: 3em;
+    font-family: 'Lobster', cursive;
+    font-weight: 400;
 }
 
 h2 {
-    font-size: 3em;
+    font-size: 2.5em;
     text-shadow:
             1px 1px 0 #fff;
             /*-1px -1px 0 #fff,*/
@@ -76,10 +76,29 @@ input[type=text], input, button {
     padding:0.5em;
     border-radius: 0.2em;
     border-style: none;
+    color: #262626;
 }
 
 button {
     color: #262626;
+}
+
+@media screen and (max-width: 480px){
+    body {
+        font-size:1.4em;
+    }
+
+    p {
+        font-size:1.3em;
+    }
+
+    h2 {
+        font-size:2em;
+    }
+
+    input[type=text], input {
+        min-width: 16em;
+    }
 }
 
 .title, .subtitle {
@@ -215,6 +234,19 @@ button {
     display: inline-block;
 }
 
+@media screen and (max-width: 480px) {
+
+    .headline form input {
+        width: 100%;
+        margin-bottom:0.5em;
+    }
+
+    .headline form button {
+        margin-right: 0;
+        margin-top:1em;
+    }
+}
+
 /* main content */
 .facts {
     text-align: center;
@@ -307,7 +339,8 @@ section.instruments article img {
 }
 
 .venue h2 {
-    margin-top:0;
+    font-weight: 700;
+    margin-top:0.5em;
 }
 
 .venue .details {
