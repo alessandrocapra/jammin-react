@@ -12,22 +12,11 @@ class Profile extends Component {
     constructor(props){
         super(props);
         this.state = {
-            name: "",
-            surname : "",
-            gender : "",
-            location : "",
-            age : "",
-            about : "",
-            availability : "",
-            image : "",
-            instruments : "",
-            music_listen : "",
-            music_play : "",
-            youtube : ""
+            user: {}
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
 
         // Load user data
         let profileId = this.props.params.userId;
@@ -36,20 +25,7 @@ class Profile extends Component {
         return USER_DB.once('value').then(function (snapshot) {
             let user = snapshot.val();
             console.log(user);
-            this.setState({
-                name: user.name,
-                surname : user.surname,
-                gender : user.gender,
-                location : user.location,
-                age : user.age,
-                about : user.about,
-                availability : user.availability,
-                image : user.image,
-                instruments : user.instruments,
-                music_listen : user.music_listen,
-                music_play : user.music_play,
-                youtube : user.youtube
-            });
+            this.setState({user: user});
         }.bind(this));
 
         // const user_values = this.state.user;
@@ -96,20 +72,19 @@ class Profile extends Component {
                 <Col xs={12} sm={4}>
                     <Row>
                         <Col xs={12} className="left-sidebar">
-                            <img src={this.state.image} alt={this.state.name + this.state.surname}/>
-                            <h2 className="name">{this.state.name} {this.state.surname}</h2>
-                            <h4>{this.state.gender}, {this.state.age} years old</h4>
-                            <h4> <FontAwesome name='globe' /> {this.state.location} </h4>
+                            <img src={this.state.user.image} alt={this.state.user.name + this.state.user.surname}/>
+                            <h2 className="name">{this.state.user.name} {this.state.user.surname}</h2>
+                            <h4>{this.state.user.gender}, {this.state.user.age} years old</h4>
+                            <h4> <FontAwesome name='globe' /> {this.state.user.location} </h4>
                             <section>
                                 <h3>Availability</h3>
-                                <p>{this.state.availability} times per week</p>
+                                <p>{this.state.user.availability} times per week</p>
                             </section>
                             <section className="reviews">
                                 <h3>Reviews</h3>
                                 <Review name="Eric Cartman" title="Amazing performance!" rating="rocket" instrument="Electric guitar" />
                                 <Review name="Stan Marsh" title="Ok-ish" rating="thumbs-up" instrument="Drums" />
                                 <Review name="Kyle Broflovski" title="WOW, just wow!" rating="rocket" instrument="Electric guitar" />
-
                             </section>
                         </Col>
                     </Row>
@@ -117,7 +92,7 @@ class Profile extends Component {
                 <Col xs={12} sm={8} className="profile_content">
                     <section>
                         <h3>About me</h3>
-                        <p>{this.state.about}</p>
+                        <p>{this.state.user.about}</p>
                     </section>
                     <section className="instruments">
                         <h3>My instruments</h3>
@@ -129,13 +104,13 @@ class Profile extends Component {
                         <Col xs={12} sm={6}>
                             <section className="influences">
                                 <h3>Influences</h3>
-                                <a className="tag" href="#"><span>{this.state.music_listen}</span></a>
+                                <a className="tag" href="#"><span>{this.state.user.music_listen}</span></a>
                             </section>
                         </Col>
                         <Col xs={12} sm={6}>
                             <section className="genres">
                                 <h3>Genres I like to play</h3>
-                                <a className="tag" href="#"><span>{this.state.music_play}</span></a>
+                                <a className="tag" href="#"><span>{this.state.user.music_play}</span></a>
                             </section>
                         </Col>
                     </Row>
