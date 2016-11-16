@@ -368,6 +368,12 @@ section.instruments article img {
     }
 }
 
+/* Faq page */
+.faq img {
+    width: 100%;
+    margin-bottom:1.5em;
+}
+
 /* Videos */
 .videos iframe {
     width: 100%;
