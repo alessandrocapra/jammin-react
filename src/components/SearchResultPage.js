@@ -15,17 +15,14 @@ class SearchResultPage extends Component {
         };
     }
 
-    // handleValueChange(component, value) {
-    //     this.setState({
-    //         value: value,
-    //     });
-    // }
-
     render(){
+        let location = this.props.params.location;
+        let instrument = this.props.params.instrument;
+
         return (
-            <div>
+            <div className="searchResultPage">
                 <Row>
-                    <Col xs={12}><h2>Search results for {this.props.route.instrument} around {this.props.route.location}</h2></Col>
+                    <Col xs={12}><h2>Search results for <span>{this.props.params.instrument}</span> around <span>{this.props.params.location}</span></h2></Col>
                 </Row>
                 <Row>
                     <Col xs={4} className="filter">
@@ -68,7 +65,7 @@ class SearchResultPage extends Component {
 
                     </Col>
                     <Col xs={8}>
-                        <SearchResultList />
+                        <SearchResultList location={location} instrument={instrument} />
                     </Col>
                 </Row>
             </div>

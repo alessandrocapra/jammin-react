@@ -335,6 +335,13 @@ section.instruments article img {
 
 
 /* Search results */
+.searchResultPage h2 {
+    color: #262626;
+}
+
+.searchResultPage h2 span {
+    color: #B21F10;
+}
 
 /* Venues */
 .venue:not(:first-child) {

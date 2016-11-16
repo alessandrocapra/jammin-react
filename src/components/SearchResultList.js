@@ -5,6 +5,9 @@ import SearchResult from './SearchResult';
 
 class SearchResultList extends Component {
     render(){
+        let location = this.props.location;
+        let instrument = this.props.instrument;
+
         return(
             <article>
                 <Row>

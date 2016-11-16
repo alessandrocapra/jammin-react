@@ -27,34 +27,9 @@ class Profile extends Component {
             console.log(user);
             this.setState({user: user});
         }.bind(this));
-
-        // const user_values = this.state.user;
-        // USER_DB.map((key, index) => {
-        //     let user = user_values[key];
-        //     // You can now use instrument.name and instrument.image
-        //     console.log('user inside function: ', key);
-        // });
-
     }
 
-        // INSTRUMENTS_DB.once('value').then(function(snapshot) {
-        //     console.log('snapshot.val()', snapshot.val());
-        //
-        //     this.state.instruments.push(snapshot.val());
-        //     this.setState({
-        //         instruments: this.state.instruments
-        //     });
-        // }.bind(this));
-
     render(){
-
-        // This is to write instruments in the page
-        // var rows = [];
-        // for (var obj in this.state.instruments[0]) {
-        //     rows.push(<Instrument name={this.state.instruments[0][obj].name}
-        //                           image={this.state.instruments[0][obj].image}/>);
-        // }
-
 
         let instrumentList = this.props.route.instruments;
         let instruments = instrumentList.map((instrument) => {
@@ -67,7 +42,6 @@ class Profile extends Component {
         });
 
         return(
-
             <Row>
                 <Col xs={12} sm={4}>
                     <Row>
