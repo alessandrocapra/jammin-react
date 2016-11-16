@@ -4,17 +4,18 @@ import FontAwesome from 'react-fontawesome';
 
 class SearchResult extends Component {
     render(){
+        console.log('username from props: ', this.props.name);
         return(
             <Row>
                 <Col xs={4}>
-                    <img src={this.props.image} alt={this.props.username}/>
+                    <img src={this.props.user.image} alt={this.props.user.name}/>
                     <button>Contact me!</button>
                 </Col>
                 <Col xs={8}>
-                    <h3>{this.props.name} {this.props.surname}</h3>
-                    <p><FontAwesome name="rocket"/> {this.props.location} Location </p>
-                    <p><FontAwesome name="rocket"/> {this.props.playedWith} Played with </p>
-                    <p>{this.props.about}about</p>
+                    <h3>{this.props.user.name} {this.props.user.surname}lalla</h3>
+                    <p><FontAwesome name="rocket"/> {this.props.user.location} Location </p>
+                    <p><FontAwesome name="rocket"/> {this.props.user.playedWith} Played with </p>
+                    <p>{this.props.user.about}about</p>
                     <Row>
                         <Col xs={6}>
                             <h4>Music I play</h4>
