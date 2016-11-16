@@ -34,7 +34,7 @@ class Home extends Component {
                   console.log(place);
                 }}
                 types={['(regions)']} />
-              <input type="text" placeholder="Which instrument/s do you play?"/>
+              <input type="text" placeholder="Which instrument/s are you looking for?"/>
               <button type="submit">Search Jammers</button>
             </form>
           </Col>
