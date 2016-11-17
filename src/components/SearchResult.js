@@ -4,9 +4,10 @@ import FontAwesome from 'react-fontawesome';
 
 class SearchResult extends Component {
     render(){
-        console.log('username from props: ', this.props.name);
         return(
+        <Col xs={12}>
             <Row>
+                {console.log('username from props: ', this.props.user.name)}
                 <Col xs={4}>
                     <img src={this.props.user.image} alt={this.props.user.name}/>
                     <button>Contact me!</button>
@@ -28,6 +29,7 @@ class SearchResult extends Component {
                     </Row>
                 </Col>
             </Row>
+        </Col>
         );
     }
 }
