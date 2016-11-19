@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Row, Col } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
-import {FBApp} from '../modules/firebase';
+import {FBAppDB} from '../modules/firebase';
 
 // import components
 import Review from './Review';
@@ -20,7 +20,7 @@ class Profile extends Component {
 
         // Load user data
         let profileId = this.props.params.userId;
-        var USER_DB = FBApp.ref('users/' + profileId);
+        var USER_DB = FBAppDB.ref('users/' + profileId);
 
         return USER_DB.once('value').then(function (snapshot) {
             let user = snapshot.val();

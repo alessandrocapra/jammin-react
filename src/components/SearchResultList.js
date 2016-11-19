@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Row} from 'react-bootstrap';
-import {FBApp} from '../modules/firebase';
+import {FBAppDB} from '../modules/firebase';
 
 import SearchResult from './SearchResult';
 
@@ -38,7 +38,7 @@ class SearchResultList extends Component {
 
     render(){
         // Load user data
-        let SEARCH_RESULTS = FBApp.ref('users');
+        let SEARCH_RESULTS = FBAppDB.ref('users');
         let instrument_ref = SEARCH_RESULTS.child('instruments');
 
         let location = this.props.location;

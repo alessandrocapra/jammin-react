@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import {Row} from 'react-bootstrap';
-import {FBApp} from '../modules/firebase';
+import {FBAppDB} from '../modules/firebase';
 
 // Components
 import Venue from './Venue';
 
 // Venues from DB
-var VENUES_DB = FBApp.ref('/venues/venue1');
+var VENUES_DB = FBAppDB.ref('/venues/venue1');
 
 class VenuePage extends Component {
 

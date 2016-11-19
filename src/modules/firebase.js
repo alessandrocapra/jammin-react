@@ -10,4 +10,5 @@ var config = {
 };
 var FBApp = Firebase.initializeApp(config);
 
-module.exports.FBApp = FBApp.database();
+module.exports.FBAppDB = FBApp.database();
+module.exports.FBAppAuth = FBApp.auth();
