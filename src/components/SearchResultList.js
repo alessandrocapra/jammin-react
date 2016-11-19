@@ -12,19 +12,6 @@ class SearchResultList extends Component {
         }
     }
 
-    componentWillMount() {
-
-        // return SEARCH_RESULTS.orderByChild("age").on("child_added", function(snapshot) {
-        //     let user = snapshot.val();
-        //     console.log(user.name + " is " + user.age + " years old.");
-        //     // this.setState({user: user});
-        // }.bind(this));
-        // SEARCH_RESULT.on('value', function(snapshot) {
-        //
-        // });
-
-    }
-
     // getProfiles() {
     //     const users = this.state.user;
     //
@@ -39,7 +26,7 @@ class SearchResultList extends Component {
     render(){
         // Load user data
         let SEARCH_RESULTS = FBAppDB.ref('users');
-        let instrument_ref = SEARCH_RESULTS.child('instruments');
+        // let instrument_ref = SEARCH_RESULTS.child('instruments');
 
         let location = this.props.location;
         let instrument = this.props.instrument;
@@ -57,10 +44,7 @@ class SearchResultList extends Component {
 
         return(
             <Row>
-                {/*{profiles.map(function (profile, index) {*/}
-                    {/*console.log('profile inside map: ', profile);*/}
-                    {/*return profile;*/}
-                {/*})}*/}
+                {profiles}
             </Row>
         );
     }
