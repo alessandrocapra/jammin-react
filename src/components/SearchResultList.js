@@ -34,12 +34,13 @@ class SearchResultList extends Component {
         let profiles = [];
 
         SEARCH_RESULTS.orderByChild('location').equalTo(location).once('value').then(function(snap){
-            let user = snap.val();
-            Object.keys(user).map(function (key) {
-                console.log('key:', key);
+            let users = snap.val();
+            Object.keys(users).map(function (key) {
+                let user = users[key];
+                console.log('userrr:', user.name);
             });
 
-            profiles.push(<SearchResult user={user} />);
+            // profiles.push(<SearchResult user={user} />);
         });
 
         return(
