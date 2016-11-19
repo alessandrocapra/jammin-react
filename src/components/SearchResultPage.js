@@ -10,7 +10,7 @@ class SearchResultPage extends Component {
     constructor(props){
         super(props);
         this.state = {
-            // add here the filter inputs
+            filter: {},
         };
     }
 
