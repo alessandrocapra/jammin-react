@@ -7,21 +7,35 @@ class SearchForm extends Component {
         this.state = {
             location: "",
             instrument: "",
-        }
+        };
+
+        this.handleLocationChange = this.handleLocationChange.bind(this);
+        this.handleInstrumentChange = this.handleInstrumentChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    submitSearch(){
-
+    handleLocationChange(event){
+        this.setState({location: event.target.value});
     }
+
+    handleInstrumentChange(event){
+        this.setState({instrument: event.target.value});
+    }
+
+    handleSubmit(event){
+        alert('Something has been submitted: instrument = ' + this.state.instrument + ' - location: ' + this.state.location);
+        event.preventDefault();
+    }
+
     render(){
         return(
-            <form onSubmit={this.submitSearch}>
+            <form onSubmit={this.handleSubmit}>
                 <Autocomplete
                     onPlaceSelected={(place) => {
                         console.log(place);
                     }}
-                    types={['(regions)']} />
-                <input type="text" placeholder="Which instrument/s are you looking for?"/>
+                    types={['(regions)']} value={this.state.location} onChange={this.handleLocationChange} />
+                <input type="text" placeholder="Which instrument are you looking for?" value={this.state.instrument} onChange={this.handleInstrumentChange}/>
                 <button type="submit">Search Jammers</button>
             </form>
         );
