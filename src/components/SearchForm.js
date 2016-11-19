@@ -26,8 +26,8 @@ class SearchForm extends Component {
     }
 
     handleSubmit(event){
-        alert('Something has been submitted: instrument = ' + this.state.instrument + ' - location: ' + this.state.location);
         event.preventDefault();
+        window.location = 'search/' + this.state.location + '/' + this.state.instrument;
     }
 
     render(){
