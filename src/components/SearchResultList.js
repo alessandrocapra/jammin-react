@@ -22,7 +22,7 @@ class SearchResultList extends Component {
         let instrument = this.props.instrument;
 
         // let profiles = [];
-        searchResults.on('value', (snap) => {
+        searchResults.orderByChild('location').equalTo(location).on('value', (snap) => {
             let users = snap.val();
             const profiles = Object.keys(users).map((key) => users[key]);
             this.setState({ users: {...profiles}});
@@ -32,10 +32,14 @@ class SearchResultList extends Component {
     }
 
     render(){
-        // console.log('statess: ', Object.keys(this.state.users))
         return(
             <Row>
-                {/*{this.state.users}*/}
+                {/*{*/}
+                    {/*Object.keys(this.state.users).map(function (key) {*/}
+                        {/*var user = this.state.users[key];*/}
+                        {/*return <SearchResult user={user}/>*/}
+                    {/*})*/}
+                {/*}*/}
             </Row>
         );
     }
