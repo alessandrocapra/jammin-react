@@ -8,7 +8,7 @@ class App extends Component {
 
     render() {
         return(
-            <Grid className="contenitore" fluid={true}>
+            <Grid className="contenitore">
                 <header>
                     <Row>
                         <Col xs={12} sm={5}>
@@ -34,12 +34,14 @@ class App extends Component {
                     { this.props.children }
                 </main>
                 <footer>
-                    <Row>
-                        <Col xs={12}>
-                            <h4>Jammin</h4>
-                            <p>All rights reserved.</p>
-                        </Col>
-                    </Row>
+                    <Grid fluid={true}>
+                        <Row>
+                            <Col xs={12}>
+                                <h4>Jammin</h4>
+                                <p>All rights reserved.</p>
+                            </Col>
+                        </Row>
+                    </Grid>
                 </footer>
             </Grid>
         );

@@ -201,6 +201,10 @@ button {
     background-size: cover;
 }
 
+.headline form {
+    width:100%;
+}
+
 .headline form, .headline h2 {
     text-align: center;
 }
@@ -231,8 +235,9 @@ button {
     color: #262626;
 }
 
-.headline form input {
+.headline form input, .headline form {
     width: 20em;
+
 }
 
 /* Override autocomplete div surrounding the input*/
