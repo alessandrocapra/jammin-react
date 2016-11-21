@@ -21,17 +21,14 @@ class SearchResultList extends Component {
         let location = this.props.location;
         let instrument = this.props.instrument;
 
-        let profiles = [];
-        searchResults.orderByChild('location').equalTo(location).on('value', (snap) => {
+        // let profiles = [];
+        searchResults.on('value', (snap) => {
             let users = snap.val();
-            Object.keys(users).map((key) => {
-                let user = users[key];
-                console.log(user);
-                profiles.push(user);
-            });
+            const profiles = Object.keys(users).map((key) => users[key]);
+            this.setState({ users: {...profiles}});
         });
 
-        // this.setState({users: profiles[0]});
+        console.log('state: ', this.state.users);
     }
 
     render(){
