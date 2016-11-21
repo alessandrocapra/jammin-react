@@ -22,24 +22,19 @@ class SearchResultList extends Component {
         let instrument = this.props.instrument;
 
         // let profiles = [];
-        searchResults.orderByChild('location').equalTo(location).on('value', (snap) => {
+        searchResults.on('value', (snap) => {
             let users = snap.val();
             const profiles = Object.keys(users).map((key) => users[key]);
             this.setState({ users: {...profiles}});
         });
-
-        console.log('state: ', this.state.users);
     }
 
     render(){
         return(
             <Row>
-                {/*{*/}
-                    {/*Object.keys(this.state.users).map(function (key) {*/}
-                        {/*var user = this.state.users[key];*/}
-                        {/*return <SearchResult user={user}/>*/}
-                    {/*})*/}
-                {/*}*/}
+                {Object.keys(this.state.users).map((key) => {
+                    return <SearchResult user={this.state.users[key]} key={key} />
+                })}
             </Row>
         );
     }
