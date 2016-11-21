@@ -3,6 +3,7 @@ import {Row} from 'react-bootstrap';
 import update from 'react-addons-update';
 import {FBAppDB} from '../modules/firebase';
 
+
 import SearchResult from './SearchResult';
 
 class SearchResultList extends Component {
@@ -21,7 +22,7 @@ class SearchResultList extends Component {
         let instrument = this.props.instrument;
 
         let profiles = [];
-        searchResults.orderByChild('location').equalTo(location).once('value').then((snap) => {
+        searchResults.orderByChild('location').equalTo(location).on('value', (snap) => {
             let users = snap.val();
             Object.keys(users).map((key) => {
                 let user = users[key];
