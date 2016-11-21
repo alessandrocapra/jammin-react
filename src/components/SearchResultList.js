@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Row} from 'react-bootstrap';
+import update from 'react-addons-update';
 import {FBAppDB} from '../modules/firebase';
 
 import SearchResult from './SearchResult';
