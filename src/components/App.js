@@ -34,14 +34,12 @@ class App extends Component {
                     { this.props.children }
                 </main>
                 <footer>
-                    <Grid fluid={true}>
-                        <Row>
-                            <Col xs={12}>
-                                <h4>Jammin</h4>
-                                <p>All rights reserved.</p>
-                            </Col>
-                        </Row>
-                    </Grid>
+                    <Row>
+                        <Col xs={12}>
+                            <h4>Jammin</h4>
+                            <p>All rights reserved.</p>
+                        </Col>
+                    </Row>
                 </footer>
             </Grid>
         );

@@ -44,7 +44,8 @@ class SearchForm extends Component {
                         console.log(place);
                         this.setState({location: place.name});
                     }}
-                    types={['(regions)']} value={this.state.location} onChange={this.handleLocationChange} />
+                    types={['(regions)']} value={this.state.location} onChange={this.handleLocationChange}
+                    className="autocompleteLocation" />
                 {/*<input type="text" placeholder="Which instrument are you looking for?" value={this.state.instrument} onChange={this.handleInstrumentChange}/>*/}
                 <Select
                     name="instruments"

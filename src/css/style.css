@@ -7,6 +7,21 @@ body {
     padding: 0;
     font-size: 1.6em;
     color: #262626;
+    background-color: hsl(34, 53%, 82%);
+    background-image: repeating-linear-gradient(45deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px, hsla(197, 62%, 11%, 0.5) 10px,
+    hsla(5, 53%, 63%, 0) 10px, hsla(5, 53%, 63%, 0) 35px, hsla(5, 53%, 63%, 0.5) 35px, hsla(5, 53%, 63%, 0.5) 40px,
+    hsla(197, 62%, 11%, 0.5) 40px, hsla(197, 62%, 11%, 0.5) 50px, hsla(197, 62%, 11%, 0) 50px, hsla(197, 62%, 11%, 0) 60px,
+    hsla(5, 53%, 63%, 0.5) 60px, hsla(5, 53%, 63%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 80px,
+    hsla(35, 91%, 65%, 0) 80px, hsla(35, 91%, 65%, 0) 90px, hsla(5, 53%, 63%, 0.5) 90px, hsla(5, 53%, 63%, 0.5) 110px,
+    hsla(5, 53%, 63%, 0) 110px, hsla(5, 53%, 63%, 0) 120px, hsla(197, 62%, 11%, 0.5) 120px, hsla(197, 62%, 11%, 0.5) 140px
+    ),
+    repeating-linear-gradient(135deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px, hsla(197, 62%, 11%, 0.5) 10px,
+            hsla(5, 53%, 63%, 0) 10px, hsla(5, 53%, 63%, 0) 35px, hsla(5, 53%, 63%, 0.5) 35px, hsla(5, 53%, 63%, 0.5) 40px,
+            hsla(197, 62%, 11%, 0.5) 40px, hsla(197, 62%, 11%, 0.5) 50px, hsla(197, 62%, 11%, 0) 50px, hsla(197, 62%, 11%, 0) 60px,
+            hsla(5, 53%, 63%, 0.5) 60px, hsla(5, 53%, 63%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 80px,
+            hsla(35, 91%, 65%, 0) 80px, hsla(35, 91%, 65%, 0) 90px, hsla(5, 53%, 63%, 0.5) 90px, hsla(5, 53%, 63%, 0.5) 110px,
+            hsla(5, 53%, 63%, 0) 110px, hsla(5, 53%, 63%, 0) 140px, hsla(197, 62%, 11%, 0.5) 140px, hsla(197, 62%, 11%, 0.5) 160px
+    );
 }
 
 /*main {*/
@@ -15,8 +30,14 @@ body {
 /*}*/
 
 /* Bootstrap overriding */
+
+.container {
+    background: #fff;
+    box-shadow: 0 0 8px 3px #262626;
+}
+
 main > .row {
-    padding:2em 1.5em;
+    /*padding:2em 1.5em;*/
 }
 
 /* General styling */
@@ -102,7 +123,7 @@ button {
 }
 
 .title, .subtitle {
-    padding-left:2em;
+    /*padding-left:2em;*/
 }
 
 .title a {
@@ -191,7 +212,7 @@ button {
 /* Headline */
 .headline {
     padding: 5em 3em;
-    margin-top:1.5em;
+    /*margin-top:1.5em;*/
     background: linear-gradient(
         rgba(0, 0, 0, 0.45),
         rgba(0, 0, 0, 0.45)
@@ -201,13 +222,9 @@ button {
     background-size: cover;
 }
 
-.headline form {
-    width:100%;
-}
-
-.headline form, .headline h2 {
-    text-align: center;
-}
+/*.headline form {*/
+    /*width:100%;*/
+/*}*/
 
 .headline h2 {
     margin-bottom: 1.4em;
@@ -216,6 +233,7 @@ button {
     font-family:'Lato', sans-serif;
     text-shadow: none;
 
+    text-align: center;
     text-transform: none;
 }
 
@@ -225,6 +243,7 @@ button {
 }
 
 .headline form button {
+    display: block;
     background-color: #262626;
     border: 1px solid #fff;
     color: #fff;
@@ -235,16 +254,16 @@ button {
     color: #262626;
 }
 
-.headline form input, .headline form {
-    width: 20em;
+.headline .autocompleteLocation, .headline form div.Select {
+    width:40%;
+}
 
+.headline form > div.Select {
+    display: inline-block;
+    width:100%;
 }
 
 /* Override autocomplete div surrounding the input*/
-.headline form div {
-    width: auto;
-    display: inline-block;
-}
 
 @media screen and (max-width: 480px) {
 
