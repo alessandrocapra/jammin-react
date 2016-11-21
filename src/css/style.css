@@ -343,6 +343,24 @@ section.instruments article img {
     color: #B21F10;
 }
 
+.result {
+    margin-bottom:2em;
+}
+
+.result img {
+    width: 100%;
+    margin-top:1.5em;
+}
+
+.result button {
+    display: block;
+    margin: 1.5em auto 0 auto;
+    background-color: #B21F10;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight:700;
+}
+
 /* Venues */
 .venue:not(:first-child) {
     margin-top:2.5em;
