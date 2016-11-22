@@ -262,7 +262,15 @@ button {
 
 .headline form div.Select {
     display: inline-block;
-    width:100%;
+    /*padding: 0.5em;*/
+}
+
+.headline form .Select-control {
+    height:40px;
+}
+
+.headline form .Select-placeholder {
+    line-height:26px;
 }
 
 /* Override autocomplete div surrounding the input*/
