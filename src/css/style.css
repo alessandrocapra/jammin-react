@@ -222,10 +222,6 @@ button {
     background-size: cover;
 }
 
-/*.headline form {*/
-    /*width:100%;*/
-/*}*/
-
 .headline h2 {
     margin-bottom: 1.4em;
     color: #fff;
@@ -237,10 +233,11 @@ button {
     text-transform: none;
 }
 
-.headline form input, .headline form button {
-    display: inline-block;
-    margin-right: 1.5em;
-}
+/*.headline form input, .headline form button {*/
+    /*display: inline-block;*/
+    /*margin-right: 1.5em;*/
+/*}*/
+
 
 .headline form button {
     display: block;
@@ -254,11 +251,16 @@ button {
     color: #262626;
 }
 
-.headline .autocompleteLocation, .headline form div.Select {
+.headline div {
     width:40%;
+    display: inline-block;
 }
 
-.headline form > div.Select {
+.headline .autocompleteLocation{
+    width:100%;
+}
+
+.headline form div.Select {
     display: inline-block;
     width:100%;
 }
