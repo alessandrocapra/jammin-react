@@ -23,6 +23,7 @@ class App extends Component {
                                 <ul>
                                     <li><NavLink to="/venues">Venues</NavLink></li>
                                     <li><NavLink to="/profile/aleborgo">Profile</NavLink></li>
+                                    <li><NavLink to="/register">Register</NavLink></li>
                                     <li><NavLink to="/faq">FAQ</NavLink></li>
                                 </ul>
                             </nav>
