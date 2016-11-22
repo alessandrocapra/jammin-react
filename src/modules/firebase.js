@@ -11,4 +11,3 @@ var config = {
 var FBApp = Firebase.initializeApp(config);
 
 module.exports.FBAppDB = FBApp.database();
-module.exports.FBAppAuth = FBApp.auth();
