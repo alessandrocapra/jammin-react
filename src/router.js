@@ -8,6 +8,7 @@ import Venues from './components/VenuePage';
 import Profile from './components/Profile';
 import SearchResultPage from './components/SearchResultPage';
 import Faq from './components/Faq';
+import Register from './components/Register';
 
 // import static data
 import InstrumentList from './data/instruments';
@@ -20,6 +21,7 @@ const routes = (
       <Route path="venues" component={Venues} />
       <Route path="faq" component={Faq} />
       <Route path="profile/:userId" component={Profile} instruments={InstrumentList.STRUMENTI} />
+      <Route path="register" component={Register} />
       <Route path="search/:location/:instrument" component={SearchResultPage} />
     </Route>
   </Router>
