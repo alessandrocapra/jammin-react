@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import Autocomplete from 'react-google-autocomplete';
 import Select from 'react-select';
-import 'react-select/dist/react-select.css';
 
+import 'react-select/dist/react-select.css';
 
 class SearchForm extends Component {
     constructor(props){
@@ -22,13 +22,12 @@ class SearchForm extends Component {
     }
 
     handleInstrumentChange(value){
-        console.log('value: ', value.label);
-        this.setState({instrument: value.label});
+        this.setState({instrument: value});
     }
 
     handleSubmit(event){
         event.preventDefault();
-        window.location = 'search/' + this.state.location + '/' + this.state.instrument;
+        window.location = 'search/' + this.state.location + '/' + this.state.instrument.label;
     }
 
     render(){

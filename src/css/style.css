@@ -233,10 +233,7 @@ button {
     text-transform: none;
 }
 
-/*.headline form input, .headline form button {*/
-    /*display: inline-block;*/
-    /*margin-right: 1.5em;*/
-/*}*/
+/* Styles for the form in headline */
 
 
 .headline form button {
@@ -244,6 +241,8 @@ button {
     background-color: #262626;
     border: 1px solid #fff;
     color: #fff;
+
+    margin-top:1em;
 }
 
 .headline form button:hover {
@@ -251,29 +250,27 @@ button {
     color: #262626;
 }
 
-.headline div {
-    width:40%;
-    display: inline-block;
+/* Overwrite react-select*/
+.headline form > div {
+    width:45%;
+}
+
+.headline form .Select {
+    margin-top:1em;
+    font-size:1.2em;
+}
+
+.headline form .Select-control {
+    height:48px;
+}
+
+.headline form .Select-placeholder, .headline form .Select-value-label {
+    line-height:48px;
 }
 
 .headline .autocompleteLocation{
     width:100%;
 }
-
-.headline form div.Select {
-    display: inline-block;
-    /*padding: 0.5em;*/
-}
-
-.headline form .Select-control {
-    height:40px;
-}
-
-.headline form .Select-placeholder {
-    line-height:26px;
-}
-
-/* Override autocomplete div surrounding the input*/
 
 @media screen and (max-width: 480px) {
 
