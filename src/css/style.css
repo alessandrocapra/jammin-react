@@ -458,3 +458,23 @@ section.instruments article img {
     margin-right: 0;
 }
 
+/* Override FireBaseUI Auth */
+.mdl-button {
+    color: red;
+    /*content: '';*/
+    background: #fff;
+}
+
+.firebaseui-idp-list {
+    list-style: none;
+    padding-left:0;
+}
+
+.firebaseui-idp-list button {
+    padding-left: 0;
+}
+
+.firebaseui-idp-google img {
+    width: 10%;
+}
+
