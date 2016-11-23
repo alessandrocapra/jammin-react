@@ -461,8 +461,12 @@ section.instruments article img {
 /* Override FireBaseUI Auth */
 .mdl-button {
     color: red;
-    /*content: '';*/
     background: #fff;
+}
+
+.firebaseui-idp-icon {
+    margin-right:1em;
+    width:1.5em;
 }
 
 .firebaseui-idp-list {
@@ -471,10 +475,10 @@ section.instruments article img {
 }
 
 .firebaseui-idp-list button {
-    padding-left: 0;
+    /*padding-left: 0;*/
 }
 
 .firebaseui-idp-google img {
-    width: 10%;
+    width: 1.5em;
 }
 
