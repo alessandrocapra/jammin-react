@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Autocomplete from 'react-google-autocomplete';
 import Select from 'react-select';
+import {browserHistory} from 'react-router';
 
 import 'react-select/dist/react-select.css';
 
@@ -27,7 +28,7 @@ class SearchForm extends Component {
 
     handleSubmit(event){
         event.preventDefault();
-        window.location = 'search/' + this.state.location + '/' + this.state.instrument.label;
+        browserHistory.push('search/' + this.state.location + '/' + this.state.instrument.label);
     }
 
     render(){
