@@ -36,6 +36,10 @@ body {
     box-shadow: 0 0 8px 3px #262626;
 }
 
+.row {
+    margin-left:0;
+    margin-right:0;
+}
 main > .row {
     /*padding:2em 1.5em;*/
 }
@@ -456,6 +460,16 @@ section.instruments article img {
 .contenitore > footer .row {
     margin-left: 0;
     margin-right: 0;
+}
+
+/* Register page */
+.register section {
+    margin-bottom:1.5em;
+    margin-top: 1.5em;
+}
+
+.register section h3 {
+    margin-top:0;
 }
 
 /* Override FireBaseUI Auth */
