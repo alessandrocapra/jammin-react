@@ -1,4 +1,5 @@
 import Firebase from 'firebase';
+import firebaseui from 'firebaseui';
 
 // Initialize Firebase
 var config = {
@@ -9,5 +10,7 @@ var config = {
     messagingSenderId: "170620124215"
 };
 var FBApp = Firebase.initializeApp(config);
+var FBAppAuth = new firebaseui.auth.AuthUI(Firebase.auth());
 
 module.exports.FBAppDB = FBApp.database();
+module.exports.FBAppAuth = FBAppAuth;
