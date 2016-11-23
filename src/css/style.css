@@ -474,8 +474,17 @@ section.instruments article img {
     padding-left:0;
 }
 
-.firebaseui-idp-list button {
-    /*padding-left: 0;*/
+.firebaseui-list-item {
+    margin-bottom:1em;
+}
+
+.firebaseui-idp-button {
+    background: #ccc;
+    color: #262626;
+}
+
+.firebaseui-idp-text-long {
+    display: none;
 }
 
 .firebaseui-idp-google img {
