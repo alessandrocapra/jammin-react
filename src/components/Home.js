@@ -11,7 +11,7 @@ class Home extends Component {
     saveUser(e) {
         e.preventDefault();
 
-        // var database = Firebase.database();
+        // var database = firebase.database();
 
         // var location=e.target[0].value;
         // var instrument=e.target[1].value;

@@ -1,11 +1,33 @@
 import React, {Component} from 'react';
 import NavLink from './NavLink';
+import firebase from 'firebase';
 
 // Example to import element from React-Bootstrap
 import { Grid, Row, Col } from 'react-bootstrap';
 
 class App extends Component {
+    userLogout(){
+        firebase.auth().signOut().then(function() {
+            // Sign-out successful.
+            console.log('Signout successfull');
+            let logout = document.getElementById('logout-li').parentNode;
+            logout.style.display = 'none';
+
+        }, function(error) {
+            // An error happened.
+        });
+    }
+
+    checkUser(){
+
+    }
+
     render() {
+
+        if(user){
+            console.log('user: ' + user.displayName);
+        }
+
         return(
             <Grid className="contenitore">
                 <header>
@@ -22,8 +44,9 @@ class App extends Component {
                             <nav className="main-menu">
                                 <ul>
                                     <li><NavLink to="/venues">Venues</NavLink></li>
-                                    <li><NavLink to="/profile/aleborgo">Profile</NavLink></li>
-                                    <li><NavLink to="/register">Register</NavLink></li>
+                                    <li><NavLink to="/profile/">Profile</NavLink></li>
+                                    <li><NavLink to="/register" id="register-li">Register</NavLink></li>
+                                    <li><a href="#0" id="logout-li" onClick={this.userLogout}>Logout</a></li>
                                     <li><NavLink to="/faq">FAQ</NavLink></li>
                                 </ul>
                             </nav>

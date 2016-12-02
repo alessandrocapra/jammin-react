@@ -1,33 +1,92 @@
 import React, {Component} from 'react';
 import {Row,Col} from 'react-bootstrap';
-import {FBAppAuth} from '../modules/firebase';
 import firebase from 'firebase';
+import {browserHistory} from 'react-router';
 
 class Register extends Component {
+    constructor(){
+        super();
+        this.user = {};
+        this.auth = firebase.auth();
+        this.db = firebase.database();
+    }
 
     componentDidMount() {
-        var self = this;
-        var uiConfig = {
-            'callbacks': {
-                'signInSuccess': function(user) {
-                    if (self.props.onSignIn) {
-                        self.props.onSignIn(user);
-                        console.log('user logged');
-                        console.log(user.name);
-                    }
-                    return false;
-                }
-            },
-            'signInOptions': [
-                firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-                firebase.auth.EmailAuthProvider.PROVIDER_ID
-            ]
+        this.auth.onAuthStateChanged(this.onAuthStateChanged.bind(this));
+
+        /* hide logout menu */
+        let logout = document.getElementById('logout-li').parentNode;
+        logout.style.display = 'none';
+    }
+
+    onAuthStateChanged(user) {
+        if (user) {
+            this.saveUserData(user);
+        }
+    }
+
+    saveUserData(user) {
+        let username = 'No.Name.Set';
+        let name = "";
+        let surname = "";
+
+        if (user.displayName && user.displayName.length) {
+            name = user.displayName.split(" ")[0];
+            surname = user.displayName.split(" ")[1];
+            username = user.displayName.replace(/\s+/g, '').toLowerCase();
+        } else {
+            username = user.email.split('@')[0];
+        }
+        this.user = {
+            name: name,
+            surname: surname,
+            username: username,
+            image: user.photoURL
         };
-        FBAppAuth.start('#firebaseui-auth', uiConfig);
+        this.db.ref(`users/${user.uid}`).set(this.user);
+        // Store a local copy of the full user object
+        this.user.id = user.uid;
+    }
+
+    componentWillMount() {
+
     }
 
     componentWillUnmount() {
-        FBAppAuth.reset();
+
+    }
+
+    signIn(){
+
+        var provider = new firebase.auth.GoogleAuthProvider();
+
+        firebase.auth().signInWithPopup(provider).then(function(result) {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            var token = result.credential.accessToken;
+
+            // The signed-in user info.
+            var user = result.user;
+
+            // hide register button, show logout
+            let register = document.getElementById('register-li').parentNode;
+            register.style.display = 'none';
+
+            let logout = document.getElementById('logout-li').parentNode;
+            logout.style.display = 'inline';
+
+            // redirect user to his profile
+            browserHistory.push('profile/' + this.state.location + '/' + this.state.instrument.label);
+
+        }).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            // ...
+        });
     }
 
     render() {
@@ -35,7 +94,7 @@ class Register extends Component {
             <Row className="register">
                 <Col xs={3}>
                     <h2>Sign up</h2>
-                    <div id="firebaseui-auth"></div>
+                    <button id="firebase-auth" onClick={this.signIn}>Sign in</button>
                 </Col>
                 <Col xs={9}>
                     <h2>Take part in our incredible community!</h2>
