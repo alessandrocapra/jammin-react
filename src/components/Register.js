@@ -4,49 +4,6 @@ import firebase from 'firebase';
 import {browserHistory} from 'react-router';
 
 class Register extends Component {
-    constructor(){
-        super();
-        this.user = {};
-        this.auth = firebase.auth();
-        this.db = firebase.database();
-    }
-
-    componentDidMount() {
-        this.auth.onAuthStateChanged(this.onAuthStateChanged.bind(this));
-
-        /* hide logout menu */
-        let logout = document.getElementById('logout-li').parentNode;
-        logout.style.display = 'none';
-    }
-
-    onAuthStateChanged(user) {
-        if (user) {
-            this.saveUserData(user);
-        }
-    }
-
-    saveUserData(user) {
-        let username = 'No.Name.Set';
-        let name = "";
-        let surname = "";
-
-        if (user.displayName && user.displayName.length) {
-            name = user.displayName.split(" ")[0];
-            surname = user.displayName.split(" ")[1];
-            username = user.displayName.replace(/\s+/g, '').toLowerCase();
-        } else {
-            username = user.email.split('@')[0];
-        }
-        this.user = {
-            name: name,
-            surname: surname,
-            username: username,
-            image: user.photoURL
-        };
-        this.db.ref(`users/${user.uid}`).set(this.user);
-        // Store a local copy of the full user object
-        this.user.id = user.uid;
-    }
 
     componentWillMount() {
 
