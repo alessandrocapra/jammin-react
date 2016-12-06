@@ -74,10 +74,18 @@ class App extends Component {
     }
 
     checkUser(){
+        let user = firebase.auth().currentUser;
 
+        if(user){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     render() {
+
+        this.checkUser ? console.log("Logged in") : console.log("Not logged");
 
         return(
             <Grid className="contenitore">

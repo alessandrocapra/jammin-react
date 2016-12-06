@@ -6,6 +6,7 @@ import App from './components/App';
 import Home from './components/Home';
 import Venues from './components/VenuePage';
 import Profile from './components/Profile';
+import EditProfile from './components/EditProfile';
 import SearchResultPage from './components/SearchResultPage';
 import Faq from './components/Faq';
 import Register from './components/Register';
@@ -21,6 +22,7 @@ const routes = (
       <Route path="venues" component={Venues} />
       <Route path="faq" component={Faq} />
       <Route path="profile/:userId" component={Profile} instruments={InstrumentList.STRUMENTI} />
+      <Route path="profile/edit/:userId" component={EditProfile} />
       <Route path="register" component={Register} />
       <Route path="search/:location/:instrument" component={SearchResultPage} />
     </Route>

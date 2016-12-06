@@ -96,12 +96,23 @@ a.tag span{
 }
 
 /* Form stuff */
+
 input[type=text], input, button {
     font-size:1.2em;
     padding:0.5em;
     border-radius: 0.2em;
     border-style: none;
     color: #262626;
+}
+
+.edit label {
+    width: 50%;
+}
+
+.edit label input {
+    display: block;
+    margin-top:0.2em;
+    width: 95%;
 }
 
 button {

@@ -74,7 +74,6 @@ class Register extends Component {
             var errorMessage = error.message;
             // ...
         });
-
     }
 
     render() {

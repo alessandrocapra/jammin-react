@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { Row, Col } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
-import {FBAppDB} from '../modules/firebase';
+import firebase from 'firebase';
+import {browserHistory} from 'react-router';
 
 // import components
 import Review from './Review';
@@ -17,10 +18,9 @@ class Profile extends Component {
     }
 
     componentWillMount() {
-
         // Load user data
         let profileId = this.props.params.userId;
-        var USER_DB = FBAppDB.ref('users/' + profileId);
+        var USER_DB = firebase.database().ref('users/' + profileId);
 
         return USER_DB.once('value').then(function (snapshot) {
             let user = snapshot.val();
@@ -29,16 +29,28 @@ class Profile extends Component {
         }.bind(this));
     }
 
-    render(){
+    checkUser(){
+        let user = firebase.auth().currentUser;
 
+        if(user){
+            return user.uid;
+        }
+    }
+
+    handleEditButton(){
+        browserHistory.push('/profile/edit/' + firebase.auth().currentUser.uid);
+    }
+
+    render(){
         let instrumentList = this.props.route.instruments;
+
         let instruments = instrumentList.map((instrument) => {
             return <Instrument name={instrument.name}
-                           experience={instrument.experience}
-                           image={instrument.image}
-                           rating={instrument.rating}
-                           percentage={instrument.percentage}
-                           key={instrument.name} />
+                               experience={instrument.experience}
+                               image={instrument.image}
+                               rating={instrument.rating}
+                               percentage={instrument.percentage}
+                               key={instrument.name} />
         });
 
         return(
@@ -65,7 +77,10 @@ class Profile extends Component {
                 </Col>
                 <Col xs={12} sm={8} className="profile_content">
                     <section>
-                        <h3>About me</h3>
+                        <div>
+                            <h3>About me</h3>
+                            { this.checkUser ? (<button className="btn btn-default" onClick={this.handleEditButton}>Edit profile</button>) : (<div></div>) }
+                        </div>
                         <p>{this.state.user.about}</p>
                     </section>
                     <section className="instruments">
