@@ -101,7 +101,7 @@ input[type=text], input, button {
     font-size:1.2em;
     padding:0.5em;
     border-radius: 0.2em;
-    border-style: none;
+    border: 1px solid rgba(0,0,0,0.2);
     color: #262626;
 }
 
@@ -109,9 +109,10 @@ input[type=text], input, button {
     width: 50%;
 }
 
-.edit label input {
+.edit label input, .edit label textarea {
     display: block;
     margin-top:0.2em;
+    margin-bottom:1em;
     width: 95%;
 }
 
