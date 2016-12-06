@@ -5,12 +5,18 @@ import {browserHistory} from 'react-router';
 
 class Register extends Component {
 
-    componentWillMount() {
+    constructor(props){
+        super(props);
+        this.state = {
+            email: "",
+            password: "",
+            confirmPassword: "",
+        };
 
-    }
-
-    componentWillUnmount() {
-
+        this.handleEmailChange = this.handleEmailChange.bind(this);
+        this.handlePassword = this.handlePassword.bind(this);
+        this.handleConfirmPassword = this.handleConfirmPassword.bind(this);
+        this.signUpEmail = this.signUpEmail.bind(this);
     }
 
     signIn(){
@@ -46,12 +52,46 @@ class Register extends Component {
         });
     }
 
+    handleEmailChange(event){
+        this.setState({email: event.target.value})
+        console.log("Email: ", this.state.email);
+    }
+
+    handlePassword(event){
+        this.setState({password: event.target.value})
+    }
+
+    handleConfirmPassword(event){
+        this.setState({confirmPassword: event.target.value})
+    }
+
+    signUpEmail(e){
+        e.preventDefault();
+
+        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ...
+        });
+
+    }
+
     render() {
         return (
             <Row className="register">
                 <Col xs={3}>
                     <h2>Sign up</h2>
-                    <button id="firebase-auth" onClick={this.signIn}>Sign in</button>
+                    <button id="firebase-auth" onClick={this.signIn}>Sign in with Google</button>
+                    <h3>Sign up via e-mail</h3>
+                    <div className="form-group">
+                        <form action="">
+                            <input type="text" value={this.state.email} onChange={this.handleEmailChange} placeholder="E-mail address"/>
+                            <input type="password" value={this.state.password} onChange={this.handlePassword} placeholder="Password" />
+                            <input type="password" value={this.state.confirmPassword} onChange={this.handleConfirmPassword} placeholder="Confirm password"/>
+                            <button type="submit" onClick={this.signUpEmail}>Sign up</button>
+                        </form>
+                    </div>
                 </Col>
                 <Col xs={9}>
                     <h2>Take part in our incredible community!</h2>
