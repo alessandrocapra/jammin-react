@@ -15,6 +15,7 @@ class Register extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.getOptions = this.getOptions.bind(this);
         this.musicPlayChange = this.musicPlayChange.bind(this);
+        this.saveData = this.saveData.bind(this);
 
     }
 
@@ -44,11 +45,8 @@ class Register extends Component {
                 $.each(artistsArray, function(key, value){
                     options.push({value: value.name, label: value.name});
                 });
-                console.log(options);
             });
         }
-
-        console.log('prova prova: ', $('.Select').parent().next('.container-tags'));
 
         setTimeout(function() {
             callback(null, {options: options});
@@ -56,12 +54,25 @@ class Register extends Component {
     }
 
     musicPlayChange(val){
-        console.log('selected: ',val);
         let musicPlayArray = this.state.user.music_play ? this.state.user.music_play : [];
-
-        console.log('musicPlayArray: ',musicPlayArray);
         musicPlayArray.push(val.value);
         this.setState({user: {...this.state.user, music_play: musicPlayArray}});
+    }
+
+    saveData(){
+        let user = this.state.user;
+        let profileId = this.props.params.userId;
+
+        firebase.database().ref('users/' + profileId).set({
+            name: user.name,
+            surname: user.surname,
+            image : user.image,
+            age: user.age,
+            location: user.location,
+            about: user.about,
+            music_play: user.music_play,
+            // music_listen: user.music_listen,
+        });
     }
 
     render() {
@@ -98,7 +109,7 @@ class Register extends Component {
                                 className="autocompleteLocation" />
                             </label>
                             <label htmlFor="about">
-                                About me <textarea name="about" id="" cols="30" rows="10" placeholder="Present yourself to other musicians!">{this.state.user.about}</textarea>
+                                About me <textarea name="about" id="" cols="30" rows="10" placeholder="Present yourself to other musicians!" onChange={this.handleChange}>{this.state.user.about}</textarea>
                             </label>
                             <h2>My music</h2>
                             <Row>
@@ -131,6 +142,9 @@ class Register extends Component {
                                     </div>
                                 </Col>
                             </Row>
+                            <div className="center-block">
+                                <button className="btn btn-success" onClick={this.saveData}>Save</button>
+                            </div>
 
                         </div>
                     </Col>
