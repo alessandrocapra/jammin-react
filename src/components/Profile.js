@@ -41,7 +41,7 @@ class Profile extends Component {
     }
 
     handleEditButton(){
-        browserHistory.push('profile/edit/' + firebase.auth().currentUser.uid);
+        browserHistory.push('edit/' + firebase.auth().currentUser.uid);
     }
 
     render(){

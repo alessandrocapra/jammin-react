@@ -31,8 +31,8 @@ class EditProfile extends Component {
     }
 
     handleChange(e){
-        this.setState({user : { ...this.state.user, [e.target.name]: e.target.value}});
         console.log('name: value', e.target.name, e.target.value);
+        this.setState({user : { ...this.state.user, [e.target.name]: e.target.value}});
 
     }
 
@@ -102,14 +102,16 @@ class EditProfile extends Component {
                             <label htmlFor="age">
                                 Location
                                 <Autocomplete
-                                onPlaceSelected={(place) => {
-                                    this.setState({user: { ...this.state.user, location: place.name}});
-                                }}
-                                types={['(regions)']} value={this.state.user.location} onChange={this.handleChange}
-                                className="autocompleteLocation" />
+                                    name="location"
+                                    onPlaceSelected={(place) => {
+                                        console.log('setting ' + place.name + ' as location in state');
+                                        this.setState({user: { ...this.state.user, location: place.name}});
+                                    }}
+                                    types={['(regions)']} value={this.state.user.location} onChange={this.handleChange}
+                                    className="autocompleteLocation" />
                             </label>
                             <label htmlFor="about">
-                                About me <textarea name="about" id="" cols="30" rows="10" placeholder="Present yourself to other musicians!" onChange={this.handleChange}>{this.state.user.about}</textarea>
+                                About me <textarea name="about" id="" cols="30" rows="10" placeholder="Present yourself to other musicians!" value={this.state.user.about} onChange={this.handleChange}></textarea>
                             </label>
                             <h2>My music</h2>
                             <Row>
