@@ -11,6 +11,7 @@ class App extends Component {
         this.state = {
             currentUser: {}
         };
+
         this.user = {};
         this.auth = firebase.auth();
         this.db = firebase.database();
@@ -53,7 +54,8 @@ class App extends Component {
             username: username,
             image: user.photoURL
         };
-        this.db.ref(`users/${user.uid}`).set(this.user);
+        this.db.ref(`users/${user.uid}`).update(this.user);
+
         // Store a local copy of the full user object
         this.user.id = user.uid;
     }
@@ -103,7 +105,7 @@ class App extends Component {
                             <nav className="main-menu">
                                 <ul>
                                     <li><NavLink to="/venues">Venues</NavLink></li>
-                                    <li><NavLink to={`profile/${this.state.currentUser.id}`}>Profile</NavLink></li>
+                                    <li><NavLink to={`/profile/${this.state.currentUser.id}`}>Profile</NavLink></li>
                                     <li><NavLink to="/register" id="register-li">Register</NavLink></li>
                                     <li><a href="#0" id="logout-li" onClick={this.userLogout}>Logout</a></li>
                                     <li><NavLink to="/faq">FAQ</NavLink></li>

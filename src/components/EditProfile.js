@@ -5,7 +5,7 @@ import Autocomplete from 'react-google-autocomplete';
 import Select from 'react-select';
 import $ from 'jquery';
 
-class Register extends Component {
+class EditProfile extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -63,7 +63,7 @@ class Register extends Component {
         let user = this.state.user;
         let profileId = this.props.params.userId;
 
-        firebase.database().ref('users/' + profileId).set({
+        firebase.database().ref('users/' + profileId).update({
             name: user.name,
             surname: user.surname,
             image : user.image,
@@ -154,4 +154,4 @@ class Register extends Component {
     }
 }
 
-export default Register;
+export default EditProfile;

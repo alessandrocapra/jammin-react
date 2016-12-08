@@ -14,13 +14,16 @@ class Profile extends Component {
         super(props);
         this.state = {
             user: {}
-        }
+        };
+
+        this.checkUser = this.checkUser.bind(this);
+        this.handleEditButton = this.handleEditButton.bind(this);
     }
 
     componentWillMount() {
         // Load user data
         let profileId = this.props.params.userId;
-        var USER_DB = firebase.database().ref('users/' + profileId);
+        let USER_DB = firebase.database().ref('users/' + profileId);
 
         return USER_DB.once('value').then(function (snapshot) {
             let user = snapshot.val();
@@ -38,7 +41,7 @@ class Profile extends Component {
     }
 
     handleEditButton(){
-        browserHistory.push('/profile/edit/' + firebase.auth().currentUser.uid);
+        browserHistory.push('profile/edit/' + firebase.auth().currentUser.uid);
     }
 
     render(){
@@ -86,8 +89,6 @@ class Profile extends Component {
                     <section className="instruments">
                         <h3>My instruments</h3>
                         {instruments}
-                        {/*<Instrument name="Electric guitar" image="img/instruments/electric-guitar.svg" experience={3} rating="rocket" percentage="98%"/>*/}
-                        {/*<Instrument name="Drums" image="img/instruments/drum-set.svg" experience={1} rating="thumbs-up" percentage="75%"/>*/}
                     </section>
                     <Row>
                         <Col xs={12} sm={6}>
