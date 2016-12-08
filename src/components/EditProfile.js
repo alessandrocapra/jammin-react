@@ -112,7 +112,9 @@ class Register extends Component {
                                         />
                                     </label>
                                     <div id="music_like_container" className="container-tags">
-                                        {this.state.user.music_play}
+                                        {this.state.user.music_play ? this.state.user.music_play.map((name,index) => {
+                                            return <button className="btn btn-default"> {name} </button>;
+                                        }) : <div></div>}
                                     </div>
                                 </Col>
                                 <Col xs={6}>

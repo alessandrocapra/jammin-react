@@ -121,9 +121,14 @@ input[type=text], input, button {
 }
 
 .container-tags {
-    border:1px solid rgba(0,0,0,0.2);
+    border:1px solid rgba(0,0,0,0.0);
     min-height:10em;
     border-radius: 0.2em;
+}
+
+.container-tags button {
+    display: inline-block;
+    margin-right:0.5em;
 }
 
 button {
