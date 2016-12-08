@@ -116,6 +116,16 @@ input[type=text], input, button {
     width: 95%;
 }
 
+.edit .col-xs-6 label, .edit .col-xs-6 label input, .edit .col-xs-6 label textarea {
+    width:100%;
+}
+
+.container-tags {
+    border:1px solid rgba(0,0,0,0.2);
+    min-height:10em;
+    border-radius: 0.2em;
+}
+
 button {
     color: #262626;
 }

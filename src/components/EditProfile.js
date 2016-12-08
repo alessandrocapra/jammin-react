@@ -48,6 +48,8 @@ class Register extends Component {
             });
         }
 
+        console.log('prova prova: ', $('.Select').parent().next('.container-tags'));
+
         setTimeout(function() {
             callback(null, {options: options});
         }, 500);
@@ -55,7 +57,11 @@ class Register extends Component {
 
     musicPlayChange(val){
         console.log('selected: ',val);
-        this.setState({user: {...this.state.user, music_play: val.value}});
+        let musicPlayArray = this.state.user.music_play ? this.state.user.music_play : [];
+
+        console.log('musicPlayArray: ',musicPlayArray);
+        musicPlayArray.push(val.value);
+        this.setState({user: {...this.state.user, music_play: musicPlayArray}});
     }
 
     render() {
@@ -95,16 +101,35 @@ class Register extends Component {
                                 About me <textarea name="about" id="" cols="30" rows="10" placeholder="Present yourself to other musicians!">{this.state.user.about}</textarea>
                             </label>
                             <h2>My music</h2>
-                            <label htmlFor="music_play">
-                                Music
-                                <Select.Async
-                                    name="music_play"
-                                    loadOptions={this.getOptions}
-                                    onChange={this.musicPlayChange}
-                                    value={this.state.user.music_play}
-                                />
+                            <Row>
+                                <Col xs={6}>
+                                    <label htmlFor="music_play">
+                                        Genres/Artists I listen to
+                                        <Select.Async
+                                            name="music_play"
+                                            loadOptions={this.getOptions}
+                                            onChange={this.musicPlayChange}
+                                        />
+                                    </label>
+                                    <div id="music_like_container" className="container-tags">
+                                        {this.state.user.music_play}
+                                    </div>
+                                </Col>
+                                <Col xs={6}>
+                                    <label htmlFor="music_play">
+                                        Genres/Artists I play
+                                        <Select.Async
+                                            name="music_play"
+                                            loadOptions={this.getOptions}
+                                            onChange={this.musicPlayChange}
+                                            value={this.state.user.music_play}
+                                        />
+                                    </label>
+                                    <div id="music_play_container" className="container-tags">
+                                    </div>
+                                </Col>
+                            </Row>
 
-                            </label>
                         </div>
                     </Col>
                 </Row>
