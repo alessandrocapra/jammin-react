@@ -96,8 +96,12 @@ class EditProfile extends Component {
         });
     }
 
-    handleInstrumentChange(value){
-        this.setState({instrument: value});
+    handleInstrumentChange(val){
+        this.setState({user: {...this.state.user, instruments: val.value}});
+    }
+
+    saveInstrument(){
+
     }
 
     render() {
@@ -196,7 +200,7 @@ class EditProfile extends Component {
                                 </Col>
                             </Row>
                             <Row>
-                                <Col xs={12} sm={6}>
+                                <Col xs={12} id="instrument-form">
                                     <Select
                                         name="instruments"
                                         value={this.state.instrument}
@@ -206,7 +210,9 @@ class EditProfile extends Component {
                                     <input type="text" name="experience" placeholder="Years of experience.." value="eh" onChange={this.handleChange}/>
                                     <button id="add-instrument">Add instrument</button>
                                 </Col>
-                                <Col xs={12} sm={6}>
+                            </Row>
+                            <Row>
+                                <Col xs={12}>
                                     <div className="container-tags">
                                     </div>
                                 </Col>

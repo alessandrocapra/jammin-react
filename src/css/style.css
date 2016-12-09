@@ -97,7 +97,7 @@ a.tag span{
 
 /* Form stuff */
 
-input[type=text], input, button {
+input:not([type=radio]), button {
     font-size:1.2em;
     padding:0.5em;
     border-radius: 0.2em;
@@ -105,11 +105,15 @@ input[type=text], input, button {
     color: #262626;
 }
 
+.Select input {
+    border:none;
+}
+
 .edit label {
     width: 100%;
 }
 
-.edit input {
+.edit input:not([type=radio]) {
     width: 100%;
 }
 
@@ -127,6 +131,11 @@ input[type=text], input, button {
 
 .edit .col-xs-6 label, .edit .col-xs-6 label input, .edit .col-xs-6 label textarea {
     width:100%;
+}
+
+.edit #instrument-form .Select, .edit #instrument-form input{
+    width:30%;
+    display: inline-block;
 }
 
 .container-tags {
@@ -295,16 +304,16 @@ button {
     width:45%;
 }
 
-.headline form .Select {
+.Select {
     margin-top:1em;
     font-size:1.2em;
 }
 
-.headline form .Select-control {
+.Select-control {
     height:48px;
 }
 
-.headline form .Select-placeholder, .headline form .Select-value-label {
+.Select-placeholder, .Select-value-label {
     line-height:48px;
 }
 
