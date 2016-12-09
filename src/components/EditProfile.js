@@ -24,6 +24,7 @@ class EditProfile extends Component {
                 soundcloud: [],
                 youtube: [],
             },
+            instruments: [],
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -32,6 +33,7 @@ class EditProfile extends Component {
         this.musicPlayChange = this.musicPlayChange.bind(this);
         this.musicListenChange = this.musicListenChange.bind(this);
         this.saveData = this.saveData.bind(this);
+        this.saveInstrument= this.saveInstrument.bind(this);
 
     }
 
@@ -48,7 +50,11 @@ class EditProfile extends Component {
 
     handleChange(e){
         console.log('name: value', e.target.name, e.target.value);
-        this.setState({user : { ...this.state.user, [e.target.name]: e.target.value}});
+        if(e.target.name === 'experience') {
+            this.setState({instruments: {...this.state.instruments, experience: e.target.value}});
+        } else {
+            this.setState({user : { ...this.state.user, [e.target.name]: e.target.value}});
+        }
 
     }
 
@@ -102,11 +108,16 @@ class EditProfile extends Component {
     }
 
     handleInstrumentChange(val){
-        this.setState({user: {...this.state.user, instruments: val.value}});
+        this.setState({instruments: {...this.state.instruments, name: val.value}});
     }
 
     saveInstrument(){
+        let array = this.state.user.instruments ? this.state.user.instruments : [];
+        array.push(this.state.instruments);
+        console.log('array: ',array);
 
+        this.setState({user: {...this.state.user, instruments: array }});
+        console.log('instrum. state: ', this.state.user.instruments);
     }
 
     render() {
@@ -118,10 +129,10 @@ class EditProfile extends Component {
                     </Col>
                 </Row>
                 <Row className="edit">
-                    <Col xs={4}>
+                    <Col xs={3}>
                         <img src={this.state.user.image} alt={this.state.user.name + this.state.user.surname}/>
                     </Col>
-                    <Col xs={8}>
+                    <Col xs={9}>
                         <div className="form-group">
                             <Row>
                                 <Col xs={12}>
@@ -208,17 +219,20 @@ class EditProfile extends Component {
                                 <Col xs={12} id="instrument-form">
                                     <Select
                                         name="instruments"
-                                        value={this.state.instrument}
+                                        value={this.state.instruments.name}
                                         options={this.props.route.instruments}
                                         onChange={this.handleInstrumentChange}
                                     />
-                                    <input type="text" name="experience" placeholder="Years of experience.." value="eh" onChange={this.handleChange}/>
-                                    <button id="add-instrument">Add instrument</button>
+                                    <input type="text" name="experience" placeholder="Years of experience.." value={this.state.user.experience} onChange={this.handleChange}/>
+                                    <button id="add-instrument" onClick={this.saveInstrument}>Add instrument</button>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col xs={12}>
                                     <div className="container-tags">
+                                        {this.state.user.instruments ? this.state.user.instruments.map(function (instrument, index) {
+                                            return <button className="btn btn-default">{instrument}</button>;
+                                        }) : <div></div>}
                                     </div>
                                 </Col>
                             </Row>
