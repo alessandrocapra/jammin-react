@@ -3,6 +3,7 @@ import { Row, Col } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 import firebase from 'firebase';
 import {browserHistory} from 'react-router';
+import InstrumentList from '../data/instruments';
 
 // import components
 import Review from './Review';
@@ -45,9 +46,8 @@ class Profile extends Component {
     }
 
     render(){
-        let instrumentList = this.props.route.instruments;
 
-        let instruments = instrumentList.map((instrument) => {
+        let instruments = InstrumentList.map((instrument) => {
             return <Instrument name={instrument.name}
                                experience={instrument.experience}
                                image={instrument.image}
@@ -100,7 +100,9 @@ class Profile extends Component {
                         <Col xs={12} sm={6}>
                             <section className="genres">
                                 <h3>Genres I like to play</h3>
-                                <a className="tag" href="#"><span>{this.state.user.music_play}</span></a>
+                                {this.state.user.music_play ? this.state.user.music_play.map(function (artist, index) {
+                                    return <a className="tag" href="#"><span>{artist}</span></a>;
+                                }) : <div></div>}
                             </section>
                         </Col>
                     </Row>

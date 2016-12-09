@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Autocomplete from 'react-google-autocomplete';
 import Select from 'react-select';
 import {browserHistory} from 'react-router';
+import InstrumentList from '../data/instruments';
 
 import 'react-select/dist/react-select.css';
 
@@ -32,10 +33,10 @@ class SearchForm extends Component {
     }
 
     render(){
-        const options = [
-            { value: 'guitar', label: 'Guitar' },
-            { value: 'bass', label: 'Bass' }
-        ];
+        // const options = [
+        //     { value: 'guitar', label: 'Guitar' },
+        //     { value: 'bass', label: 'Bass' }
+        // ];
 
         return(
             <form onSubmit={this.handleSubmit}>
@@ -46,11 +47,10 @@ class SearchForm extends Component {
                     }}
                     types={['(regions)']} value={this.state.location} onChange={this.handleLocationChange}
                     className="autocompleteLocation" />
-                {/*<input type="text" placeholder="Which instrument are you looking for?" value={this.state.instrument} onChange={this.handleInstrumentChange}/>*/}
                 <Select
                     name="instruments"
                     value={this.state.instrument}
-                    options={options}
+                    options={InstrumentList}
                     onChange={this.handleInstrumentChange}
                 />
                 <button type="submit">Search Jammers</button>

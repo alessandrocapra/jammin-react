@@ -106,14 +106,19 @@ input[type=text], input, button {
 }
 
 .edit label {
-    width: 50%;
+    width: 100%;
 }
 
-.edit label input, .edit label textarea {
+.edit label input:not([type=radio]), .edit label textarea {
     display: block;
     margin-top:0.2em;
     margin-bottom:1em;
-    width: 95%;
+    width: 100%;
+}
+
+.edit label textarea {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .edit .col-xs-6 label, .edit .col-xs-6 label input, .edit .col-xs-6 label textarea {

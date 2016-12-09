@@ -1,27 +1,19 @@
-const InstrumentList = {
-	"STRUMENTI" : [
+const InstrumentList = [
 		{
 			"image" : "/img/instruments/banjo.svg",
-			"name" : "Banjo",
-			"experience" : "1",
-			"rating" : "thumbs-up",
-			"percentage" : "75"
+			"value" : "banjo",
+			"label" : "Banjo",
 		},
 		{
 			"image" : "/img/instruments/drum-set.svg",
-			"name" : "Drums",
-			"experience" : "7",
-			"rating" : "rocket",
-			"percentage" : "95"
+            "value" : "drums",
+            "label" : "Drums",
 		},
 		{
 			"image" : "/img/instruments/electric-guitar.svg",
-			"name" : "Electric Guitar",
-			"experience" : "3",
-			"rating" : "thumbs-up",
-			"percentage" : "80"
+            "value" : "electric-guitar",
+            "label" : "Electric guitar",
 		}
-	]
-};
+	];
 
 export default InstrumentList;

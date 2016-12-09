@@ -4,6 +4,7 @@ import firebase from 'firebase';
 import Autocomplete from 'react-google-autocomplete';
 import Select from 'react-select';
 import $ from 'jquery';
+import InstrumentList from '../data/instruments';
 
 class EditProfile extends Component {
     constructor(props){
@@ -71,7 +72,7 @@ class EditProfile extends Component {
             location: user.location,
             about: user.about,
             music_play: user.music_play,
-            // music_listen: user.music_listen,
+            music_listen: user.music_listen,
         });
     }
 
@@ -89,35 +90,109 @@ class EditProfile extends Component {
                     </Col>
                     <Col xs={8}>
                         <div className="form-group">
-                            <h2>My info</h2>
-                            <label htmlFor="name">
-                                Name <input type="text" name="name" value={this.state.user.name} onChange={this.handleChange}/>
-                            </label>
-                            <label htmlFor="surname">
-                                Surname <input type="text" name="surname" value={this.state.user.surname} onChange={this.handleChange}/>
-                            </label>
-                            <label htmlFor="age">
-                                Age <input type="text" name="age" placeholder="e.g. 23" value={this.state.user.age} onChange={this.handleChange}/>
-                            </label>
-                            <label htmlFor="age">
-                                Location
-                                <Autocomplete
-                                    name="location"
-                                    onPlaceSelected={(place) => {
-                                        console.log('setting ' + place.name + ' as location in state');
-                                        this.setState({user: { ...this.state.user, location: place.name}});
-                                    }}
-                                    types={['(regions)']} value={this.state.user.location} onChange={this.handleChange}
-                                    className="autocompleteLocation" />
-                            </label>
-                            <label htmlFor="about">
-                                About me <textarea name="about" id="" cols="30" rows="10" placeholder="Present yourself to other musicians!" value={this.state.user.about} onChange={this.handleChange}></textarea>
-                            </label>
-                            <h2>My music</h2>
+                            <Row>
+                                <Col xs={12}>
+                                    <h2>My info</h2>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs={12} sm={6}>
+
+                                </Col>
+                                <Col xs={12} sm={6}>
+
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs={12} sm={6}>
+                                    <label htmlFor="name">
+                                        Name <input type="text" name="name" value={this.state.user.name} onChange={this.handleChange}/>
+                                    </label>
+                                </Col>
+                                <Col xs={12} sm={6}>
+                                    <label htmlFor="surname">
+                                        Surname <input type="text" name="surname" value={this.state.user.surname} onChange={this.handleChange}/>
+                                    </label>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs={12} sm={6}>
+                                    <label htmlFor="age">
+                                        Age <input type="text" name="age" placeholder="e.g. 23" value={this.state.user.age} onChange={this.handleChange}/>
+                                    </label>
+                                </Col>
+                                <Col xs={12} sm={6}>
+                                    <label id="radio-gender">
+                                        Gender
+                                        <div className="radio">
+                                            <label>
+                                                <input type="radio" value="option1" checked={true} />
+                                                Option 1
+                                            </label>
+                                        </div>
+                                        <div className="radio">
+                                            <label>
+                                                <input type="radio" value="option2" />
+                                                Option 2
+                                            </label>
+                                        </div>
+                                    </label>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs={12} sm={6}>
+                                    <label htmlFor="location">
+                                        Location
+                                        <Autocomplete
+                                            name="location"
+                                            onPlaceSelected={(place) => {
+                                                console.log('setting ' + place.name + ' as location in state');
+                                                this.setState({user: { ...this.state.user, location: place.name}});
+                                            }}
+                                            types={['(regions)']} value={this.state.user.location} onChange={this.handleChange}
+                                            className="autocompleteLocation" />
+                                    </label>
+                                </Col>
+                                <Col xs={12} sm={6}>
+                                    <label htmlFor="availability">
+                                        Availability <input type="text" name="surname" value={this.state.user.availability} onChange={this.handleChange}/>
+                                    </label>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs={12}>
+                                    <label htmlFor="about">
+                                        About me <textarea name="about" id="" cols="30" rows="10" placeholder="Present yourself to other musicians!" value={this.state.user.about} onChange={this.handleChange}></textarea>
+                                    </label>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs={12}>
+                                    <h2>My instruments</h2>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs={12} sm={6}>
+                                    <Select
+                                        name="instruments"
+                                        value={this.state.instrument}
+                                        options={InstrumentList}
+                                        onChange={this.handleInstrumentChange}
+                                    />
+                                </Col>
+                                <Col xs={12} sm={6}>
+
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs={12}>
+                                    <h2>My music</h2>
+                                </Col>
+                            </Row>
                             <Row>
                                 <Col xs={6}>
                                     <label htmlFor="music_play">
-                                        Genres/Artists I listen to
+                                        What I like to play
                                         <Select.Async
                                             name="music_play"
                                             loadOptions={this.getOptions}
@@ -131,15 +206,19 @@ class EditProfile extends Component {
                                     </div>
                                 </Col>
                                 <Col xs={6}>
-                                    <label htmlFor="music_play">
-                                        Genres/Artists I play
+                                    <label htmlFor="music_listen">
+                                        Music influencers
                                         <Select.Async
-                                            name="music_play"
+                                            name="music_listen"
                                             loadOptions={this.getOptions}
                                             onChange={this.musicPlayChange}
-                                            value={this.state.user.music_play}
                                         />
                                     </label>
+                                    <div className="container-tags">
+                                        {this.state.user.music_listen ? this.state.user.music_listen.map((name,index) => {
+                                            return <button className="btn btn-default"> {name} </button>;
+                                        }) : <div></div>}
+                                    </div>
                                     <div id="music_play_container" className="container-tags">
                                     </div>
                                 </Col>
