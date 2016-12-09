@@ -21,8 +21,8 @@ class App extends Component {
         this.auth.onAuthStateChanged(this.onAuthStateChanged.bind(this));
 
         /* hide logout menu */
-        let logout = document.getElementById('logout-li').parentNode;
-        logout.style.display = 'none';
+        // let logout = document.getElementById('logout-li').parentNode;
+        // logout.style.display = 'none';
     }
 
     onAuthStateChanged(user) {
@@ -64,11 +64,11 @@ class App extends Component {
         firebase.auth().signOut().then(function() {
             // Sign-out successful.
             console.log('Signout successfull');
-            let logout = document.getElementById('logout-li').parentNode;
-            logout.style.display = 'none';
-
-            let register = document.getElementById('register-li').parentNode;
-            logout.style.display = 'inline';
+            // let logout = document.getElementById('logout-li').parentNode;
+            // logout.style.display = 'none';
+            //
+            // let register = document.getElementById('register-li').parentNode;
+            // logout.style.display = 'inline';
 
         }, function(error) {
             // An error happened.
@@ -77,6 +77,7 @@ class App extends Component {
 
     checkUser(){
         let user = firebase.auth().currentUser;
+        console.log('user: ', user);
 
         if(user){
             return true;
@@ -85,9 +86,9 @@ class App extends Component {
         }
     }
 
-    render() {
 
-        this.checkUser ? console.log("Logged in") : console.log("Not logged");
+
+    render() {
 
         return(
             <Grid className="contenitore">
@@ -106,8 +107,7 @@ class App extends Component {
                                 <ul>
                                     <li><NavLink to="/venues">Venues</NavLink></li>
                                     <li><NavLink to={`/profile/${this.state.currentUser.id}`}>Profile</NavLink></li>
-                                    <li><NavLink to="/register" id="register-li">Register</NavLink></li>
-                                    <li><a href="#0" id="logout-li" onClick={this.userLogout}>Logout</a></li>
+                                    {firebase.auth().currentUser ? <li><a href="#0" id="logout-li" onClick={this.userLogout}>Logout</a></li> : <li><NavLink to="/register" id="register-li">Register</NavLink></li>}
                                     <li><NavLink to="/faq">FAQ</NavLink></li>
                                 </ul>
                             </nav>
