@@ -31,7 +31,7 @@ class Home extends Component {
                 <Row>
                     <Col xs={12} className="headline">
                         <h2>Find some talents to jam with in your area!</h2>
-                        <SearchForm />
+                        <SearchForm instruments={this.props.route.instruments} />
                     </Col>
                 </Row>
                 <Row>

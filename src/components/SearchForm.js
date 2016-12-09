@@ -49,7 +49,7 @@ class SearchForm extends Component {
                 <Select
                     name="instruments"
                     value={this.state.instrument}
-                    options={this.props.route.instruments}
+                    options={this.props.instruments}
                     onChange={this.handleInstrumentChange}
                 />
                 <button type="submit">Search Jammers</button>

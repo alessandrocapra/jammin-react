@@ -48,12 +48,9 @@ class Profile extends Component {
     render(){
 
         let instruments = InstrumentList.map((instrument) => {
-            return <Instrument name={instrument.name}
-                               experience={instrument.experience}
+            return <Instrument name={instrument.label}
                                image={instrument.image}
-                               rating={instrument.rating}
-                               percentage={instrument.percentage}
-                               key={instrument.name} />
+                               key={instrument.value} />
         });
 
         return(
