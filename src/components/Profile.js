@@ -58,7 +58,7 @@ class Profile extends Component {
                 <Col xs={12} sm={4}>
                     <Row>
                         <Col xs={12} className="left-sidebar">
-                            <img src={this.state.user.image} alt={this.state.user.name + this.state.user.surname}/>
+                            <img src={this.state.user.image} alt={this.state.user.name + this.state.user.surname} className="img-responsive"/>
                             <h2 className="name">{this.state.user.name} {this.state.user.surname}</h2>
                             <h4>{this.state.user.gender}, {this.state.user.age} years old</h4>
                             <h4> <FontAwesome name='globe' /> {this.state.user.location} </h4>
