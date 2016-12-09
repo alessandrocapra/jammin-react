@@ -110,7 +110,7 @@ class App extends Component {
                                     <li><NavLink to="/venues">Venues</NavLink></li>
                                     <li><NavLink id="profile-li" to={`/profile/${this.state.currentUser.id}`}>Profile</NavLink></li>
                                     <li><a href="/" id="logout-li" onClick={this.userLogout}>Logout</a></li>
-                                    <li><NavLink to="/register" id="register-li">Register</NavLink></li>
+                                    <li><NavLink to="/register" id="register-li">Sign in</NavLink></li>
                                     <li><NavLink to="/faq">FAQ</NavLink></li>
                                 </ul>
                             </nav>

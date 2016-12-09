@@ -109,6 +109,10 @@ input[type=text], input, button {
     width: 100%;
 }
 
+.edit input {
+    width: 100%;
+}
+
 .edit label input:not([type=radio]), .edit label textarea {
     display: block;
     margin-top:0.2em;
