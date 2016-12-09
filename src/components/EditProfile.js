@@ -95,9 +95,9 @@ class EditProfile extends Component {
             about: user.about,
             music_play: user.music_play,
             music_listen: user.music_listen,
-            // instruments: user.instruments,
-            // soundcloud: user.soundcloud,
-            // youtube: user.youtube,
+            instruments: user.instruments,
+            soundcloud: user.soundcloud,
+            youtube: user.youtube,
         });
     }
 
@@ -119,7 +119,7 @@ class EditProfile extends Component {
                 </Row>
                 <Row className="edit">
                     <Col xs={4}>
-                        <img src={this.state.user.image} alt={this.state.user.name + this.state.user.surname} className="img-responsive"/>
+                        <img src={this.state.user.image} alt={this.state.user.name + this.state.user.surname}/>
                     </Col>
                     <Col xs={8}>
                         <div className="form-group">

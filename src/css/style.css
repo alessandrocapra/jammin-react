@@ -95,6 +95,11 @@ a.tag span{
     font-weight: 700;
 }
 
+img {
+    width: 100%;
+    border-radius: 5px;
+}
+
 /* Form stuff */
 
 input:not([type=radio]), button {
@@ -353,7 +358,6 @@ button {
 }
 
 .left-sidebar img {
-    width:100%;
     border-radius: 0.5em;
 }
 
@@ -389,14 +393,7 @@ section.instruments article {
 }
 
 section.instruments article img {
-    /*width: 90%;*/
-    /*height: auto*/
-    /*border: 1px solid #B21F10;*/
     border-radius: 0.5em;
-}
-
-.instrument img {
-    width:100%;
 }
 
 .instrument h4 {
@@ -432,7 +429,6 @@ section.instruments article img {
 }
 
 .result img {
-    width: 100%;
     margin-top:1.5em;
 }
 
@@ -448,10 +444,6 @@ section.instruments article img {
 /* Venues */
 .venue:not(:first-child) {
     margin-top:2.5em;
-}
-
-.venue img {
-    width:100%;
 }
 
 .venue h2 {
@@ -479,7 +471,6 @@ section.instruments article img {
 
 /* Faq page */
 .faq img {
-    width: 100%;
     margin-bottom:1.5em;
 }
 
