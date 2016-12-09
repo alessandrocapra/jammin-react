@@ -4,7 +4,6 @@ import firebase from 'firebase';
 import Autocomplete from 'react-google-autocomplete';
 import Select from 'react-select';
 import $ from 'jquery';
-import InstrumentList from '../data/instruments';
 
 class EditProfile extends Component {
     constructor(props){
@@ -176,7 +175,7 @@ class EditProfile extends Component {
                                     <Select
                                         name="instruments"
                                         value={this.state.instrument}
-                                        options={InstrumentList}
+                                        options={this.props.route.instruments}
                                         onChange={this.handleInstrumentChange}
                                     />
                                 </Col>

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Autocomplete from 'react-google-autocomplete';
 import Select from 'react-select';
 import {browserHistory} from 'react-router';
-import InstrumentList from '../data/instruments';
 
 import 'react-select/dist/react-select.css';
 
@@ -50,7 +49,7 @@ class SearchForm extends Component {
                 <Select
                     name="instruments"
                     value={this.state.instrument}
-                    options={InstrumentList}
+                    options={this.props.route.instruments}
                     onChange={this.handleInstrumentChange}
                 />
                 <button type="submit">Search Jammers</button>

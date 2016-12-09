@@ -17,12 +17,12 @@ import InstrumentList from './data/instruments';
 // defining routes
 const routes = (
   <Router history={browserHistory}>
-    <Route component={App} instruments={InstrumentList}>
+    <Route component={App}>
       <Route path="/" component={Home} instruments={InstrumentList} />
       <Route path="venues" component={Venues} />
       <Route path="faq" component={Faq} />
       <Route path="/profile/:userId" component={Profile} />
-      <Route path="/edit/:userId" component={EditProfile} />
+      <Route path="/edit/:userId" component={EditProfile} instruments={InstrumentList}/>
       <Route path="register" component={Register} />
       <Route path="search/:location/:instrument" component={SearchResultPage} />
     </Route>
