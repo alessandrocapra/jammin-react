@@ -87,12 +87,17 @@ class EditProfile extends Component {
         firebase.database().ref('users/' + profileId).update({
             name: user.name,
             surname: user.surname,
+            availability: user.availability,
             image : user.image,
             age: user.age,
+            gender: user.gender,
             location: user.location,
             about: user.about,
             music_play: user.music_play,
             music_listen: user.music_listen,
+            // instruments: user.instruments,
+            // soundcloud: user.soundcloud,
+            // youtube: user.youtube,
         });
     }
 
@@ -154,14 +159,14 @@ class EditProfile extends Component {
                                         Gender
                                         <div className="radio">
                                             <label>
-                                                <input type="radio" value="option1" checked={true} />
-                                                Option 1
+                                                <input type="radio" name="gender" value="male" checked={this.state.user.gender === 'male'} onChange={this.handleChange}/>
+                                                Male
                                             </label>
                                         </div>
                                         <div className="radio">
                                             <label>
-                                                <input type="radio" value="option2" />
-                                                Option 2
+                                                <input type="radio" name="gender" value="female" checked={this.state.user.gender === 'female'} onChange={this.handleChange} />
+                                                Female
                                             </label>
                                         </div>
                                     </label>
