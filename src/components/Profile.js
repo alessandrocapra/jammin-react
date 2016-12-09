@@ -91,7 +91,9 @@ class Profile extends Component {
                         <Col xs={12} sm={6}>
                             <section className="influences">
                                 <h3>Influences</h3>
-                                <a className="tag" href="#"><span>{this.state.user.music_listen}</span></a>
+                                {this.state.user.music_listen ? this.state.user.music_listen.map(function (artist, index) {
+                                    return <a className="tag" href="#"><span>{artist}</span></a>;
+                                }) : <div></div>}
                             </section>
                         </Col>
                         <Col xs={12} sm={6}>
