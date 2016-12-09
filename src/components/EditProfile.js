@@ -9,12 +9,28 @@ class EditProfile extends Component {
     constructor(props){
         super(props);
         this.state = {
-            user: {},
+            user: {
+                name: "",
+                surname: "",
+                age: "",
+                gender: "",
+                availability: "",
+                location: "",
+                about: "",
+                image: "",
+                instruments: [],
+                music_listen: [],
+                music_play: [],
+                soundcloud: [],
+                youtube: [],
+            },
         };
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleInstrumentChange= this.handleInstrumentChange.bind(this);
         this.getOptions = this.getOptions.bind(this);
         this.musicPlayChange = this.musicPlayChange.bind(this);
+        this.musicListenChange = this.musicListenChange.bind(this);
         this.saveData = this.saveData.bind(this);
 
     }
@@ -40,7 +56,6 @@ class EditProfile extends Component {
         var options = [];
         if(input.length){
             $.getJSON( "https://api.spotify.com/v1/search?q=" + input + "&type=artist", function( data ) {
-                console.log('is it here?');
                 var artistsArray = data.artists.items;
                 $.each(artistsArray, function(key, value){
                     options.push({value: value.name, label: value.name});
@@ -59,6 +74,12 @@ class EditProfile extends Component {
         this.setState({user: {...this.state.user, music_play: musicPlayArray}});
     }
 
+    musicListenChange(val){
+        let musicListenArray = this.state.user.music_listen ? this.state.user.music_listen : [];
+        musicListenArray.push(val.value);
+        this.setState({user: {...this.state.user, music_listen: musicListenArray}});
+    }
+
     saveData(){
         let user = this.state.user;
         let profileId = this.props.params.userId;
@@ -75,6 +96,10 @@ class EditProfile extends Component {
         });
     }
 
+    handleInstrumentChange(value){
+        this.setState({instrument: value});
+    }
+
     render() {
         return (
             <div>
@@ -85,7 +110,7 @@ class EditProfile extends Component {
                 </Row>
                 <Row className="edit">
                     <Col xs={4}>
-                        <img src={this.state.user.image} alt=""/>
+                        <img src={this.state.user.image} alt={this.state.user.name + this.state.user.surname} className="img-responsive"/>
                     </Col>
                     <Col xs={8}>
                         <div className="form-group">
@@ -154,7 +179,7 @@ class EditProfile extends Component {
                                 </Col>
                                 <Col xs={12} sm={6}>
                                     <label htmlFor="availability">
-                                        Availability <input type="text" name="surname" value={this.state.user.availability} onChange={this.handleChange}/>
+                                        Availability <input type="text" name="availability" value={this.state.user.availability} onChange={this.handleChange}/>
                                     </label>
                                 </Col>
                             </Row>
@@ -178,9 +203,12 @@ class EditProfile extends Component {
                                         options={this.props.route.instruments}
                                         onChange={this.handleInstrumentChange}
                                     />
+                                    <input type="text" name="experience" placeholder="Years of experience.." value="eh" onChange={this.handleChange}/>
+                                    <button id="add-instrument">Add instrument</button>
                                 </Col>
                                 <Col xs={12} sm={6}>
-
+                                    <div className="container-tags">
+                                    </div>
                                 </Col>
                             </Row>
                             <Row>
@@ -210,15 +238,13 @@ class EditProfile extends Component {
                                         <Select.Async
                                             name="music_listen"
                                             loadOptions={this.getOptions}
-                                            onChange={this.musicPlayChange}
+                                            onChange={this.musicListenChange}
                                         />
                                     </label>
                                     <div className="container-tags">
                                         {this.state.user.music_listen ? this.state.user.music_listen.map((name,index) => {
                                             return <button className="btn btn-default"> {name} </button>;
                                         }) : <div></div>}
-                                    </div>
-                                    <div id="music_play_container" className="container-tags">
                                     </div>
                                 </Col>
                             </Row>
