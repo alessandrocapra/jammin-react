@@ -133,9 +133,15 @@ input:not([type=radio]), button {
     width:100%;
 }
 
-.edit #instrument-form .Select, .edit #instrument-form input{
-    width:30%;
+.edit #instrument-form {
+    position: relative;
+}
+
+.edit #instrument-form .Select, .edit #instrument-form input, .edit #instrument-form button {
     display: inline-block;
+    width:30%;
+    margin:auto 1em auto auto;
+    vertical-align: middle;
 }
 
 .container-tags {
@@ -290,7 +296,6 @@ button {
     background-color: #262626;
     border: 1px solid #fff;
     color: #fff;
-
     margin-top:1em;
 }
 
