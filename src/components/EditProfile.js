@@ -4,6 +4,9 @@ import firebase from 'firebase';
 import Autocomplete from 'react-google-autocomplete';
 import Select from 'react-select';
 import $ from 'jquery';
+import InstrumentList from '../data/instruments';
+import update from 'immutability-helper';
+
 
 class EditProfile extends Component {
     constructor(props){
@@ -44,7 +47,8 @@ class EditProfile extends Component {
 
         return USER_DB.once('value').then(function (snapshot) {
             let user = snapshot.val();
-            this.setState({user: user});
+            let newUserState = update(this.state.user, {$merge: user});
+            this.setState({user: newUserState});
         }.bind(this));
     }
 
@@ -89,6 +93,8 @@ class EditProfile extends Component {
     saveData(){
         let user = this.state.user;
         let profileId = this.props.params.userId;
+
+        console.log('soundcloud: ',user.soundcloud);
 
         firebase.database().ref('users/' + profileId).update({
             name: user.name,
@@ -231,7 +237,12 @@ class EditProfile extends Component {
                                 <Col xs={12}>
                                     <div className="container-tags">
                                         {this.state.user.instruments ? this.state.user.instruments.map(function (instrument, index) {
-                                            return <button className="btn btn-default">{instrument}</button>;
+                                            return <Row>
+                                                        <Col xs={12}>
+                                                            <h3>{instrument.name}</h3>
+                                                            <p>{instrument.experience} years of experience</p>
+                                                        </Col>
+                                                    </Row>;
                                         }) : <div></div>}
                                     </div>
                                 </Col>
