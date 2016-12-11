@@ -7,6 +7,9 @@ import $ from 'jquery';
 import InstrumentList from '../data/instruments';
 import update from 'immutability-helper';
 
+// import components
+import Video from './Video';
+
 
 class EditProfile extends Component {
     constructor(props){
@@ -37,6 +40,8 @@ class EditProfile extends Component {
         this.musicListenChange = this.musicListenChange.bind(this);
         this.saveData = this.saveData.bind(this);
         this.saveInstrument= this.saveInstrument.bind(this);
+        this.addYoutubeVideo = this.addYoutubeVideo.bind(this);
+        this.addSoundcloudTrack = this.addSoundcloudTrack.bind(this);
 
     }
 
@@ -53,13 +58,19 @@ class EditProfile extends Component {
     }
 
     handleChange(e){
-        console.log('name: value', e.target.name, e.target.value);
-        if(e.target.name === 'experience') {
-            this.setState({instruments: {...this.state.instruments, experience: e.target.value}});
-        } else {
-            this.setState({user : { ...this.state.user, [e.target.name]: e.target.value}});
+        switch (e.target.name) {
+            case 'experience':
+                this.setState({instruments: {...this.state.instruments, experience: e.target.value}});
+                break;
+            case 'youtube':
+                this.setState({youtube: {...this.state.youtube, video: e.target.value}});
+                break;
+            case 'soundcloud':
+                this.setState({soundcloud: {...this.state.soundcloud, track: e.target.value}});
+                break;
+            default:
+                this.setState({user : { ...this.state.user, [e.target.name]: e.target.value}});
         }
-
     }
 
     getOptions(input, callback){
@@ -79,14 +90,12 @@ class EditProfile extends Component {
     }
 
     musicPlayChange(val){
-        let musicPlayArray = this.state.user.music_play ? this.state.user.music_play : [];
-        musicPlayArray.push(val.value);
+        let musicPlayArray = update(this.state.user.music_play, {$push: [val.value]});
         this.setState({user: {...this.state.user, music_play: musicPlayArray}});
     }
 
     musicListenChange(val){
-        let musicListenArray = this.state.user.music_listen ? this.state.user.music_listen : [];
-        musicListenArray.push(val.value);
+        let musicListenArray = update(this.state.user.music_listen, {$push: [val.value]})
         this.setState({user: {...this.state.user, music_listen: musicListenArray}});
     }
 
@@ -118,12 +127,18 @@ class EditProfile extends Component {
     }
 
     saveInstrument(){
-        let array = this.state.user.instruments ? this.state.user.instruments : [];
-        array.push(this.state.instruments);
-        console.log('array: ',array);
+        let instrumentsArray = update(this.state.user.instruments, {$push: [this.state.instruments]});
+        this.setState({user: {...this.state.user, instruments: instrumentsArray }});
+    }
 
-        this.setState({user: {...this.state.user, instruments: array }});
-        console.log('instrum. state: ', this.state.user.instruments);
+    addYoutubeVideo(){
+        let youtubeArray = update(this.state.user.youtube, {$push: [this.state.youtube]});
+        this.setState({user: {...this.state.user, youtube: youtubeArray }});
+    }
+
+    addSoundcloudTrack(){
+        let soundcloudArray = update(this.state.user.soundcloud, {$push: [this.state.soundcloud]});
+        this.setState({user: {...this.state.user, soundcloud: soundcloudArray }});
     }
 
     render() {
@@ -236,14 +251,15 @@ class EditProfile extends Component {
                             <Row>
                                 <Col xs={12}>
                                     <div className="container-tags">
-                                        {this.state.user.instruments ? this.state.user.instruments.map(function (instrument, index) {
+                                        {this.state.user.instruments.map(function (instrument, index) {
                                             return <Row>
                                                         <Col xs={12}>
                                                             <h3>{instrument.name}</h3>
                                                             <p>{instrument.experience} years of experience</p>
                                                         </Col>
                                                     </Row>;
-                                        }) : <div></div>}
+                                            })
+                                        }
                                     </div>
                                 </Col>
                             </Row>
@@ -263,9 +279,10 @@ class EditProfile extends Component {
                                         />
                                     </label>
                                     <div id="music_like_container" className="container-tags">
-                                        {this.state.user.music_play ? this.state.user.music_play.map((name,index) => {
+                                        {this.state.user.music_play.map((name,index) => {
                                             return <button className="btn btn-default"> {name} </button>;
-                                        }) : <div></div>}
+                                            })
+                                        }
                                     </div>
                                 </Col>
                                 <Col xs={6}>
@@ -278,16 +295,57 @@ class EditProfile extends Component {
                                         />
                                     </label>
                                     <div className="container-tags">
-                                        {this.state.user.music_listen ? this.state.user.music_listen.map((name,index) => {
+                                        {this.state.user.music_listen.map((name,index) => {
                                             return <button className="btn btn-default"> {name} </button>;
-                                        }) : <div></div>}
+                                            })
+                                        }
                                     </div>
                                 </Col>
+                            </Row>
+                            <Row>
+                                <Col xs={12}>
+                                    <h2>Youtube</h2>
+                                    <p>Add here the Youtube links to videos that show how awesome you are!</p>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs={12}>
+                                    <input className="inline" type="text" name="youtube" onChange={this.handleChange}/>
+                                    <button onClick={this.addYoutubeVideo}>Add video</button>
+
+                                </Col>
+                            </Row>
+                            <Row>
+                                <div className="container-tags">
+                                    {this.state.user.youtube.map((source,index) => {
+                                        return <Col xs={12} sm={6}> <Video source={source} /> </Col>;
+                                        })
+                                    }
+                                </div>
+                            </Row>
+                            <Row>
+                                <Col xs={12}>
+                                    <h2>Soundcloud</h2>
+                                    <p>Add here the Soundcloud links!</p>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs={12}>
+                                    <input className="inline" type="text" name="soundcloud" onChange={this.handleChange}/>
+                                    <button onClick={this.addSoundcloudTrack}>Add track</button>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <div className="container-tags">
+                                    {this.state.user.soundcloud.map((source,index) => {
+                                        return <Col xs={12} sm={6}> <Soundcloud source={source} /> </Col>;
+                                    })
+                                    }
+                                </div>
                             </Row>
                             <div className="center-block">
                                 <button className="btn btn-success" onClick={this.saveData}>Save</button>
                             </div>
-
                         </div>
                     </Col>
                 </Row>

@@ -95,6 +95,15 @@ a.tag span{
     font-weight: 700;
 }
 
+.inline {
+    display: inline;
+    margin-right:0.5em;
+}
+
+iframe {
+    width: 100%;
+}
+
 img {
     width: 100%;
     border-radius: 5px;
@@ -120,6 +129,11 @@ input:not([type=radio]), button {
 
 .edit input:not([type=radio]) {
     width: 100%;
+}
+
+.edit input.inline {
+    width: 75%;
+    margin-bottom:1em;
 }
 
 .edit label input:not([type=radio]), .edit label textarea {
