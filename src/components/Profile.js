@@ -141,9 +141,10 @@ class Profile extends Component {
                                 {/*<Video source={} />*/}
                             {/*</Col>*/}
 
-                            {this.state.user.youtube ? this.state.user.youtube.map(function(video, index) {
-                                return <Col xs={12} sm={6}> <Video source={video.video}/> </Col>;
+                            {this.state.user.youtube ? this.state.user.youtube.map(function(source, index) {
+                                return <Col xs={12} sm={6}> <Video source={source.video}/> </Col>;
                             }) : <div></div>}
+
                         </Row>
                     </section>
                 </Col>

@@ -320,7 +320,7 @@ class EditProfile extends Component {
                             <Row>
                                 <div className="container-tags">
                                     {this.state.user.youtube.map((source,index) => {
-                                        return <Col xs={12} sm={6}> <Video source={source} /> </Col>;
+                                        return <Col xs={12} sm={6}> <Video source={source.video} /> </Col>;
                                         })
                                     }
                                 </div>
