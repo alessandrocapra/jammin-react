@@ -6,7 +6,7 @@ class Soundcloud extends Component {
 
         console.log(source);
         return(
-            <iframe width="100%" height="166" scrolling="no" frameborder="no" src={source}></iframe>
+            <iframe width="100%" height="166" scrolling="no" frameBorder="no" src={source}></iframe>
         );
     }
 }
