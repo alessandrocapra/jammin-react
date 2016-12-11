@@ -108,7 +108,7 @@ class Profile extends Component {
                         </Row>
                         <Row>
                             {this.state.user.instruments ? this.state.user.instruments.map(function (instrument, index) {
-                                return <Col xs={12} sm={6}> <Instrument name={instrument.name} experience={instrument.experience}/> </Col>;
+                                return <Instrument name={instrument.name} experience={instrument.experience}/>;
                             }) : <div></div>}
                         </Row>
                     </section>

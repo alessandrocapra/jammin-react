@@ -6,24 +6,28 @@ import FontAwesome from 'react-fontawesome';
 // 1. Retrieve the appropriate image from the database
 
 class Instrument extends Component {
+    remove(){
+        this.props.removeInstrument(this.props.name);
+    }
+
     render(){
         return(
             <article className="instrument">
-                <Row>
                     {/*<Col xs={12} sm={2}>*/}
                         {/*<img className="profile_pic" src={this.props.image} alt={this.props.name}/>*/}
                     {/*</Col>*/}
                     <Col xs={12} sm={6}>
-                        <h4>{this.props.name}</h4>
-                        <p>Been playing for {this.props.experience} years</p>
+                        <div className="container-elements">
+                            <span className="delete-element" onClick={this.remove.bind(this)}>x</span>
+                            <h3>{this.props.name}</h3>
+                            <p>{this.props.experience} years of experience</p>
+                        </div>
                     </Col>
                     {/*<Col xs={12} sm={6} className="rating">*/}
                         {/*<h4>Overall Rating</h4>*/}
                         {/*/!*<FontAwesome name={this.props.rating} size="4x"/>*!/*/}
                         {/*<span className="review_percentage">{this.props.percentage}% positive opinions</span>*/}
                     {/*</Col>*/}
-                </Row>
-                <hr/>
             </article>
         );
     }

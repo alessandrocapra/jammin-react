@@ -10,6 +10,7 @@ import update from 'immutability-helper';
 // import components
 import Video from './Video';
 import Soundcloud from './Soundcloud';
+import Instrument from './Instrument';
 
 
 class EditProfile extends Component {
@@ -43,6 +44,7 @@ class EditProfile extends Component {
         this.saveInstrument= this.saveInstrument.bind(this);
         this.addYoutubeVideo = this.addYoutubeVideo.bind(this);
         this.addSoundcloudTrack = this.addSoundcloudTrack.bind(this);
+        this.removeInstrument = this.removeInstrument.bind(this);
 
     }
 
@@ -141,6 +143,13 @@ class EditProfile extends Component {
     addSoundcloudTrack(){
         let soundcloudArray = update(this.state.user.soundcloud, {$push: [this.state.soundcloud]});
         this.setState({user: {...this.state.user, soundcloud: soundcloudArray }});
+    }
+
+    removeInstrument(val) {
+        console.log('cliccato su rimuovi! ', val);
+        this.setState({
+            user: update(this.state.user, {instruments: {$splice: [[val,1]]}})
+        })
     }
 
     render() {
@@ -251,19 +260,11 @@ class EditProfile extends Component {
                                 </Col>
                             </Row>
                             <Row>
-                                <Col xs={12}>
-                                    <div className="container-tags">
-                                        {this.state.user.instruments.map(function (instrument, index) {
-                                            return <Row>
-                                                        <Col xs={12}>
-                                                            <h3>{instrument.name}</h3>
-                                                            <p>{instrument.experience} years of experience</p>
-                                                        </Col>
-                                                    </Row>;
-                                            })
-                                        }
-                                    </div>
-                                </Col>
+                                <div className="container-tags">
+                                    {this.state.user.instruments.map((instrument, index) => {
+                                        return <Instrument key={instrument.name} removeInstrument={this.removeInstrument} name={instrument.name} experience={instrument.experience}/>;
+                                    })}
+                                </div>
                             </Row>
                             <Row>
                                 <Col xs={12}>
@@ -282,7 +283,7 @@ class EditProfile extends Component {
                                     </label>
                                     <div id="music_like_container" className="container-tags">
                                         {this.state.user.music_play.map((name,index) => {
-                                            return <button className="btn btn-default"> {name} </button>;
+                                            return <button key={index} className="btn btn-default"> {name} </button>;
                                             })
                                         }
                                     </div>
@@ -298,7 +299,7 @@ class EditProfile extends Component {
                                     </label>
                                     <div className="container-tags">
                                         {this.state.user.music_listen.map((name,index) => {
-                                            return <button className="btn btn-default"> {name} </button>;
+                                            return <button key={index} className="btn btn-default"> {name} </button>;
                                             })
                                         }
                                     </div>
@@ -320,7 +321,7 @@ class EditProfile extends Component {
                             <Row>
                                 <div className="container-tags">
                                     {this.state.user.youtube.map((source,index) => {
-                                        return <Col xs={12} sm={6}> <Video source={source.video} /> </Col>;
+                                        return <Col xs={12} sm={6}> <Video key={index} source={source.video} /> </Col>;
                                         })
                                     }
                                 </div>

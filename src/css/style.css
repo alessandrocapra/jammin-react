@@ -109,6 +109,26 @@ img {
     border-radius: 5px;
 }
 
+.container-elements {
+    position: relative;
+    border:1px solid rgba(0,0,0,0.2);
+    margin:0.5em;
+    padding:0.5em;
+}
+
+.delete-element {
+    position: absolute;
+    cursor: pointer;
+    top:0;
+    right: 0;
+    margin:0;
+    padding:0.8em;
+    font-size:1.2em;
+    font-weight:700;
+    color: #fff;
+    background-color: #B21F10;
+}
+
 /* Form stuff */
 
 input:not([type=radio]), button {
