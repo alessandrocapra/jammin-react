@@ -19,7 +19,7 @@ class Instrument extends Component {
                     </Col>
                     <Col xs={12} sm={6} className="rating">
                         <h4>Overall Rating</h4>
-                        <FontAwesome name={this.props.rating} size="4x"/>
+                        {/*<FontAwesome name={this.props.rating} size="4x"/>*/}
                         <span className="review_percentage">{this.props.percentage}% positive opinions</span>
                     </Col>
                 </Row>

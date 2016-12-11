@@ -491,7 +491,7 @@ section.instruments article img {
 /* Videos */
 .videos iframe {
     width: 100%;
-    height:auto;
+    /*height:auto;*/
 }
 
 .videos .main_video iframe {

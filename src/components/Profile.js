@@ -28,8 +28,10 @@ class Profile extends Component {
 
         return USER_DB.once('value').then(function (snapshot) {
             let user = snapshot.val();
-            console.log(user);
             this.setState({user: user});
+            console.log('user: ', user);
+            console.log('youtube: ', this.state.user.youtube);
+
         }.bind(this));
     }
 
@@ -108,14 +110,13 @@ class Profile extends Component {
                     <section className="videos">
                         <h3>Videos</h3>
                         <Row>
-                            <Col xs={12} sm={9} className="main_video">
-                                <Video source="https://www.youtube.com/embed/auLBLk4ibAk" />
-                            </Col>
-                            <Col xs={12} sm={3}>
-                                <Video source="https://www.youtube.com/embed/rVDVWFQ2IO8" />
-                                <Video source="https://www.youtube.com/embed/TgntkGc5iBo" />
-                                <Video source="https://www.youtube.com/embed/D2yymMhjRu8" />
-                            </Col>
+                            {/*<Col xs={12} sm={9} className="main_video">*/}
+                                {/*<Video source={} />*/}
+                            {/*</Col>*/}
+
+                            {this.state.user.youtube ? this.state.user.youtube.map(function(video, index) {
+                                return <Col xs={12} sm={6}> <Video source={video.video}/> </Col>;
+                            }) : <div></div>}
                         </Row>
                     </section>
                 </Col>
