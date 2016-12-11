@@ -13,4 +13,5 @@ var FBApp = firebase.initializeApp(config);
 
 module.exports.FBAppDB = FBApp.database();
 module.exports.FBAppAuth = FBApp.auth();
+module.exports.FBStorage = FBApp.storage();
 
