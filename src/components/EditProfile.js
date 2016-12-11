@@ -9,6 +9,7 @@ import update from 'immutability-helper';
 
 // import components
 import Video from './Video';
+import Soundcloud from './Soundcloud';
 
 
 class EditProfile extends Component {
@@ -66,7 +67,8 @@ class EditProfile extends Component {
                 this.setState({youtube: {...this.state.youtube, video: e.target.value}});
                 break;
             case 'soundcloud':
-                this.setState({soundcloud: {...this.state.soundcloud, track: e.target.value}});
+                let source = e.target.value.substring(e.target.value.search("src")+5, e.target.value.lastIndexOf("false")+5);
+                this.setState({soundcloud: {...this.state.soundcloud, track: source}});
                 break;
             default:
                 this.setState({user : { ...this.state.user, [e.target.name]: e.target.value}});
@@ -338,7 +340,7 @@ class EditProfile extends Component {
                             <Row>
                                 <div className="container-tags">
                                     {this.state.user.soundcloud.map((source,index) => {
-                                        return <Col xs={12} sm={6}> <Soundcloud source={source} /> </Col>;
+                                        return <Col xs={12} sm={6}> <Soundcloud source={source.track} /> </Col>;
                                     })
                                     }
                                 </div>
