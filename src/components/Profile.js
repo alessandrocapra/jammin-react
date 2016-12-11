@@ -9,6 +9,7 @@ import InstrumentList from '../data/instruments';
 import Review from './Review';
 import Instrument from './Instrument';
 import Video from './Video';
+import Soundcloud from './Soundcloud';
 
 class Profile extends Component {
     constructor(props){
@@ -79,15 +80,37 @@ class Profile extends Component {
                 </Col>
                 <Col xs={12} sm={8} className="profile_content">
                     <section>
-                        <div>
-                            <h3>About me</h3>
-                            { this.checkUser ? (<button className="btn btn-default" onClick={this.handleEditButton}>Edit profile</button>) : (<div></div>) }
-                        </div>
-                        <p>{this.state.user.about}</p>
+                        <Row>
+                            <Col xs={12}>
+                                <h3>About me</h3>
+                                { firebase.auth().currentUser ? (<button className="btn btn-default" onClick={this.handleEditButton}>Edit profile</button>) : (<div></div>) }
+                                <p>{this.state.user.about}</p>
+                            </Col>
+                        </Row>
+                    </section>
+                    <section className="soundcloud">
+                        <Row>
+                            <Col xs={12}>
+                                <h3>My tracks</h3>
+                            </Col>
+                        </Row>
+                        <Row>
+                            {this.state.user.soundcloud ? this.state.user.soundcloud.map(function(sound, index) {
+                                return <Col xs={12} sm={6}> <Soundcloud source={sound.track}/> </Col>;
+                            }) : <div></div>}
+                        </Row>
                     </section>
                     <section className="instruments">
-                        <h3>My instruments</h3>
-                        {instruments}
+                        <Row>
+                            <Col xs={12}>
+                                <h3>My instruments</h3>
+                            </Col>
+                        </Row>
+                        <Row>
+                            {this.state.user.instruments ? this.state.user.instruments.map(function (instrument, index) {
+                                return <Col xs={12} sm={6}> <Instrument name={instrument.name} experience={instrument.experience}/> </Col>;
+                            }) : <div></div>}
+                        </Row>
                     </section>
                     <Row>
                         <Col xs={12} sm={6}>
@@ -108,7 +131,11 @@ class Profile extends Component {
                         </Col>
                     </Row>
                     <section className="videos">
-                        <h3>Videos</h3>
+                        <Row>
+                            <Col xs={12}>
+                                <h3>Videos</h3>
+                            </Col>
+                        </Row>
                         <Row>
                             {/*<Col xs={12} sm={9} className="main_video">*/}
                                 {/*<Video source={} />*/}

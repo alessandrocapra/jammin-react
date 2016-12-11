@@ -425,9 +425,8 @@ section.instruments article img {
 
 /* Profile */
 .profile_content section:not(:first-child) {
-    margin-top:4em;
+    /*margin-top:4em;*/
 }
-
 
 /* Search results */
 .searchResultPage h2 {
