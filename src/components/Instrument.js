@@ -8,7 +8,7 @@ import FontAwesome from 'react-fontawesome';
 class Instrument extends Component {
 
     remove(){
-        this.props.removeInstrument(this.props.name);
+        this.props.removeInstrument(this.props.index);
     }
 
     render(){

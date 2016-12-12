@@ -4,7 +4,6 @@ import firebase from 'firebase';
 import Autocomplete from 'react-google-autocomplete';
 import Select from 'react-select';
 import $ from 'jquery';
-import InstrumentList from '../data/instruments';
 import update from 'immutability-helper';
 import {FBAppStorage} from '../modules/firebase';
 
@@ -272,7 +271,7 @@ class EditProfile extends Component {
                             <Row>
                                 <div className="container-tags">
                                     {this.state.user.instruments.map((instrument, index) => {
-                                        return <Instrument key={instrument.name} removeInstrument={this.removeInstrument} name={instrument.name} experience={instrument.experience}/>;
+                                        return <Instrument key={instrument.name} index={index} removeInstrument={this.removeInstrument} name={instrument.name} experience={instrument.experience}/>;
                                     })}
                                 </div>
                             </Row>
