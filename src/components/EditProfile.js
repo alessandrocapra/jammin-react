@@ -6,6 +6,7 @@ import Select from 'react-select';
 import $ from 'jquery';
 import InstrumentList from '../data/instruments';
 import update from 'immutability-helper';
+import {FBAppStorage} from '../modules/firebase';
 
 // import components
 import Video from './Video';
@@ -45,6 +46,7 @@ class EditProfile extends Component {
         this.addYoutubeVideo = this.addYoutubeVideo.bind(this);
         this.addSoundcloudTrack = this.addSoundcloudTrack.bind(this);
         this.removeInstrument = this.removeInstrument.bind(this);
+        this.updateProfilePic = this.updateProfilePic.bind(this);
 
     }
 
@@ -127,7 +129,7 @@ class EditProfile extends Component {
     }
 
     handleInstrumentChange(val){
-        this.setState({instruments: {...this.state.instruments, name: val.value}});
+        this.setState({instruments: {...this.state.instruments, name: val.value }});
     }
 
     saveInstrument(){
@@ -146,10 +148,16 @@ class EditProfile extends Component {
     }
 
     removeInstrument(val) {
-        console.log('cliccato su rimuovi! ', val);
+        console.log('clicked on remove! ', val);
         this.setState({
             user: update(this.state.user, {instruments: {$splice: [[val,1]]}})
         })
+    }
+
+    updateProfilePic(){
+        let storageRef = FBAppStorage.ref();
+        let profilePicRef = storageRef.child('profile-pictures');
+
     }
 
     render() {
@@ -162,7 +170,9 @@ class EditProfile extends Component {
                 </Row>
                 <Row className="edit">
                     <Col xs={3}>
-                        <img src={this.state.user.image} alt={this.state.user.name + this.state.user.surname}/>
+                        {this.state.user.image ? <img src={this.state.user.image} alt={this.state.user.name + this.state.user.surname}/> :
+                            <img src="/img/avatar.png" alt="profile picture"/>}
+                        <button onClick={this.updateProfilePic}>Change profile picture</button>
                     </Col>
                     <Col xs={9}>
                         <div className="form-group">

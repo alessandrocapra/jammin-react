@@ -41,7 +41,6 @@ class App extends Component {
 
 
         if (user) {
-            console.log('logged user: ', user)
             // Change main menu
             register_li.style.display = 'none';
             logout_li.style.display = 'inline';

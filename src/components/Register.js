@@ -59,7 +59,9 @@ class Register extends Component {
         e.preventDefault();
         var self = this;
 
-        FBAppAuth.createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
+        FBAppAuth.createUserWithEmailAndPassword(this.state.email, this.state.password).then(function () {
+            browserHistory.push('/profile/edit/'+firebase.auth().currentUser.uid);
+        }).catch(function(error) {
             // Handle Errors here.
             let errorCode = error.code;
             let errorMessage = error.message;
@@ -79,7 +81,7 @@ class Register extends Component {
                 case 'auth/invalid-email':
                     console.log('invalid email!');
                     errorBox.className = "alert alert-danger";
-                    errorMessageBox.innerHTML = 'Invalid email! Check it again!';
+                    errorMessageBox.innerHTML = '<span>Invalid email! Check it again!</span>';
                     break;
                 case 'auth/weak-password':
                     errorBox.className = "alert alert-danger";

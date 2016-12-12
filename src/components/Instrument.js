@@ -6,6 +6,7 @@ import FontAwesome from 'react-fontawesome';
 // 1. Retrieve the appropriate image from the database
 
 class Instrument extends Component {
+
     remove(){
         this.props.removeInstrument(this.props.name);
     }
