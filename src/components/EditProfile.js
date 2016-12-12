@@ -48,6 +48,7 @@ class EditProfile extends Component {
         this.addSoundcloudTrack = this.addSoundcloudTrack.bind(this);
         this.removeInstrument = this.removeInstrument.bind(this);
         this.onDrop = this.onDrop.bind(this);
+        this.removeImage = this.removeImage.bind(this);
 
     }
 
@@ -201,6 +202,11 @@ class EditProfile extends Component {
             });
     }
 
+    removeImage(){
+        console.log('remove image');
+        this.setState({user: {...this.state.user, image: ""}});
+    }
+
     render() {
         return (
             <div>
@@ -211,7 +217,7 @@ class EditProfile extends Component {
                 </Row>
                 <Row className="edit">
                     <Col xs={3}>
-                        {this.state.user.image ? <img src={this.state.user.image} alt={this.state.user.name + this.state.user.surname}/> :
+                        {this.state.user.image ? <div><img src={this.state.user.image} alt={this.state.user.name + this.state.user.surname}/><button value='Change profile pic' onClick={this.removeImage}>Change profile pic</button></div> :
                             <Dropzone accept={'image/*'} multiple={false} onDrop={this.onDrop}>
                                 <div>Add a profile picture!</div>
                             </Dropzone>}
