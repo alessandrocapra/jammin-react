@@ -7,6 +7,7 @@ import $ from 'jquery';
 import update from 'immutability-helper';
 import {FBAppStorage} from '../modules/firebase';
 import Dropzone from 'react-dropzone';
+import {browserHistory} from 'react-router';
 
 // import components
 import Video from './Video';
@@ -211,10 +212,9 @@ class EditProfile extends Component {
                 <Row className="edit">
                     <Col xs={3}>
                         {this.state.user.image ? <img src={this.state.user.image} alt={this.state.user.name + this.state.user.surname}/> :
-                            <Dropzone onDrop={this.onDrop}>
+                            <Dropzone accept={'image/*'} multiple={false} onDrop={this.onDrop}>
                                 <div>Add a profile picture!</div>
                             </Dropzone>}
-                        <button onClick={this.updateProfilePic}>Change profile picture</button>
                     </Col>
                     <Col xs={9}>
                         <div className="form-group">
@@ -398,8 +398,8 @@ class EditProfile extends Component {
                                     }
                                 </div>
                             </Row>
-                            <div className="center-block">
-                                <button className="btn btn-success" onClick={this.saveData}>Save</button>
+                            <div className="text-center">
+                                <button onClick={this.saveData}>Save</button>
                             </div>
                         </div>
                     </Col>

@@ -3,7 +3,6 @@ import { Row, Col } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 import firebase from 'firebase';
 import {browserHistory} from 'react-router';
-import InstrumentList from '../data/instruments';
 
 // import components
 import Review from './Review';
@@ -15,7 +14,8 @@ class Profile extends Component {
     constructor(props){
         super(props);
         this.state = {
-            user: {}
+            user: {
+            }
         };
 
         this.checkUser = this.checkUser.bind(this);
@@ -26,13 +26,12 @@ class Profile extends Component {
         // Load user data
         let profileId = this.props.params.userId;
         let USER_DB = firebase.database().ref('users/' + profileId);
+        console.log('Before assigning values from Firebase: ', this.state.user);
 
         return USER_DB.once('value').then(function (snapshot) {
             let user = snapshot.val();
+            console.log('user from db: ', user);
             this.setState({user: user});
-            console.log('user: ', user);
-            console.log('youtube: ', this.state.user.youtube);
-
         }.bind(this));
     }
 
@@ -49,12 +48,6 @@ class Profile extends Component {
     }
 
     render(){
-
-        let instruments = InstrumentList.map((instrument) => {
-            return <Instrument name={instrument.label}
-                               image={instrument.image}
-                               key={instrument.value} />
-        });
 
         return(
             <Row>

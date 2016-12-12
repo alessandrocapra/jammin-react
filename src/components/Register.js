@@ -112,7 +112,6 @@ class Register extends Component {
 
     handleEmailChange(event){
         this.setState({email: event.target.value})
-        console.log("Email: ", this.state.email);
     }
 
     handlePassword(event){

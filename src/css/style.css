@@ -109,6 +109,13 @@ img {
     border-radius: 5px;
 }
 
+button {
+    font-size: 1.4em;
+    padding: 0.5em 2em;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
 .container-elements {
     position: relative;
     border:1px solid rgba(0,0,0,0.2);

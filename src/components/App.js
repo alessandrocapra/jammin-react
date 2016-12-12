@@ -9,10 +9,10 @@ class App extends Component {
     constructor(props){
         super(props);
         this.state = {
-            currentUser: {}
+            user: {}
         };
 
-        this.user = {};
+        // this.user = {};
         this.auth = firebase.auth();
         this.db = firebase.database();
     }
@@ -46,37 +46,12 @@ class App extends Component {
             logout_li.style.display = 'inline';
             profile_li.style.display = 'inline';
 
-            this.saveUserData(user);
+            // this.saveUserData(user);
             this.setState({
-                currentUser: {
-                    id: user.uid
-                }
+                user: { user }
             });
+            this.setState({user: {id: user.uid}});
         }
-    }
-
-    saveUserData(user) {
-        let username = 'No.Name.Set';
-        let name = "";
-        let surname = "";
-
-        if (user.displayName && user.displayName.length) {
-            name = user.displayName.split(" ")[0];
-            surname = user.displayName.split(" ")[1];
-            username = user.displayName.replace(/\s+/g, '').toLowerCase();
-        } else {
-            username = user.email.split('@')[0];
-        }
-        this.user = {
-            name: name,
-            surname: surname,
-            username: username,
-            image: user.photoURL
-        };
-        this.db.ref(`users/${user.uid}`).update(this.user);
-
-        // Store a local copy of the full user object
-        this.user.id = user.uid;
     }
 
     userLogout(){
@@ -108,7 +83,7 @@ class App extends Component {
                             <nav className="main-menu">
                                 <ul>
                                     <li><NavLink to="/venues">Venues</NavLink></li>
-                                    <li><NavLink id="profile-li" to={`/profile/${this.state.currentUser.id}`}>Profile</NavLink></li>
+                                    <li><NavLink id="profile-li" to={`/profile/${this.state.user.id}`}>Profile</NavLink></li>
                                     <li><a href="/" id="logout-li" onClick={this.userLogout}>Logout</a></li>
                                     <li><NavLink to="/register" id="register-li">Sign in</NavLink></li>
                                     <li><NavLink to="/faq">FAQ</NavLink></li>
