@@ -6,6 +6,7 @@ import Select from 'react-select';
 import $ from 'jquery';
 import update from 'immutability-helper';
 import {FBAppStorage} from '../modules/firebase';
+import Dropzone from 'react-dropzone';
 
 // import components
 import Video from './Video';
@@ -45,7 +46,7 @@ class EditProfile extends Component {
         this.addYoutubeVideo = this.addYoutubeVideo.bind(this);
         this.addSoundcloudTrack = this.addSoundcloudTrack.bind(this);
         this.removeInstrument = this.removeInstrument.bind(this);
-        this.updateProfilePic = this.updateProfilePic.bind(this);
+        this.onDrop = this.onDrop.bind(this);
 
     }
 
@@ -153,10 +154,50 @@ class EditProfile extends Component {
         })
     }
 
-    updateProfilePic(){
-        let storageRef = FBAppStorage.ref();
-        let profilePicRef = storageRef.child('profile-pictures');
+    onDrop (acceptedFiles, rejectedFiles) {
+        console.log('Accepted files: ', acceptedFiles);
+        console.log('Rejected files: ', rejectedFiles);
 
+        let storageRef = FBAppStorage.ref();
+        let profilePicRef = storageRef.child('profile-pictures/'+firebase.auth().currentUser.uid);
+
+        let uploadTask = profilePicRef.put(acceptedFiles[0]);
+
+        let self = this;
+
+        // Listen for state changes, errors, and completion of the upload.
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+            function(snapshot) {
+                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+                switch (snapshot.state) {
+                    case firebase.storage.TaskState.PAUSED: // or 'paused'
+                        console.log('Upload is paused');
+                        break;
+                    case firebase.storage.TaskState.RUNNING: // or 'running'
+                        console.log('Upload is running');
+                        break;
+                }
+            }, function(error) {
+                switch (error.code) {
+                    case 'storage/unauthorized':
+                        // User doesn't have permission to access the object
+                        break;
+
+                    case 'storage/canceled':
+                        // User canceled the upload
+                        break;
+
+                    case 'storage/unknown':
+                        // Unknown error occurred, inspect error.serverResponse
+                        break;
+                }
+            }, function() {
+                // Upload completed successfully, now we can get the download URL
+                let downloadURL = uploadTask.snapshot.downloadURL;
+                self.setState({user: {...self.state.user, image: downloadURL}});
+            });
     }
 
     render() {
@@ -170,7 +211,9 @@ class EditProfile extends Component {
                 <Row className="edit">
                     <Col xs={3}>
                         {this.state.user.image ? <img src={this.state.user.image} alt={this.state.user.name + this.state.user.surname}/> :
-                            <img src="/img/avatar.png" alt="profile picture"/>}
+                            <Dropzone onDrop={this.onDrop}>
+                                <div>Add a profile picture!</div>
+                            </Dropzone>}
                         <button onClick={this.updateProfilePic}>Change profile picture</button>
                     </Col>
                     <Col xs={9}>
