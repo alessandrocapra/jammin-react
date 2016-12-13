@@ -29,6 +29,7 @@ class SearchResultList extends Component {
                     instrumentsArray.map((instrument) => {
                         // if one of the instruments is the one in the search, add the profile to the component state
                         if(instrument.name == instrumentProp.toLowerCase()){
+                            console.log('instrProp: ' + instrumentProp +', profile: ' + profilesArray[profile].name + ' - playing : ' + instrument.name);
                             this.setState({users: update(this.state.users, {$push: [profilesArray[profile]]})});
                         }
                     });
@@ -44,7 +45,6 @@ class SearchResultList extends Component {
         return(
             <Row>
                 {Object.keys(this.state.users).map((key) => {
-                    console.log('what is here?: ', key);
                     return <SearchResult user={this.state.users[key]} key={key} />
                 })}
             </Row>
