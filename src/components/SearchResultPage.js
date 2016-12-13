@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Autocomplete from 'react-google-autocomplete';
+import Select from 'react-select';
 
 // Load components
 import SearchResultList from './SearchResultList';
@@ -11,11 +12,18 @@ class SearchResultPage extends Component {
         this.state = {
             location: "",
             instrument: "",
-            availability: "",
+            availability: 2,
             music_play: [],
             music_listen: [],
-            reviews: []
-        }
+            reviews: [],
+            value: 5,
+            values: {
+                min: 2,
+                max: 10,
+            },
+        };
+
+        this.handleChange = this.handleChange.bind(this);
     }
 
     componentWillMount(){
@@ -25,6 +33,7 @@ class SearchResultPage extends Component {
     }
 
     handleChange(e){
+        console.log('name: ' + e.target.name + ' - value: ' + e.target.value);
         this.setState({[e.target.name]: e.target.value});
     }
 
@@ -39,20 +48,48 @@ class SearchResultPage extends Component {
                 </Row>
                 <Row>
                     <Col xs={4} className="filter">
-                        <h3>Filters</h3>
-                        <Autocomplete
-                            onPlaceSelected={(place) => {
-                                console.log(place);
-                                this.setState({location: place.name});
-                            }}
-                            types={['(regions)']}
-                            value={this.state.location}
-                            onChange={this.handleChange}
-                        />
-                        <input type="text" placeholder="Instruments" value={this.state.instrument} onChange={this.handleChange}/>
-
-                        <h4>Availability</h4>
-                        <input name="availability" type="range" defaultValue={50} />
+                        <Row>
+                            <Col xs={12}>
+                                <h3>Filters</h3>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs={12}>
+                                <label>
+                                    Location
+                                    <Autocomplete
+                                        onPlaceSelected={(place) => {
+                                            console.log(place);
+                                            this.setState({location: place.name});
+                                        }}
+                                        types={['(regions)']}
+                                        value={this.state.location}
+                                        onChange={this.handleChange}
+                                    />
+                                </label>
+                                <label>
+                                    Instrument
+                                    <Select
+                                        name="instrument"
+                                        value={this.state.instrument}
+                                        options={this.props.route.instruments}
+                                        onChange={this.handleInstrumentChange}
+                                    />
+                                </label>
+                                <label>
+                                    Availability
+                                    <input
+                                        type="range"
+                                        name="availability"
+                                        max="7"
+                                        min="2"
+                                        value={this.state.availability}
+                                        onChange={this.handleChange}
+                                    />
+                                    <span>{this.state.availability} times per week</span>
+                                </label>
+                            </Col>
+                        </Row>
 
                         <Row>
                             <Col xs={6}>
