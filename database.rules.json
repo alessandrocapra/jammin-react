@@ -1,11 +1,6 @@
 {
   "rules": {
-    "users": {
-      ".indexOn": "location",
-      ".read": true,
-      "$uid": {
-        ".write": "$uid === auth.uid"
-      }
-    },
+    ".read": "auth != null",
+    ".write": "auth != null"
   }
 }
