@@ -58,6 +58,13 @@ class SearchResultPage extends Component {
         let location = this.props.params.location;
         let instrument = this.props.params.instrument;
 
+        let musicListenArray = [];
+        this.state.users.map((user) => {
+           user.music_listen.map((artist) => {
+              this.setState({music_listen: artist});
+           });
+        });
+
         return (
             <div className="searchResultPage">
                 <Row>
