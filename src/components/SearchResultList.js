@@ -14,18 +14,24 @@ class SearchResultList extends Component {
     }
 
     componentWillMount(){
-        const searchResults = FBAppDB.ref('users');
-        // let instrument_ref = SEARCH_RESULTS.child('instruments');
+        const users = FBAppDB.ref('users');
 
         let location = this.props.location;
         let instrument = this.props.instrument;
 
-        // let profiles = [];
-        searchResults.orderByChild('location').equalTo(location).on('value', (snap) => {
-            let users = snap.val();
-            const profiles = Object.keys(users).map((key) => users[key]);
-            this.setState({ users: {...profiles}});
+        let searchResult = users.orderByChild('location').equalTo(location).on('value', (snapshot) => {
+            let profilesArray = snapshot.val();
+            this.setState({ users: {...profilesArray}});
+            // ...
         });
+
+        // let profiles = [];
+        // users.orderByChild('location').on('value', (snap) => {
+        //     let users = snap.val();
+        //     console.log('users from search results: ', users);
+        //     const profiles = Object.keys(users).map((key) => users[key]);
+        //     this.setState({ users: {...profiles}});
+        // });
     }
 
     render(){

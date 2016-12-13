@@ -7,13 +7,6 @@ import Autocomplete from 'react-google-autocomplete';
 import SearchResultList from './SearchResultList';
 
 class SearchResultPage extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            filter: {},
-        };
-    }
-
     render(){
         let location = this.props.params.location;
         let instrument = this.props.params.instrument;
