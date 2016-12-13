@@ -1,12 +1,33 @@
 import React, {Component} from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Autocomplete from 'react-google-autocomplete';
-// import {InputRange} from 'react-input-range'
 
 // Load components
 import SearchResultList from './SearchResultList';
 
 class SearchResultPage extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            location: "",
+            instrument: "",
+            availability: "",
+            music_play: [],
+            music_listen: [],
+            reviews: []
+        }
+    }
+
+    componentWillMount(){
+        let location = this.props.params.location;
+        let instrument = this.props.params.instrument;
+        this.setState({location: location, instrument: instrument});
+    }
+
+    handleChange(e){
+        this.setState({[e.target.name]: e.target.value});
+    }
+
     render(){
         let location = this.props.params.location;
         let instrument = this.props.params.instrument;
@@ -22,9 +43,13 @@ class SearchResultPage extends Component {
                         <Autocomplete
                             onPlaceSelected={(place) => {
                                 console.log(place);
+                                this.setState({location: place.name});
                             }}
-                            types={['(regions)']} />
-                        <input type="text" placeholder="Instruments"/>
+                            types={['(regions)']}
+                            value={this.state.location}
+                            onChange={this.handleChange}
+                        />
+                        <input type="text" placeholder="Instruments" value={this.state.instrument} onChange={this.handleChange}/>
 
                         <h4>Availability</h4>
                         <input name="availability" type="range" defaultValue={50} />

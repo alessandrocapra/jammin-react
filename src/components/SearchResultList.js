@@ -24,7 +24,6 @@ class SearchResultList extends Component {
             let profilesArray = snapshot.val();
             Object.keys(profilesArray).map((profile) => {
                 let instrumentsArray = profilesArray[profile].instruments;
-                let instrumentsName = [];
                 if(instrumentsArray.length){
                     instrumentsArray.map((instrument) => {
                         // if one of the instruments is the one in the search, add the profile to the component state
