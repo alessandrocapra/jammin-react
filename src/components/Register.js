@@ -41,6 +41,7 @@ class Register extends Component {
             logout.style.display = 'inline';
 
             // redirect user to his profile
+            console.log('user id in signin: ', user.uid);
             browserHistory.push('profile/' + user.uid);
 
         }).catch(function(error) {
@@ -75,7 +76,6 @@ class Register extends Component {
 
             switch(errorCode) {
                 case 'auth/email-already-in-use':
-                    console.log('Email already in use!!');
                     self.signInWithEmail(email, password, errorBox, errorMessageBox);
                     break;
                 case 'auth/invalid-email':

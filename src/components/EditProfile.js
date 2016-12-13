@@ -127,6 +127,8 @@ class EditProfile extends Component {
             instruments: user.instruments,
             soundcloud: user.soundcloud,
             youtube: user.youtube,
+        }).then(function () {
+            browserHistory.push('/profile/'+profileId);
         });
     }
 
