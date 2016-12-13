@@ -24,7 +24,7 @@ const routes = (
       <Route path="/profile/:userId" component={Profile} />
       <Route path="/profile/edit/:userId" component={EditProfile} instruments={InstrumentList}/>
       <Route path="register" component={Register} />
-      <Route path="search/:location/:instrument" component={SearchResultPage} />
+      <Route path="search/:location/:instrument" component={SearchResultPage} instruments={InstrumentList}/>
     </Route>
   </Router>
 );
