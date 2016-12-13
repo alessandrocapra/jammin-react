@@ -25,7 +25,6 @@ class SearchResultPage extends Component {
     }
 
     componentWillMount(){
-        console.log('loca: ', this.props.params.location);
         let location = this.props.params.location;
         let instrumentProp = this.props.params.instrument;
         this.setState({location: location, instrument: instrumentProp});
@@ -39,7 +38,8 @@ class SearchResultPage extends Component {
                         // if one of the instruments is the one in the search, add the profile to the component state
                         if(instrument.name == instrumentProp.toLowerCase()){
                             console.log('instrProp: ' + instrumentProp +', profile: ' + profilesArray[profile].name + ' - playing : ' + instrument.name);
-                            this.setState({users: update(this.state.users, {$push: [profilesArray[profile]]})});
+                            let currentUser = profilesArray[profile];
+                            this.setState({users: {...this.state.users, currentUser}});
                         }
                     });
                 } else {
@@ -54,16 +54,25 @@ class SearchResultPage extends Component {
         this.setState({[e.target.name]: e.target.value});
     }
 
-    render(){
-        let location = this.props.params.location;
-        let instrument = this.props.params.instrument;
+    componentDidMount(){
 
+        // THIS CODE IS NOT WORKING, PROBABLY BECAUSE IS STILL POPULATING THE STATE FOR USERS!
         let musicListenArray = [];
+        console.log('this.state.users: ', this.state.users[0]);
+
         this.state.users.map((user) => {
-           user.music_listen.map((artist) => {
-              this.setState({music_listen: artist});
-           });
+            console.log('userr: ', user);
+            user.music_listen.map((artist) => {
+                console.log('artista: ', artist);
+                musicListenArray.push(artist);
+            });
         });
+
+        console.log('music array: ', musicListenArray);
+        this.setState({music_listen: musicListenArray});
+    }
+
+    render(){
 
         return (
             <div className="searchResultPage">
@@ -120,11 +129,11 @@ class SearchResultPage extends Component {
                                 <label>
                                     Influences
                                 </label>
+                                {this.state.music_listen ? this.state.music_listen.map((artist) => {
+                                    console.log('arrrrr: ', artist);
+                                    return <div><input type="checkbox" name={artist}/> {artist} </div>;
+                                }) : <p>No influences defined by the users</p>}
 
-                                <input type="checkbox" name="musicPlayed"/> Ostia <br/>
-                                <input type="checkbox" name="musicPlayed"/> Ostia <br/>
-                                <input type="checkbox" name="musicPlayed"/> Ostia <br/>
-                                <input type="checkbox" name="musicPlayed"/> Ostia <br/>
                             </Col>
                             <Col xs={6}>
                                 <h4>Music listened</h4>
@@ -145,7 +154,7 @@ class SearchResultPage extends Component {
 
                     </Col>
                     <Col xs={8}>
-                        <SearchResultList users={this.state.users} location={location} instrument={instrument} />
+                        <SearchResultList users={this.state.users} location={this.state.location} instrument={this.state.instrument} />
                     </Col>
                 </Row>
             </div>

@@ -10,9 +10,9 @@ class SearchResultList extends Component {
 
         return(
             <Row>
-                {Object.keys(this.props.users).map((key) => {
+                {this.props.users.length ? Object.keys(this.props.users).map((key) => {
                     return <SearchResult user={this.props.users[key]} key={key} />
-                })}
+                }) : <p>No results for {this.props.instrument} in {this.props.location}</p>}
             </Row>
         );
     }
