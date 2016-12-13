@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Autocomplete from 'react-google-autocomplete';
 import Select from 'react-select';
+import {FBAppDB} from '../modules/firebase';
+import update from 'immutability-helper';
 
 // Load components
 import SearchResultList from './SearchResultList';
@@ -16,20 +18,35 @@ class SearchResultPage extends Component {
             music_play: [],
             music_listen: [],
             reviews: [],
-            value: 5,
-            values: {
-                min: 2,
-                max: 10,
-            },
+            users: []
         };
 
         this.handleChange = this.handleChange.bind(this);
     }
 
     componentWillMount(){
+        console.log('loca: ', this.props.params.location);
         let location = this.props.params.location;
-        let instrument = this.props.params.instrument;
-        this.setState({location: location, instrument: instrument});
+        let instrumentProp = this.props.params.instrument;
+        this.setState({location: location, instrument: instrumentProp});
+
+        FBAppDB.ref('users').orderByChild('location').equalTo(location).on('value', (snapshot) => {
+            let profilesArray = snapshot.val();
+            Object.keys(profilesArray).map((profile) => {
+                let instrumentsArray = profilesArray[profile].instruments;
+                if(instrumentsArray.length){
+                    instrumentsArray.map((instrument) => {
+                        // if one of the instruments is the one in the search, add the profile to the component state
+                        if(instrument.name == instrumentProp.toLowerCase()){
+                            console.log('instrProp: ' + instrumentProp +', profile: ' + profilesArray[profile].name + ' - playing : ' + instrument.name);
+                            this.setState({users: update(this.state.users, {$push: [profilesArray[profile]]})});
+                        }
+                    });
+                } else {
+                    console.log('Error: no profiles with instruments available!');
+                }
+            });
+        });
     }
 
     handleChange(e){
@@ -93,8 +110,10 @@ class SearchResultPage extends Component {
 
                         <Row>
                             <Col xs={6}>
-                                <h4>Music played</h4>
-                                {/* This list should be updated taking the info from the profile currently listed in the search results */}
+                                <label>
+                                    Influences
+                                </label>
+
                                 <input type="checkbox" name="musicPlayed"/> Ostia <br/>
                                 <input type="checkbox" name="musicPlayed"/> Ostia <br/>
                                 <input type="checkbox" name="musicPlayed"/> Ostia <br/>
@@ -119,7 +138,7 @@ class SearchResultPage extends Component {
 
                     </Col>
                     <Col xs={8}>
-                        <SearchResultList location={location} instrument={instrument} />
+                        <SearchResultList users={this.state.users} location={location} instrument={instrument} />
                     </Col>
                 </Row>
             </div>
