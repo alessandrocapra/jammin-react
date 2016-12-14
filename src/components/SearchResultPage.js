@@ -130,7 +130,7 @@ class SearchResultPage extends Component {
                                     Influences
                                 </label>
                                 {this.state.music_listen.length ? this.state.music_listen.map((artist) => {
-                                    return <div><input type="checkbox" name={artist}/> {artist} </div>;
+                                    return <div key={artist}><input type="checkbox" name={artist}/> {artist} </div>;
                                 }) : <p>No influences defined by the users</p>}
 
                             </Col>
@@ -140,10 +140,21 @@ class SearchResultPage extends Component {
                                 </label>
                                 {this.state.music_play.length ? this.state.music_play.map((artist) => {
                                     return artist.map((single) => {
-                                        console.log('single: ', single);
                                         return <div><input type="checkbox" name={single}/> {single} </div>;
                                     });
                                 }) : <p>No influences defined by the users</p>}
+                            </Col>
+                        </Row>
+
+                        <Row>
+                            <Col xs={12}>
+                                <label>
+                                    Reviews
+                                </label>
+                                <input type="checkbox" name="review"/> Rockstar <br/>
+                                <input type="checkbox" name="review"/> Super <br/>
+                                <input type="checkbox" name="review"/> OK <br/>
+                                <input type="checkbox" name="review"/> Not good <br/>
                             </Col>
                         </Row>
 

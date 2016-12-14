@@ -27,7 +27,7 @@ class SearchResult extends Component {
                         <Col xs={6}>
                             <h4>Musical influences</h4>
                             {this.props.user.music_listen.map((artist) => {
-                                return <a className="tag" href="#0"><span>{artist}</span></a>;
+                                return <a key={artist} className="tag" href="#0"><span>{artist}</span></a>;
                             })}
                         </Col>
                     </Row>
