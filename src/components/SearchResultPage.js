@@ -4,6 +4,7 @@ import Autocomplete from 'react-google-autocomplete';
 import Select from 'react-select';
 import {FBAppDB} from '../modules/firebase';
 import update from 'immutability-helper';
+import firebase from 'firebase';
 
 // Load components
 import SearchResultList from './SearchResultList';
@@ -36,7 +37,7 @@ class SearchResultPage extends Component {
                 if(instrumentsArray.length){
                     instrumentsArray.map((instrument) => {
                         // if one of the instruments is the one in the search, add the profile to the component state
-                        if(instrument.name == instrumentProp.toLowerCase()){
+                        if((instrument.name == instrumentProp.toLowerCase()) && (profilesArray[profile].id != firebase.auth().currentUser.uid)){
                             console.log('instrProp: ' + instrumentProp +', profile: ' + profilesArray[profile].name + ' - playing : ' + instrument.name);
                             let currentUser = profilesArray[profile];
                             this.setState({users: update(this.state.users, {$push: [currentUser]})});
