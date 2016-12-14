@@ -159,14 +159,6 @@ class SearchResultPage extends Component {
                                 <input type="checkbox" name="review"/> Not good <br/>
                             </Col>
                         </Row>
-
-                        <h4>Reviews</h4>
-                        {/* This list should be updated taking the info from the profile currently listed in the search results */}
-                        <input type="checkbox" name="review"/> Rockstar <br/>
-                        <input type="checkbox" name="review"/> Super <br/>
-                        <input type="checkbox" name="review"/> OK <br/>
-                        <input type="checkbox" name="review"/> Not good <br/>
-
                     </Col>
                     <Col xs={8}>
                         <SearchResultList users={this.state.users} location={this.state.location} instrument={this.state.instrument} />
