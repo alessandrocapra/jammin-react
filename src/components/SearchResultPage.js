@@ -40,7 +40,7 @@ class SearchResultPage extends Component {
                         if((instrument.name == instrumentProp.toLowerCase()) && (profilesArray[profile].id != firebase.auth().currentUser.uid)){
                             console.log('instrProp: ' + instrumentProp +', profile: ' + profilesArray[profile].name + ' - playing : ' + instrument.name);
                             let currentUser = profilesArray[profile];
-                            this.setState({users: update(this.state.users, {$push: [currentUser]})});
+                            this.setState({users: update(this.state.users, {$push: [currentUser]}), music_listen: update(this.state.music_listen, {$push: [currentUser.music_listen]}), music_play: update(this.state.music_play, {$push: [currentUser.music_play]})});
                         }
                     });
                 } else {
@@ -56,8 +56,6 @@ class SearchResultPage extends Component {
     }
 
     componentDidMount(){
-
-        console.log()
         // THIS CODE IS NOT WORKING, PROBABLY BECAUSE IS STILL POPULATING THE STATE FOR USERS!
         // let musicListenArray = [];
         // console.log('this.state.users: ', this.state.users[0]);
@@ -131,19 +129,21 @@ class SearchResultPage extends Component {
                                 <label>
                                     Influences
                                 </label>
-                                {this.state.music_listen ? this.state.music_listen.map((artist) => {
-                                    console.log('arrrrr: ', artist);
+                                {this.state.music_listen.length ? this.state.music_listen.map((artist) => {
                                     return <div><input type="checkbox" name={artist}/> {artist} </div>;
                                 }) : <p>No influences defined by the users</p>}
 
                             </Col>
                             <Col xs={6}>
-                                <h4>Music listened</h4>
-                                {/* This list should be updated taking the info from the profile currently listed in the search results */}
-                                <input type="checkbox" name="musicListened"/> Ostia <br/>
-                                <input type="checkbox" name="musicListened"/> Ostia <br/>
-                                <input type="checkbox" name="musicListened"/> Ostia <br/>
-                                <input type="checkbox" name="musicListened"/> Ostia <br/>
+                                <label>
+                                    Artists listened
+                                </label>
+                                {this.state.music_play.length ? this.state.music_play.map((artist) => {
+                                    return artist.map((single) => {
+                                        console.log('single: ', single);
+                                        return <div><input type="checkbox" name={single}/> {single} </div>;
+                                    });
+                                }) : <p>No influences defined by the users</p>}
                             </Col>
                         </Row>
 
