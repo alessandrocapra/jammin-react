@@ -23,7 +23,9 @@ class SearchResult extends Component {
                         </Col>
                         <Col xs={6}>
                             <h4>Musical influences</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti doloremque eveniet excepturi libero minus nihil odio optio quod reiciendis sequi! Amet aspernatur natus nemo obcaecati, quo repellendus reprehenderit rerum unde.</p>
+                            {this.props.user.music_listen.map((artist) => {
+                                return <a className="tag" href="#0"><span>{artist}</span></a>;
+                            })}
                         </Col>
                     </Row>
                 </Col>
