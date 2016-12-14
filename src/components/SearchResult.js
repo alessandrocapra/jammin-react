@@ -14,7 +14,7 @@ class SearchResult extends Component {
                 <Col xs={8}>
                     <h3>{this.props.user.name} {this.props.user.surname}</h3>
                     {this.props.user.age ? <span>{this.props.user.age} years old</span> : <div></div>}
-                    {this.props.user.gender ? <span>{this.props.user.age}</span> : <div></div>}
+                    {this.props.user.gender ? <span>{this.props.user.gender}</span> : <div></div>}
                     <p><FontAwesome name="globe"/> {this.props.user.location}</p>
                     <p>{this.props.user.about}</p>
                     <Row>

@@ -5,6 +5,7 @@ import Select from 'react-select';
 import {FBAppDB} from '../modules/firebase';
 import update from 'immutability-helper';
 import firebase from 'firebase';
+import InstrumentList from '../data/instruments';
 
 // Load components
 import SearchResultList from './SearchResultList';
@@ -14,7 +15,7 @@ class SearchResultPage extends Component {
         super(props);
         this.state = {
             location: "",
-            instrument: "",
+            instrument: [],
             availability: 2,
             music_play: [],
             music_listen: [],
@@ -23,22 +24,28 @@ class SearchResultPage extends Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleInstrumentChange = this.handleInstrumentChange.bind(this);
+        this.getProfiles = this.getProfiles.bind(this);
+        this.cleanUsersState = this.cleanUsersState.bind(this);
     }
 
-    componentWillMount(){
-        let location = this.props.params.location;
-        let instrumentProp = this.props.params.instrument;
-        this.setState({location: location, instrument: instrumentProp});
+    getProfiles(){
+        // let location = this.props.params.location;
+        // let instrumentProp = this.props.params.instrument;
+        if(!this.state.location.length){
+            this.setState({location: this.props.params.location});
+        }
 
-        FBAppDB.ref('users').orderByChild('location').equalTo(location).on('value', (snapshot) => {
+        FBAppDB.ref('users').orderByChild('location').equalTo(this.state.location).on('value', (snapshot) => {
             let profilesArray = snapshot.val();
+            console.log('Object.keys(profilesArray): ', profilesArray);
             Object.keys(profilesArray).map((profile) => {
                 let instrumentsArray = profilesArray[profile].instruments;
                 if(instrumentsArray.length){
                     instrumentsArray.map((instrument) => {
                         // if one of the instruments is the one in the search, add the profile to the component state
-                        if((instrument.name == instrumentProp.toLowerCase()) && (profilesArray[profile].id != firebase.auth().currentUser.uid)){
-                            console.log('instrProp: ' + instrumentProp +', profile: ' + profilesArray[profile].name + ' - playing : ' + instrument.name);
+                        if((instrument.name == this.state.instrument.value) && (profilesArray[profile].id != firebase.auth().currentUser.uid)){
+                            console.log('instrProp: ' + this.state.instrument +', profile: ' + profilesArray[profile].name + ' - playing : ' + instrument.name);
                             let currentUser = profilesArray[profile];
                             this.setState({users: update(this.state.users, {$push: [currentUser]}), music_listen: update(this.state.music_listen, {$push: [currentUser.music_listen]}), music_play: update(this.state.music_play, {$push: [currentUser.music_play]})});
                         }
@@ -50,26 +57,44 @@ class SearchResultPage extends Component {
         });
     }
 
-    handleChange(e){
-        console.log('name: ' + e.target.name + ' - value: ' + e.target.value);
-        this.setState({[e.target.name]: e.target.value});
+    componentWillMount(){
+        let location = this.props.params.location;
+        let instrumentProp = this.props.params.instrument;
+        this.setState({location: location, instrument: instrumentProp}, () => {
+            this.getProfiles();
+        });
+
+        InstrumentList.filter((instrument) => {
+            console.log('instruuuuuuuuuuuuuuuu: ', instrument);
+            if (instrument.label === instrumentProp) {
+                this.setState({instrument: instrument});
+            }
+        });
     }
 
-    componentDidMount(){
-        // THIS CODE IS NOT WORKING, PROBABLY BECAUSE IS STILL POPULATING THE STATE FOR USERS!
-        // let musicListenArray = [];
-        // console.log('this.state.users: ', this.state.users[0]);
-        //
-        // this.state.users.map((user) => {
-        //     console.log('userr: ', user);
-        //     user.music_listen.map((artist) => {
-        //         console.log('artista: ', artist);
-        //         musicListenArray.push(artist);
-        //     });
-        // });
+    cleanUsersState(){
+        this.setState({users: []});
+    }
 
-        // console.log('music array: ', musicListenArray);
-        // this.setState({music_listen: musicListenArray});
+    handleChange(e){
+        console.log('name: ' + e.target.name + ' - value: ' + e.target.value);
+        switch (e.target.name){
+            case 'location':
+                this.setState({[e.target.name]: e.target.value}, () => {
+                    this.cleanUsersState();
+                    this.getProfiles();
+                });
+                break;
+            default:
+                this.setState({[e.target.name]: e.target.value});
+        }
+    }
+
+    handleInstrumentChange(value){
+        this.setState({instrument: value}, () => {
+            this.cleanUsersState();
+            this.getProfiles();
+        });
     }
 
     render(){
@@ -91,6 +116,7 @@ class SearchResultPage extends Component {
                                 <label>
                                     Location
                                     <Autocomplete
+                                        name="location"
                                         onPlaceSelected={(place) => {
                                             console.log(place);
                                             this.setState({location: place.name});
