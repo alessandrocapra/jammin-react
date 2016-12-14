@@ -39,7 +39,7 @@ class SearchResultPage extends Component {
                         if(instrument.name == instrumentProp.toLowerCase()){
                             console.log('instrProp: ' + instrumentProp +', profile: ' + profilesArray[profile].name + ' - playing : ' + instrument.name);
                             let currentUser = profilesArray[profile];
-                            this.setState({users: {...this.state.users, currentUser}});
+                            this.setState({users: update(this.state.users, {$push: [currentUser]})});
                         }
                     });
                 } else {
@@ -56,20 +56,21 @@ class SearchResultPage extends Component {
 
     componentDidMount(){
 
+        console.log()
         // THIS CODE IS NOT WORKING, PROBABLY BECAUSE IS STILL POPULATING THE STATE FOR USERS!
-        let musicListenArray = [];
-        console.log('this.state.users: ', this.state.users[0]);
+        // let musicListenArray = [];
+        // console.log('this.state.users: ', this.state.users[0]);
+        //
+        // this.state.users.map((user) => {
+        //     console.log('userr: ', user);
+        //     user.music_listen.map((artist) => {
+        //         console.log('artista: ', artist);
+        //         musicListenArray.push(artist);
+        //     });
+        // });
 
-        this.state.users.map((user) => {
-            console.log('userr: ', user);
-            user.music_listen.map((artist) => {
-                console.log('artista: ', artist);
-                musicListenArray.push(artist);
-            });
-        });
-
-        console.log('music array: ', musicListenArray);
-        this.setState({music_listen: musicListenArray});
+        // console.log('music array: ', musicListenArray);
+        // this.setState({music_listen: musicListenArray});
     }
 
     render(){
