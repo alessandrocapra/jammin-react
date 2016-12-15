@@ -27,7 +27,7 @@ class SearchResultPage extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleInstrumentChange = this.handleInstrumentChange.bind(this);
         this.getProfiles = this.getProfiles.bind(this);
-        this.cleanUsersState = this.cleanUsersState.bind(this);
+        this.cleanResults = this.cleanResults.bind(this);
     }
 
     getProfiles(){
@@ -42,11 +42,21 @@ class SearchResultPage extends Component {
                     currentUser.instruments.map((instrument) => {
                         console.log(currentUser.name + ' instrument is ' + instrument.name);
                         // if one of the instruments is the one in the search, add the profile to the component state
-                        if((instrument.name == this.state.instrument.value) && (currentUser.id != firebase.auth().currentUser.uid)){
+                        if(instrument.name == this.state.instrument.value){
+                            if(firebase.auth().currentUser && currentUser.id != firebase.auth().currentUser.uid){
+                                // check profiles not including the logged user
+                                this.setState({users: update(this.state.users, {$push: [currentUser]}), music_listen: update(this.state.music_listen, {$push: [currentUser.music_listen]}), music_play: update(this.state.music_play, {$push: [currentUser.music_play]})}, () => {
+                                    console.log(currentUser.name + ' is in state?: ', this.state.users);
+                                });
+                            } else {
+                                // look for all profiles
+                                this.setState({users: update(this.state.users, {$push: [currentUser]}), music_listen: update(this.state.music_listen, {$push: [currentUser.music_listen]}), music_play: update(this.state.music_play, {$push: [currentUser.music_play]})}, () => {
+                                    console.log(currentUser.name + ' is in state?: ', this.state.users);
+                                });
+                            }
+
                             console.log('profile: ' + currentUser.name + ' - playing : ' + instrument.name);
-                            this.setState({users: update(this.state.users, {$push: [currentUser]}), music_listen: update(this.state.music_listen, {$push: [currentUser.music_listen]}), music_play: update(this.state.music_play, {$push: [currentUser.music_play]})}, () => {
-                                console.log(currentUser.name + ' is in state?: ', this.state.users);
-                            });
+
                         }
                     });
                     console.log('Users state after loop: ', this.state.users);
@@ -72,9 +82,9 @@ class SearchResultPage extends Component {
         });
     }
 
-    cleanUsersState(){
+    cleanResults(){
         console.log('this.state.users BEFORE: ',this.state.users);
-        this.setState({users: []}, () => {
+        this.setState({users: [], music_play: [], music_listen: []}, () => {
             console.log('this.state.users AFTER: ',this.state.users);
         });
     }
@@ -84,7 +94,7 @@ class SearchResultPage extends Component {
         switch (e.target.name){
             case 'location':
                 this.setState({[e.target.name]: e.target.value}, () => {
-                    this.cleanUsersState();
+                    this.cleanResults();
                     this.getProfiles();
                 });
                 break;
@@ -120,7 +130,7 @@ class SearchResultPage extends Component {
                                         onPlaceSelected={(place) => {
                                             console.log(place);
                                             this.setState({location: place.name}, () => {
-                                                this.cleanUsersState();
+                                                this.cleanResults();
                                                 this.getProfiles();
                                             });
                                         }}
