@@ -35,21 +35,34 @@ class Home extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col xs={12} className="text-center"><h2>How Jammin works</h2></Col>
+                    <Col xs={12}>
+            <center><h2> About Jammin </h2></center>
+                    </Col>
                 </Row>
                 <Row className="facts">
-                    <Col xs={12} sm={4}>
-                        <h3>The Incredible Perks</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <Row>
+                    <Col xs={12} className="imageclass">
+                        <div className="module lr">
+                        <p>Jammin is a community of musicians and musical artists. Joining Jammin is free and always will be.</p>
+                        </div>
                     </Col>
-                    <Col xs={12} sm={4}>
-                        <h3>The Amazing Musicians</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </Row>
+                    <Row>
+                    <Col xs={12} className= "imageclass">
+                        <div className="module2 lr">
+                        <h3>Find musicians</h3>
+                        <p>Create a free profile, find musicians, contact them, form or join jammer groups to play music together.</p>
+                        </div>
                     </Col>
-                    <Col xs={12} sm={4}>
-                        <h3>The Unbelievable Performances</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </Row>
+                    <Row>
+                    <Col xs={12} className="imageclass">
+                        <div className="module3 lr">
+                        <h3>Meet and Play</h3>
+                        <p>Find a venue suggestion on our website, contact them, meet up, play and enjoy!</p>
+                        </div>
                     </Col>
+                    </Row>
                 </Row>
             </div>
         );
