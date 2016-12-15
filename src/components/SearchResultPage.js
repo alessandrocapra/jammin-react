@@ -43,6 +43,9 @@ class SearchResultPage extends Component {
                         console.log(currentUser.name + ' instrument is ' + instrument.name);
                         // if one of the instruments is the one in the search, add the profile to the component state
                         if(instrument.name == this.state.instrument.value){
+
+                            console.log('profile: ' + currentUser.name + ' - playing : ' + instrument.name);
+
                             if(firebase.auth().currentUser && currentUser.id != firebase.auth().currentUser.uid){
                                 // check profiles not including the logged user
                                 this.setState({users: update(this.state.users, {$push: [currentUser]}), music_listen: update(this.state.music_listen, {$push: [currentUser.music_listen]}), music_play: update(this.state.music_play, {$push: [currentUser.music_play]})}, () => {
@@ -54,12 +57,8 @@ class SearchResultPage extends Component {
                                     console.log(currentUser.name + ' is in state?: ', this.state.users);
                                 });
                             }
-
-                            console.log('profile: ' + currentUser.name + ' - playing : ' + instrument.name);
-
                         }
                     });
-                    console.log('Users state after loop: ', this.state.users);
                 } else {
                     console.log('Error: no profiles with instruments available!');
                 }
