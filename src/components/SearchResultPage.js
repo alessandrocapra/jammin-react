@@ -32,36 +32,46 @@ class SearchResultPage extends Component {
 
     getProfiles(){
 
-        FBAppDB.ref('users').orderByChild('location').equalTo(this.state.location).on('value', (snapshot) => {
-            let profilesArray = snapshot.val();
-            console.log('Object.keys(profilesArray): ', profilesArray);
-            Object.keys(profilesArray).map((profile) => {
-                let currentUser = profilesArray[profile];
-                console.log('Looping user ', currentUser.name);
-                if(currentUser.instruments.length){
-                    currentUser.instruments.map((instrument) => {
-                        console.log(currentUser.name + ' instrument is ' + instrument.name);
-                        // if one of the instruments is the one in the search, add the profile to the component state
-                        if(instrument.name == this.state.instrument.value){
+        console.log('this.state.users in getProfiles: ', this.state.users);
+        let finalProfiles = [];
 
-                            console.log('profile: ' + currentUser.name + ' - playing : ' + instrument.name);
+        this.setState({users: [], music_play: [], music_listen: []}, () => {
+            console.log('this.state.users cleaning - AFTER: ',this.state.users);
+            FBAppDB.ref('users').orderByChild('location').equalTo(this.state.location).on('value', (snapshot) => {
+                let profilesArray = snapshot.val();
+                console.log('Object.keys(profilesArray): ', profilesArray);
+                Object.keys(profilesArray).map((profile) => {
+                    let currentUser = profilesArray[profile];
+                    console.log('Looping user ', currentUser.name);
+                    if(currentUser.instruments.length){
+                        currentUser.instruments.map((instrument) => {
+                            console.log('|---> ' + currentUser.name + ' instrument is ' + instrument.name);
+                            // if one of the instruments is the one in the search, add the profile to the component state
+                            if(instrument.name == this.state.instrument.value && currentUser.id != firebase.auth().currentUser.uid){
+                                console.log('|------> NOICE! Saving profile to state: ' + currentUser.name + ' - playing : ' + instrument.name);
+                                finalProfiles.push(currentUser);
+                                console.log('|------> which user? this --> ', currentUser);
+                                console.log('|------> finalProfiles with new user: ', finalProfiles);
 
-                            if(firebase.auth().currentUser && currentUser.id != firebase.auth().currentUser.uid){
-                                // check profiles not including the logged user
-                                this.setState({users: update(this.state.users, {$push: [currentUser]}), music_listen: update(this.state.music_listen, {$push: [currentUser.music_listen]}), music_play: update(this.state.music_play, {$push: [currentUser.music_play]})}, () => {
-                                    console.log(currentUser.name + ' is in state?: ', this.state.users);
-                                });
-                            } else {
-                                // look for all profiles
-                                this.setState({users: update(this.state.users, {$push: [currentUser]}), music_listen: update(this.state.music_listen, {$push: [currentUser.music_listen]}), music_play: update(this.state.music_play, {$push: [currentUser.music_play]})}, () => {
-                                    console.log(currentUser.name + ' is in state?: ', this.state.users);
-                                });
                             }
-                        }
-                    });
-                } else {
-                    console.log('Error: no profiles with instruments available!');
-                }
+                        });
+                    } else {
+                        console.log('Error: no profiles with instruments available!');
+                    }
+                });
+
+                // put all users in state
+                let musicListen = [];
+                let musicPlay = [];
+
+                finalProfiles.map((user) => {
+                    console.log('User ' + user.name + ' in finalProfiles');
+                    musicListen.push(user.music_listen);
+                    musicPlay.push(user.music_play);
+                });
+
+                this.setState({users: finalProfiles, music_listen: musicListen, music_play: musicPlay});
+
             });
         });
     }
@@ -82,10 +92,10 @@ class SearchResultPage extends Component {
     }
 
     cleanResults(){
-        console.log('this.state.users BEFORE: ',this.state.users);
-        this.setState({users: [], music_play: [], music_listen: []}, () => {
-            console.log('this.state.users AFTER: ',this.state.users);
-        });
+        // console.log('this.state.users cleaning -  BEFORE: ',this.state.users);
+        // this.setState({users: [], music_play: [], music_listen: []}, () => {
+        //     console.log('this.state.users cleaning - AFTER: ',this.state.users);
+        // });
     }
 
     handleChange(e){
@@ -94,7 +104,7 @@ class SearchResultPage extends Component {
             case 'location':
                 this.setState({[e.target.name]: e.target.value}, () => {
                     this.cleanResults();
-                    this.getProfiles();
+                    // this.getProfiles();
                 });
                 break;
             default:
@@ -103,7 +113,9 @@ class SearchResultPage extends Component {
     }
 
     handleInstrumentChange(value){
-        this.setState({instrument: value});
+        this.setState({instrument: value}, () => {
+            this.getProfiles();
+        });
     }
 
     render(){
