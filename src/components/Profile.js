@@ -26,13 +26,12 @@ class Profile extends Component {
         // Load user data
         let profileId = this.props.params.userId;
         let USER_DB = firebase.database().ref('users/' + profileId);
-        console.log('Before assigning values from Firebase: ', this.state.user);
 
-        return USER_DB.once('value').then(function (snapshot) {
+        USER_DB.once('value').then(function (snapshot) {
             let user = snapshot.val();
             console.log('user from db: ', user);
             this.setState({user: user});
-        }.bind(this));
+        });
     }
 
     checkUser(){

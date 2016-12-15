@@ -38,6 +38,7 @@ class SearchResultPage extends Component {
                 let profilesArray = snapshot.val();
                 Object.keys(profilesArray).map((profile) => {
                     let currentUser = profilesArray[profile];
+                    console.log('currentProfile: ', currentUser);
                     if(currentUser.instruments.length){
                         currentUser.instruments.map((instrument) => {
                             // if one of the instruments is the one in the search, add the profile to the component state

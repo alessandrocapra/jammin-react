@@ -4,6 +4,7 @@ import FontAwesome from 'react-fontawesome';
 import {browserHistory} from 'react-router';
 
 class SearchResult extends Component {
+
     goToProfile(){
         console.log('the user is ', this.props.user);
         browserHistory.push(`/profile/${this.props.user.id}`);
