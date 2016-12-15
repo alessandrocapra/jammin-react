@@ -1,14 +1,20 @@
 import React, {Component} from 'react';
 import {Row, Col} from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
+import {browserHistory} from 'react-router';
 
 class SearchResult extends Component {
+    goToProfile(){
+        console.log('the user is ', this.props.user);
+        browserHistory.push(`/profile/${this.props.user.id}`);
+    }
+
     render(){
         return(
         <Col xs={12}>
             <Row className="result">
                 <Col xs={4}>
-                    <img src={this.props.user.image} alt={this.props.user.name}/>
+                    <img src={this.props.user.image} alt={this.props.user.name} onClick={this.goToProfile.bind(this)}/>
                     <button>Contact me!</button>
                 </Col>
                 <Col xs={8}>

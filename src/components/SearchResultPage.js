@@ -31,27 +31,18 @@ class SearchResultPage extends Component {
     }
 
     getProfiles(){
-
-        console.log('this.state.users in getProfiles: ', this.state.users);
         let finalProfiles = [];
 
         this.setState({users: [], music_play: [], music_listen: []}, () => {
-            console.log('this.state.users cleaning - AFTER: ',this.state.users);
             FBAppDB.ref('users').orderByChild('location').equalTo(this.state.location).on('value', (snapshot) => {
                 let profilesArray = snapshot.val();
-                console.log('Object.keys(profilesArray): ', profilesArray);
                 Object.keys(profilesArray).map((profile) => {
                     let currentUser = profilesArray[profile];
-                    console.log('Looping user ', currentUser.name);
                     if(currentUser.instruments.length){
                         currentUser.instruments.map((instrument) => {
-                            console.log('|---> ' + currentUser.name + ' instrument is ' + instrument.name);
                             // if one of the instruments is the one in the search, add the profile to the component state
                             if(instrument.name == this.state.instrument.value && currentUser.id != firebase.auth().currentUser.uid){
-                                console.log('|------> NOICE! Saving profile to state: ' + currentUser.name + ' - playing : ' + instrument.name);
                                 finalProfiles.push(currentUser);
-                                console.log('|------> which user? this --> ', currentUser);
-                                console.log('|------> finalProfiles with new user: ', finalProfiles);
 
                             }
                         });
@@ -65,7 +56,6 @@ class SearchResultPage extends Component {
                 let musicPlay = [];
 
                 finalProfiles.map((user) => {
-                    console.log('User ' + user.name + ' in finalProfiles');
                     musicListen.push(user.music_listen);
                     musicPlay.push(user.music_play);
                 });
@@ -84,7 +74,6 @@ class SearchResultPage extends Component {
         });
 
         InstrumentList.filter((instrument) => {
-            console.log('instruuuuuuuuuuuuuuuu: ', instrument);
             if (instrument.label === instrumentProp) {
                 this.setState({instrument: instrument});
             }
@@ -123,7 +112,7 @@ class SearchResultPage extends Component {
         return (
             <div className="searchResultPage">
                 <Row>
-                    <Col xs={12}><h2>Search results for <span>{this.props.params.instrument}</span> around <span>{this.props.params.location}</span></h2></Col>
+                    <Col xs={12}><h2>Search results for <span>{this.state.instrument.label}</span> around <span>{this.state.location}</span></h2></Col>
                 </Row>
                 <Row>
                     <Col xs={4} className="filter">
