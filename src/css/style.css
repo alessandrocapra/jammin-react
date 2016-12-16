@@ -485,6 +485,11 @@ section.instruments article img {
 
 .result img {
     margin-top:1.5em;
+    cursor: pointer;
+}
+
+.result h3 {
+    cursor: pointer;
 }
 
 .result button {

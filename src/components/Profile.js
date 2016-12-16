@@ -26,11 +26,12 @@ class Profile extends Component {
         // Load user data
         let profileId = this.props.params.userId;
         let USER_DB = firebase.database().ref('users/' + profileId);
+        let self = this;
 
         USER_DB.once('value').then(function (snapshot) {
             let user = snapshot.val();
             console.log('user from db: ', user);
-            this.setState({user: user});
+            self.setState({user: user});
         });
     }
 
@@ -74,7 +75,7 @@ class Profile extends Component {
                         <Row>
                             <Col xs={12}>
                                 <h3>About me</h3>
-                                { firebase.auth().currentUser ? (<button className="btn btn-default" onClick={this.handleEditButton}>Edit profile</button>) : (<div></div>) }
+                                { firebase.auth().currentUser.uid === this.state.user.id ? (<button className="btn btn-default" onClick={this.handleEditButton}>Edit profile</button>) : (<div></div>) }
                                 <p>{this.state.user.about}</p>
                             </Col>
                         </Row>
