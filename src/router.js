@@ -17,7 +17,11 @@ import InstrumentList from './data/instruments';
 // defining routes
 const routes = (
   <Router history={browserHistory}>
-    <Route component={App}>
+    <Route component={App} onChange={(prevState, nextState) => {
+      if (nextState.location.action !== "POP") {
+        window.scrollTo(0, 0);
+      }
+    }}>
       <Route path="/" component={Home} instruments={InstrumentList} />
       <Route path="venues" component={Venues} />
       <Route path="faq" component={Faq} />
