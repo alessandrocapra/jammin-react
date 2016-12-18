@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import {Row} from 'react-bootstrap';
-
-
 import SearchResult from './SearchResult';
 
 class SearchResultList extends Component {
@@ -10,8 +8,8 @@ class SearchResultList extends Component {
 
         return(
             <Row>
-                {this.props.users.length ? Object.keys(this.props.users).map((key) => {
-                    return <SearchResult user={this.props.users[key]} key={key} />
+                {this.props.users.length ? Object.keys(this.props.users).map((user) => {
+                    return <SearchResult user={this.props.users[user]} key={user} />
                 }) : <p>No results for {this.props.instrument.label} in {this.props.location}</p>}
             </Row>
         );

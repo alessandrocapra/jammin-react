@@ -118,6 +118,7 @@ class EditProfile extends Component {
             surname: user.surname,
             availability: user.availability,
             image : user.image,
+            id: profileId,
             age: user.age,
             gender: user.gender,
             location: user.location,

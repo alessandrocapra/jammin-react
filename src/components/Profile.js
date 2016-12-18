@@ -48,6 +48,7 @@ class Profile extends Component {
     }
 
     render(){
+
         return(
             <Row>
                 <Col xs={12} sm={4}>
