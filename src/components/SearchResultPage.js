@@ -59,9 +59,30 @@ class SearchResultPage extends Component {
                 let musicListen = [];
                 let musicPlay = [];
 
+                let music_listened_no_duplicates = {};
+                let music_played_no_duplicates = {};
+
                 finalProfiles.map((user) => {
-                    musicListen.push(user.music_listen);
-                    musicPlay.push(user.music_play);
+                    if(user.music_listen){
+                        Object.keys(user.music_listen).map(function(key){
+                            music_listened_no_duplicates[user.music_listen[key]] = (music_listened_no_duplicates[user.music_listen[key]] || 0) + 1;
+                        });
+                    }
+                    if(user.music_play){
+                        Object.keys(user.music_play).map(function(key){
+                            music_played_no_duplicates[user.music_play[key]] = (music_played_no_duplicates[user.music_play[key]] || 0) + 1;
+                        });
+                    }
+                });
+
+                console.log(music_listened_no_duplicates);
+
+                Object.keys(music_listened_no_duplicates).map(function (key) {
+                    musicListen.push(key);
+                });
+
+                Object.keys(music_played_no_duplicates).map(function (key) {
+                    musicPlay.push(key);
                 });
 
                 this.setState({users: finalProfiles, music_listen: musicListen, music_play: musicPlay});
@@ -116,7 +137,7 @@ class SearchResultPage extends Component {
         return (
             <div className="searchResultPage">
                 <Row>
-                    <Col xs={12}><h2>Search results for <span>{this.state.instrument.label}</span> around <span>{this.state.location}</span></h2></Col>
+                    <Col xs={12}><h2>Search results for <span>{this.state.instrument ? this.state.instrument.label : this.props.params.instrument }</span> around <span>{this.state.location}</span></h2></Col>
                 </Row>
                 <Row>
                     <Col xs={4} className="filter">
@@ -173,20 +194,15 @@ class SearchResultPage extends Component {
                                     Influences
                                 </label>
                                 {this.state.music_listen.length ? this.state.music_listen.map((artist) => {
-                                    return artist.map((single) => {
-                                        return <div><input type="checkbox" name={single}/> {single} </div>;
-                                    });
+                                        return <div><input type="checkbox" name={artist}/> {artist} </div>;
                                 }) : <p>No influences defined by the users</p>}
-
                             </Col>
                             <Col xs={6}>
                                 <label>
                                     Artists listened
                                 </label>
                                 {this.state.music_play.length ? this.state.music_play.map((artist) => {
-                                    return artist.map((single) => {
-                                        return <div><input type="checkbox" name={single}/> {single} </div>;
-                                    });
+                                        return <div><input type="checkbox" name={artist}/> {artist} </div>;
                                 }) : <p>No listened artists defined by the users</p>}
                             </Col>
                         </Row>
