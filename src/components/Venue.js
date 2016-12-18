@@ -18,19 +18,11 @@ class Venue extends Component{
                         <span><FontAwesome name="envelope"/> {this.props.contact}</span>
                     </div>
                     <Row>
-                        <Col xs={12} sm={7}>
-                            <h3>Description</h3>
-                            <p>Lorem poret dolor sit amet, consectetur adipisicing elit. Aliquid animi blanditiis cumque deserunt dicta distinctio, eaque excepturi explicabo id iusto labore nemo numquam perferendis quo quod reiciendis soluta tempora veniam!</p>
+                        <Col xs={12} sm={7} className="venuedescription">
+                            <p>Information from the database
+                            </p>
                         </Col>
-                        <Col xs={12} sm={5}>
-                            <h3>Services</h3>
-                            <ul>
-                                <li>One</li>
-                                <li>Two</li>
-                                <li>Three</li>
-                                <li>Four</li>
-                            </ul>
-                        </Col>
+                       
                     </Row>
                 </Col>
             </Row>

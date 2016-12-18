@@ -382,7 +382,7 @@ button {
     url(https://s23.postimg.org/dw87u86mj/image_4.png);
     background-size: cover;
     width: 100%;
-    height: 324px;
+    height: 350px;
     margin: 0px 0px 0px 0px;
     
 }
@@ -397,7 +397,7 @@ button {
     url(https://s29.postimg.org/yk66rxix3/image_3.png);
     background-size: cover;
     width: 100%;
-    height: 324px;
+    height: 350px;
 }
 .module3 {
   padding: 5em 3em;
@@ -410,7 +410,7 @@ button {
     url(https://s28.postimg.org/6fu7j2j4d/image1_copy.png);
     background-size: cover;
     width: 100%;
-    height: 324px;
+    height: 350px;
     margin: 0px 0px 0px 0px;
 }
 /*background: 
@@ -599,6 +599,10 @@ section.instruments article img {
 
 .venue .details span.fa {
     margin-right: 0.5em;
+}
+
+.venuedescription {
+    margin-top: 1.0em;
 }
 
 @media screen and (max-width: 480px) {
