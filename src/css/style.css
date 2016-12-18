@@ -74,10 +74,10 @@ a.tag {
     text-decoration: none;
 }
 
-a.tag:hover {
-    color: #fff;
-    background-color: #B21F10;
-}
+/*a.tag:hover {*/
+    /*color: #fff;*/
+    /*background-color: #B21F10;*/
+/*}*/
 
 a.tag span{
     text-transform: uppercase;
