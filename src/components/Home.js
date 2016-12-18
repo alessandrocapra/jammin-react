@@ -35,14 +35,15 @@ class Home extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col xs={12}>
-            <center><h2> About Jammin </h2></center>
+                    <Col xs={12} className="h3homepageclass">
+            <center><h2> How Jammin works </h2></center>
                     </Col>
                 </Row>
                 <Row className="facts">
                 <Row>
                     <Col xs={12} className="imageclass">
                         <div className="module lr">
+                        <h3>About Jammin</h3>
                         <p>Jammin is a community of musicians and musical artists. Joining Jammin is free and always will be.</p>
                         </div>
                     </Col>

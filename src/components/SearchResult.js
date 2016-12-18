@@ -29,13 +29,13 @@ class SearchResult extends Component {
                             <h4>Music I play</h4>
                             {this.props.user.music_play ? this.props.user.music_play.map((artist) => {
                                 return <a key={artist} className="tag" href="#0"><span>{artist}</span></a>;
-                            }) : <span> Nothing here </span>}
+                            }) : <div>No artist specified</div>}
                         </Col>
                         <Col xs={6}>
                             <h4>Musical influences</h4>
                             {this.props.user.music_listen ? this.props.user.music_listen.map((artist) => {
                                 return <a key={artist} className="tag" href="#0"><span>{artist}</span></a>;
-                            }) : <span> Nothing here </span>}
+                            }) : <div>No artist specified</div>}
                         </Col>
                     </Row>
                 </Col>

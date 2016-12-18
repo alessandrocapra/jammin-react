@@ -32,13 +32,9 @@ class SearchForm extends Component {
     }
 
     render(){
-        // const options = [
-        //     { value: 'guitar', label: 'Guitar' },
-        //     { value: 'bass', label: 'Bass' }
-        // ];
 
         return(
-            <form onSubmit={this.handleSubmit}>
+            <form>
                 <Autocomplete
                     onPlaceSelected={(place) => {
                         console.log(place);
@@ -52,7 +48,7 @@ class SearchForm extends Component {
                     options={this.props.instruments}
                     onChange={this.handleInstrumentChange}
                 />
-                <button type="submit">Search Jammers</button>
+                <button type="button" onClick={this.handleSubmit}>Search Jammers</button>
             </form>
         );
     }

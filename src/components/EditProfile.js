@@ -84,7 +84,7 @@ class EditProfile extends Component {
     getOptions(input, callback){
         var options = [];
         if(input.length){
-            $.getJSON( "https://api.spotify.com/v1/search?q=" + input + "&type=artist", function( data ) {
+            $.getJSON( "https://api.spotify.com/v1/search?q=" + input + "*&type=artist", function( data ) {
                 var artistsArray = data.artists.items;
                 $.each(artistsArray, function(key, value){
                     options.push({value: value.name, label: value.name});
@@ -250,14 +250,6 @@ class EditProfile extends Component {
                             </Row>
                             <Row>
                                 <Col xs={12} sm={6}>
-
-                                </Col>
-                                <Col xs={12} sm={6}>
-
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col xs={12} sm={6}>
                                     <label htmlFor="name">
                                         Name <input type="text" name="name" value={this.state.user.name} onChange={this.handleChange}/>
                                     </label>
@@ -360,7 +352,7 @@ class EditProfile extends Component {
                                     </label>
                                     <div id="music_like_container" className="container-tags">
                                         {this.state.user.music_play.map((name,index) => {
-                                            return <button key={index} value={name} className="btn btn-default" onClick={this.removeWhatILikeToPlay.bind(this, index)}> {name}</button>;
+                                            return <a key={index} href="#0" value={name} className="tag"> {name} <span onClick={this.removeWhatILikeToPlay.bind(this, index)}>x</span></a>;
                                             })
                                         }
                                     </div>
@@ -376,7 +368,7 @@ class EditProfile extends Component {
                                     </label>
                                     <div className="container-tags">
                                         {this.state.user.music_listen.map((name,index) => {
-                                            return <button key={index} className="btn btn-default" onClick={this.removeMusicInfluencer.bind(this, index)}> {name} </button>;
+                                            return <a key={index} href="#0" className="tag"> {name} <span onClick={this.removeMusicInfluencer.bind(this, index)}>x</span></a>;
                                             })
                                         }
                                     </div>

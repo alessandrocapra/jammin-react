@@ -7,21 +7,12 @@ body {
     padding: 0;
     font-size: 1.6em;
     color: #262626;
-    background-color: hsl(34, 53%, 82%);
-    background-image: repeating-linear-gradient(45deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px, hsla(197, 62%, 11%, 0.5) 10px,
-    hsla(5, 53%, 63%, 0) 10px, hsla(5, 53%, 63%, 0) 35px, hsla(5, 53%, 63%, 0.5) 35px, hsla(5, 53%, 63%, 0.5) 40px,
-    hsla(197, 62%, 11%, 0.5) 40px, hsla(197, 62%, 11%, 0.5) 50px, hsla(197, 62%, 11%, 0) 50px, hsla(197, 62%, 11%, 0) 60px,
-    hsla(5, 53%, 63%, 0.5) 60px, hsla(5, 53%, 63%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 80px,
-    hsla(35, 91%, 65%, 0) 80px, hsla(35, 91%, 65%, 0) 90px, hsla(5, 53%, 63%, 0.5) 90px, hsla(5, 53%, 63%, 0.5) 110px,
-    hsla(5, 53%, 63%, 0) 110px, hsla(5, 53%, 63%, 0) 120px, hsla(197, 62%, 11%, 0.5) 120px, hsla(197, 62%, 11%, 0.5) 140px
-    ),
-    repeating-linear-gradient(135deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px, hsla(197, 62%, 11%, 0.5) 10px,
-            hsla(5, 53%, 63%, 0) 10px, hsla(5, 53%, 63%, 0) 35px, hsla(5, 53%, 63%, 0.5) 35px, hsla(5, 53%, 63%, 0.5) 40px,
-            hsla(197, 62%, 11%, 0.5) 40px, hsla(197, 62%, 11%, 0.5) 50px, hsla(197, 62%, 11%, 0) 50px, hsla(197, 62%, 11%, 0) 60px,
-            hsla(5, 53%, 63%, 0.5) 60px, hsla(5, 53%, 63%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 80px,
-            hsla(35, 91%, 65%, 0) 80px, hsla(35, 91%, 65%, 0) 90px, hsla(5, 53%, 63%, 0.5) 90px, hsla(5, 53%, 63%, 0.5) 110px,
-            hsla(5, 53%, 63%, 0) 110px, hsla(5, 53%, 63%, 0) 140px, hsla(197, 62%, 11%, 0.5) 140px, hsla(197, 62%, 11%, 0.5) 160px
-    );
+    background-color: #262626;
+    
+}
+
+.not-found {
+    margin-bottom:2em;
 }
 
 /*main {*/
@@ -31,7 +22,7 @@ body {
 
 /* Bootstrap overriding */
 
-.container {
+.container-fluid {
     background: #fff;
     padding-right: 0px;
     padding-left: 0px;
@@ -75,7 +66,7 @@ h3 {
 
 a.tag {
     color: #262626;
-    cursor: pointer;
+    cursor: default;
 
     display: inline-block;
     padding:0.5em;
@@ -87,10 +78,10 @@ a.tag {
     text-decoration: none;
 }
 
-a.tag:hover {
-    color: #fff;
-    background-color: #B21F10;
-}
+/*a.tag:hover {*/
+    /*color: #fff;*/
+    /*background-color: #B21F10;*/
+/*}*/
 
 a.tag span{
     text-transform: uppercase;
@@ -169,6 +160,19 @@ input:not([type=radio]), button {
 
 .edit label {
     width: 100%;
+}
+
+.edit .tag {
+    padding-right: 0;
+}
+
+.edit .tag span{
+    position: relative;
+    right: 0;
+    background: #b21f10;
+    color: #fff;
+    padding:0.7em;
+    margin-left:0.7em;
 }
 
 .edit input:not([type=radio]) {
@@ -375,7 +379,12 @@ button {
 .imageclass {
     padding-left: 0px !important;
     padding-right: 0px !important;
+    
 
+}
+.h3homepageclass{
+    margin-bottom: 1.5em;
+    font-size: 22px;
 }
 
 .module {
@@ -391,7 +400,7 @@ button {
     background-size: cover;
     width: 100%;
     height: 324px;
-    margin: 0px 30px 0px 0px;
+    margin: 0px 0px 0px 0px;
     
 }
 .module2 {
@@ -632,7 +641,7 @@ section.instruments article img {
 
 /* Footer */
 .contenitore > footer {
-    background-color: #262626;
+    background-color: #5C5E5C;
     color: #fff;
     padding-top:1.5em;
     padding-bottom:1.5em;

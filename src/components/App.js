@@ -68,7 +68,7 @@ class App extends Component {
     render() {
 
         return(
-            <Grid className="contenitore">
+            <Grid className="contenitore" fluid={true}>
                 <header>
                     <Row>
                         <Col xs={12} sm={5}>

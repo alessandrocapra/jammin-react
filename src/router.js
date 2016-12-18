@@ -10,6 +10,7 @@ import EditProfile from './components/EditProfile';
 import SearchResultPage from './components/SearchResultPage';
 import Faq from './components/Faq';
 import Register from './components/Register';
+import My404Component from './components/My404Component';
 
 // import static data
 import InstrumentList from './data/instruments';
@@ -29,7 +30,7 @@ const routes = (
       <Route path="/profile/edit/:userId" component={EditProfile} instruments={InstrumentList}/>
       <Route path="register" component={Register} />
       <Route path="search/:location/:instrument" component={SearchResultPage} instruments={InstrumentList}/>
-      {/*<Route path='*' component={My404Component} />*/}
+      <Route path='*' status={404} component={My404Component} />
     </Route>
   </Router>
 );
