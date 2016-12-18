@@ -61,6 +61,7 @@ class Register extends Component {
         var self = this;
 
         FBAppAuth.createUserWithEmailAndPassword(this.state.email, this.state.password).then(function () {
+            firebase.auth().currentUser.sendEmailVerification();
             browserHistory.push('/profile/edit/'+firebase.auth().currentUser.uid);
         }).catch(function(error) {
             // Handle Errors here.
