@@ -84,7 +84,7 @@ class EditProfile extends Component {
     getOptions(input, callback){
         var options = [];
         if(input.length){
-            $.getJSON( "https://api.spotify.com/v1/search?q=" + input + "&type=artist", function( data ) {
+            $.getJSON( "https://api.spotify.com/v1/search?q=" + input + "*&type=artist", function( data ) {
                 var artistsArray = data.artists.items;
                 $.each(artistsArray, function(key, value){
                     options.push({value: value.name, label: value.name});
@@ -210,6 +210,22 @@ class EditProfile extends Component {
         this.setState({user: {...this.state.user, image: ""}});
     }
 
+    removeWhatILikeToPlay(index){
+        this.setState({user: update(this.state.user, {music_play: {$splice: [[index,1]]}})});
+    }
+
+    removeMusicInfluencer(index){
+        this.setState({user: update(this.state.user, {music_listen: {$splice: [[index,1]]}})});
+    }
+
+    removeYoutubeVideo(index){
+        this.setState({user: update(this.state.user, {youtube: {$splice: [[index,1]]}})});
+    }
+
+    removeSoundcloudSong(index){
+        this.setState({user: update(this.state.user, {soundcloud: {$splice: [[index,1]]}})});
+    }
+
     render() {
         return (
             <div>
@@ -230,14 +246,6 @@ class EditProfile extends Component {
                             <Row>
                                 <Col xs={12}>
                                     <h2>My info</h2>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col xs={12} sm={6}>
-
-                                </Col>
-                                <Col xs={12} sm={6}>
-
                                 </Col>
                             </Row>
                             <Row>
@@ -344,7 +352,7 @@ class EditProfile extends Component {
                                     </label>
                                     <div id="music_like_container" className="container-tags">
                                         {this.state.user.music_play.map((name,index) => {
-                                            return <button key={index} className="btn btn-default"> {name} </button>;
+                                            return <a key={index} href="#0" value={name} className="tag"> {name} <span onClick={this.removeWhatILikeToPlay.bind(this, index)}>x</span></a>;
                                             })
                                         }
                                     </div>
@@ -360,7 +368,7 @@ class EditProfile extends Component {
                                     </label>
                                     <div className="container-tags">
                                         {this.state.user.music_listen.map((name,index) => {
-                                            return <button key={index} className="btn btn-default"> {name} </button>;
+                                            return <a key={index} href="#0" className="tag"> {name} <span onClick={this.removeMusicInfluencer.bind(this, index)}>x</span></a>;
                                             })
                                         }
                                     </div>
@@ -382,7 +390,7 @@ class EditProfile extends Component {
                             <Row>
                                 <div className="container-tags">
                                     {this.state.user.youtube.map((source,index) => {
-                                        return <Col xs={12} sm={6}> <Video key={index} source={source.video} /> </Col>;
+                                        return <Col xs={12} sm={6}> <Video key={index} source={source.video} /> <button onClick={this.removeYoutubeVideo.bind(this, index)}>X</button> </Col>;
                                         })
                                     }
                                 </div>
@@ -402,7 +410,7 @@ class EditProfile extends Component {
                             <Row>
                                 <div className="container-tags">
                                     {this.state.user.soundcloud.map((source,index) => {
-                                        return <Col xs={12} sm={6}> <Soundcloud source={source.track} /> </Col>;
+                                        return <Col xs={12} sm={6}> <Soundcloud source={source.track} /> <button onClick={this.removeSoundcloudSong.bind(this, index)}>X</button> </Col>;
                                     })
                                     }
                                 </div>
