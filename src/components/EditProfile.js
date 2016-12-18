@@ -210,6 +210,22 @@ class EditProfile extends Component {
         this.setState({user: {...this.state.user, image: ""}});
     }
 
+    removeWhatILikeToPlay(index){
+        this.setState({user: update(this.state.user, {music_play: {$splice: [[index,1]]}})});
+    }
+
+    removeMusicInfluencer(index){
+        this.setState({user: update(this.state.user, {music_listen: {$splice: [[index,1]]}})});
+    }
+
+    removeYoutubeVideo(index){
+        this.setState({user: update(this.state.user, {youtube: {$splice: [[index,1]]}})});
+    }
+
+    removeSoundcloudSong(index){
+        this.setState({user: update(this.state.user, {soundcloud: {$splice: [[index,1]]}})});
+    }
+
     render() {
         return (
             <div>
@@ -344,7 +360,7 @@ class EditProfile extends Component {
                                     </label>
                                     <div id="music_like_container" className="container-tags">
                                         {this.state.user.music_play.map((name,index) => {
-                                            return <button key={index} className="btn btn-default"> {name} </button>;
+                                            return <button key={index} value={name} className="btn btn-default" onClick={this.removeWhatILikeToPlay.bind(this, index)}> {name}</button>;
                                             })
                                         }
                                     </div>
@@ -360,7 +376,7 @@ class EditProfile extends Component {
                                     </label>
                                     <div className="container-tags">
                                         {this.state.user.music_listen.map((name,index) => {
-                                            return <button key={index} className="btn btn-default"> {name} </button>;
+                                            return <button key={index} className="btn btn-default" onClick={this.removeMusicInfluencer.bind(this, index)}> {name} </button>;
                                             })
                                         }
                                     </div>
@@ -382,7 +398,7 @@ class EditProfile extends Component {
                             <Row>
                                 <div className="container-tags">
                                     {this.state.user.youtube.map((source,index) => {
-                                        return <Col xs={12} sm={6}> <Video key={index} source={source.video} /> </Col>;
+                                        return <Col xs={12} sm={6}> <Video key={index} source={source.video} /> <button onClick={this.removeYoutubeVideo.bind(this, index)}>X</button> </Col>;
                                         })
                                     }
                                 </div>
@@ -402,7 +418,7 @@ class EditProfile extends Component {
                             <Row>
                                 <div className="container-tags">
                                     {this.state.user.soundcloud.map((source,index) => {
-                                        return <Col xs={12} sm={6}> <Soundcloud source={source.track} /> </Col>;
+                                        return <Col xs={12} sm={6}> <Soundcloud source={source.track} /> <button onClick={this.removeSoundcloudSong.bind(this, index)}>X</button> </Col>;
                                     })
                                     }
                                 </div>
