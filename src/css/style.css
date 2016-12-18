@@ -62,7 +62,7 @@ h3 {
 
 a.tag {
     color: #262626;
-    cursor: pointer;
+    cursor: default;
 
     display: inline-block;
     padding:0.5em;
@@ -156,6 +156,19 @@ input:not([type=radio]), button {
 
 .edit label {
     width: 100%;
+}
+
+.edit .tag {
+    padding-right: 0;
+}
+
+.edit .tag span{
+    position: relative;
+    right: 0;
+    background: #b21f10;
+    color: #fff;
+    padding:0.7em;
+    margin-left:0.7em;
 }
 
 .edit input:not([type=radio]) {

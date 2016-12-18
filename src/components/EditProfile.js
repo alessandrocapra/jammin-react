@@ -352,7 +352,7 @@ class EditProfile extends Component {
                                     </label>
                                     <div id="music_like_container" className="container-tags">
                                         {this.state.user.music_play.map((name,index) => {
-                                            return <a key={index} href="#0" value={name} className="tag" onClick={this.removeWhatILikeToPlay.bind(this, index)}> {name}</a>;
+                                            return <a key={index} href="#0" value={name} className="tag"> {name} <span onClick={this.removeWhatILikeToPlay.bind(this, index)}>x</span></a>;
                                             })
                                         }
                                     </div>
@@ -368,7 +368,7 @@ class EditProfile extends Component {
                                     </label>
                                     <div className="container-tags">
                                         {this.state.user.music_listen.map((name,index) => {
-                                            return <a key={index} href="#0" className="tag" onClick={this.removeMusicInfluencer.bind(this, index)}> {name} </a>;
+                                            return <a key={index} href="#0" className="tag"> {name} <span onClick={this.removeMusicInfluencer.bind(this, index)}>x</span></a>;
                                             })
                                         }
                                     </div>
