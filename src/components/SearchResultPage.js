@@ -6,6 +6,7 @@ import {FBAppDB} from '../modules/firebase';
 import update from 'immutability-helper';
 import firebase from 'firebase';
 import InstrumentList from '../data/instruments';
+import $ from 'jquery';
 /* eslint-disable */
 
 // Load components
@@ -130,6 +131,80 @@ class SearchResultPage extends Component {
 
     render(){
 
+        var influences_selected = [];
+        $(document).ready(function() {
+            $('#music_listen :checkbox').change(function() {
+
+                var selected = this.name;
+                if (this.checked) {
+                    influences_selected.push(selected);
+                } else {
+                    var index = influences_selected.indexOf(selected);
+                    influences_selected.splice(index, 1);
+                }
+
+                if (influences_selected.length == 0) {
+                    $('.music_influence').each(function () {
+                        $(this).parents().eq(3).css('display', 'block');
+                    });
+                } else {
+                    $('.music_influence').each(function () {
+                        
+                        var influences_matching = 0;
+                        for (var influence in influences_selected) {
+                            $(this).children('.tag').each(function () {
+                                if ($(this).text() == influences_selected[influence]) {
+                                    influences_matching += 1;
+                                }
+                            });
+                        }
+
+                        if (influences_matching == influences_selected.length) {
+                            $(this).parents().eq(3).css('display', 'block');
+                        } else {
+                            $(this).parents().eq(3).css('display', 'none');
+                        }
+                    })
+                }
+            });
+
+            var music_play_selected = [];
+            $('#music_play :checkbox').change(function () {
+
+                var selected = this.name;
+                if (this.checked) {
+                    music_play_selected.push(selected);
+                } else {
+                    var index = music_play_selected.indexOf(selected);
+                    music_play_selected.splice(index, 1);
+                }
+
+                if (music_play_selected.length == 0) {
+                    $('.music_play').each(function () {
+                        $(this).parents().eq(3).css('display', 'block');
+                    });
+                } else {
+                    $('.music_play').each(function () {
+
+                        var music_play_matching = 0;
+                        for (var music_play in music_play_selected) {
+                            $(this).children('.tag').each(function () {
+                                if ($(this).text() == music_play_selected[music_play]) {
+                                    music_play_matching += 1;
+                                }
+                            });
+                        }
+
+                        if (music_play_matching == music_play_selected.length) {
+                            $(this).parents().eq(3).css('display', 'block');
+                        } else {
+                            $(this).parents().eq(3).css('display', 'none');
+                        }
+                    })
+                }
+            })
+        });
+
         return (
             <div className="searchResultPage">
                 <Row>
@@ -189,21 +264,25 @@ class SearchResultPage extends Component {
                                 <label>
                                     Influences
                                 </label>
+                                <div id="music_listen">
                                 {this.state.music_listen.length ? this.state.music_listen.map((artist) => {
                                     return Object.keys(artist).map(function(artist_name){
                                         return <div><input type="checkbox" name={artist_name}/> {artist_name} ({artist[artist_name]}) </div>;
                                     })
                                 }) : <p>No influences defined by the users</p>}
+                                </div>
                             </Col>
                             <Col xs={6}>
                                 <label>
                                     Artists listened
                                 </label>
+                                <div id="music_play">
                                 {this.state.music_play.length ? this.state.music_play.map((artist) => {
                                     return Object.keys(artist).map(function (artist_name) {
                                         return <div><input type="checkbox" name={artist_name}/> {artist_name} ({artist[artist_name]}) </div>;
                                     })
                                 }) : <p>No listened artists defined by the users</p>}
+                                </div>
                             </Col>
                         </Row>
 
