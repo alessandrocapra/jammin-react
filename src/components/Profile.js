@@ -79,6 +79,9 @@ class Profile extends Component {
                                 { firebase.auth().currentUser.uid === this.state.user.id ? (<button className="btn btn-default" onClick={this.handleEditButton}>Edit profile</button>) : (<div></div>) }
                                 <p>{this.state.user.about}</p>
                             </Col>
+                            <Col xs={4}>
+                                <button id="contact_me_button">Contact me!</button>
+                            </Col>
                         </Row>
                     </section>
                     <section className="soundcloud">

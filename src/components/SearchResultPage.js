@@ -149,7 +149,7 @@ class SearchResultPage extends Component {
                     });
                 } else {
                     $('.music_influence').each(function () {
-                        
+
                         var influences_matching = 0;
                         for (var influence in influences_selected) {
                             $(this).children('.tag').each(function () {
