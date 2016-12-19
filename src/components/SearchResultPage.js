@@ -58,11 +58,28 @@ class SearchResultPage extends Component {
                 // put all users in state
                 let musicListen = [];
                 let musicPlay = [];
+                let music_listened_no_duplicates = {};
+                let music_played_no_duplicates = {};
 
                 finalProfiles.map((user) => {
-                    musicListen.push(user.music_listen);
-                    musicPlay.push(user.music_play);
+                    if(user.music_listen){
+                        for (let artist in user.music_listen){
+                            user.music_listen[artist] in music_listened_no_duplicates
+                                ? music_listened_no_duplicates[user.music_listen[artist]] = music_listened_no_duplicates[user.music_listen[artist]] + 1
+                                : music_listened_no_duplicates[user.music_listen[artist]] = 1;
+                        }
+                    }
+                    if(user.music_play){
+                        for (let artist in user.music_play){
+                            user.music_play[artist] in music_played_no_duplicates
+                                ? music_played_no_duplicates[user.music_play[artist]] = music_played_no_duplicates[user.music_play[artist]] + 1
+                                : music_played_no_duplicates[user.music_play[artist]] = 1;
+                        }
+                    }
                 });
+
+                musicListen.push(music_listened_no_duplicates);
+                musicPlay.push(music_played_no_duplicates);
 
                 this.setState({users: finalProfiles, music_listen: musicListen, music_play: musicPlay});
 
@@ -116,7 +133,7 @@ class SearchResultPage extends Component {
         return (
             <div className="searchResultPage">
                 <Row>
-                    <Col xs={12}><h2>Search results for <span>{this.state.instrument.label}</span> around <span>{this.state.location}</span></h2></Col>
+                    <Col xs={12}><h2>Search results for <span>{this.state.instrument ? this.state.instrument.label : this.props.params.instrument }</span> around <span>{this.state.location}</span></h2></Col>
                 </Row>
                 <Row>
                     <Col xs={4} className="filter">
@@ -173,22 +190,19 @@ class SearchResultPage extends Component {
                                     Influences
                                 </label>
                                 {this.state.music_listen.length ? this.state.music_listen.map((artist) => {
-                                    if(artist){
-                                        return artist.map((single) => {
-                                            return <div><input type="checkbox" name={single}/> {single} </div>;
-                                        });
-                                    }
+                                    return Object.keys(artist).map(function(artist_name){
+                                        return <div><input type="checkbox" name={artist_name}/> {artist_name} ({artist[artist_name]}) </div>;
+                                    })
                                 }) : <p>No influences defined by the users</p>}
-
                             </Col>
                             <Col xs={6}>
                                 <label>
                                     Artists listened
                                 </label>
                                 {this.state.music_play.length ? this.state.music_play.map((artist) => {
-                                    return artist.map((single) => {
-                                        return <div><input type="checkbox" name={single}/> {single} </div>;
-                                    });
+                                    return Object.keys(artist).map(function (artist_name) {
+                                        return <div><input type="checkbox" name={artist_name}/> {artist_name} ({artist[artist_name]}) </div>;
+                                    })
                                 }) : <p>No listened artists defined by the users</p>}
                             </Col>
                         </Row>

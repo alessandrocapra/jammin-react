@@ -28,7 +28,7 @@ class SearchResult extends Component {
                         <Col xs={6}>
                             <h4>Music I play</h4>
                             {this.props.user.music_play ? this.props.user.music_play.map((artist) => {
-                                return <a key={artist} className="tag" href="#0"><span>{artist}</span></a>;
+                                return <a className="tag" href="#0"><span>{artist}</span></a>;
                             }) : <div>No artist specified</div>}
                         </Col>
                         <Col xs={6}>
