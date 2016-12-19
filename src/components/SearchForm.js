@@ -42,12 +42,16 @@ class SearchForm extends Component {
                     }}
                     types={['(regions)']} value={this.state.location} onChange={this.handleLocationChange}
                     className="autocompleteLocation" />
-                <Select
-                    name="instruments"
-                    value={this.state.instrument}
-                    options={this.props.instruments}
-                    onChange={this.handleInstrumentChange}
-                />
+                <div className="text-center">
+                    <Select
+                        name="instruments"
+                        value={this.state.instrument}
+                        options={this.props.instruments}
+                        onChange={this.handleInstrumentChange}
+                        placeholder="Select instrument..."
+                    />
+                </div>
+
                 <button type="button" onClick={this.handleSubmit}>Search Jammers</button>
             </form>
         );

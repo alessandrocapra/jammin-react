@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700|Lobster');
 
+/********************************************** General styling **********************************************/
+
 body {
     font-family: 'Lato', sans-serif;
     font-weight:400;
@@ -11,16 +13,116 @@ body {
     
 }
 
+h1, h2, h3 {
+    text-transform: capitalize;
+    color: #B21F10;
+}
+
+h1 {
+    font-size: 3em;
+    font-family: 'Lobster', cursive;
+    font-weight: 400;
+}
+
+h2 {
+    font-size: 2.5em;
+    text-shadow:
+            1px 1px 0 #fff;
+    /*-1px -1px 0 #fff,*/
+    /*1px -1px 0 #fff,*/
+    /*-1px 1px 0 #fff,*/
+    /*1px 1px 0 #fff;*/
+}
+
+h3 {
+    font-size: 2em;
+    color: #262626;
+}
+
+iframe {
+    width: 100%;
+}
+
+img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+button {
+    color: #262626;
+    font-size: 1.4em;
+    padding: 0.5em 2em;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+label {
+    display: block;
+}
+
+label input:not([type=radio]){
+    display: block;
+    width:100%;
+}
+
+input:not([type=radio]), button {
+    font-size:1.2em;
+    padding:0.5em;
+    border-radius: 0.2em;
+    border: 1px solid rgba(0,0,0,0.2);
+    color: #262626;
+    margin-bottom:0.5em;
+}
+
+.Select input {
+border:none;
+}
+
+.Select {
+    /*margin-top:1em;*/
+    font-size:1.2em;
+}
+
+.Select-control {
+    height:48px;
+}
+
+.Select-placeholder, .Select-value-label {
+    line-height:48px;
+}
+
+/********************************************** Profile page elements **********************************************/
+a.tag {
+    color: #262626;
+    cursor: default;
+
+    display: inline-block;
+    padding:0.5em;
+    margin:0.2em;
+
+    border:0.2em solid #B21F10;
+    border-radius: 0.5em;
+
+    text-decoration: none;
+}
+
+/*a.tag:hover {*/
+/*color: #fff;*/
+/*background-color: #B21F10;*/
+/*}*/
+
+a.tag span{
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+/********************************************** 404 page **********************************************/
+
 .not-found {
     margin-bottom:2em;
 }
 
-/*main {*/
-    /*padding-left:1.5em;*/
-    /*padding-right:1.5em;*/
-/*}*/
-
-/* Bootstrap overriding */
+/********************************************** Bootstrap overriding **********************************************/
 
 .container-fluid {
     background: #fff;
@@ -37,85 +139,9 @@ main > .row {
     /*padding:2em 1.5em;*/
 }
 
-/* General styling */
-h1, h2, h3 {
-    text-transform: capitalize;
-    color: #B21F10;
-}
-
-h1 {
-    font-size: 3em;
-    font-family: 'Lobster', cursive;
-    font-weight: 400;
-}
-
-h2 {
-    font-size: 2.5em;
-    text-shadow:
-            1px 1px 0 #fff;
-            /*-1px -1px 0 #fff,*/
-            /*1px -1px 0 #fff,*/
-            /*-1px 1px 0 #fff,*/
-            /*1px 1px 0 #fff;*/
-}
-
-h3 {
-    font-size: 2em;
-    color: #262626;
-}
-
-a.tag {
-    color: #262626;
-    cursor: default;
-
-    display: inline-block;
-    padding:0.5em;
-    margin:0.2em;
-
-    border:0.2em solid #B21F10;
-    border-radius: 0.5em;
-
-    text-decoration: none;
-}
-
-/*a.tag:hover {*/
-    /*color: #fff;*/
-    /*background-color: #B21F10;*/
-/*}*/
-
-a.tag span{
-    text-transform: uppercase;
-    font-weight: 700;
-}
-
 .inline {
     display: inline;
     margin-right:0.5em;
-}
-
-iframe {
-    width: 100%;
-}
-
-img {
-    width: 100%;
-    border-radius: 5px;
-}
-
-button {
-    font-size: 1.4em;
-    padding: 0.5em 2em;
-    text-transform: uppercase;
-    font-weight: 700;
-}
-
-label {
-    display: block;
-}
-
-label input:not([type=radio]){
-    display: block;
-    width:100%;
 }
 
 .container-elements {
@@ -139,23 +165,21 @@ label input:not([type=radio]){
     background-color: #B21F10;
 }
 
-.edit .delete-element {
-    display: block;
+.container-tags {
+    border:1px solid rgba(0,0,0,0.0);
+    border-radius: 0.2em;
 }
 
-/* Form stuff */
-
-input:not([type=radio]), button {
-    font-size:1.2em;
-    padding:0.5em;
-    border-radius: 0.2em;
-    border: 1px solid rgba(0,0,0,0.2);
-    color: #262626;
+.container-tags button {
+    display: inline-block;
+    margin-right:0.5em;
     margin-bottom:0.5em;
 }
 
-.Select input {
-    border:none;
+/********************************************** Edit profile page **********************************************/
+
+.edit .delete-element {
+    display: block;
 }
 
 .edit label {
@@ -211,38 +235,7 @@ input:not([type=radio]), button {
     vertical-align: middle;
 }
 
-.container-tags {
-    border:1px solid rgba(0,0,0,0.0);
-    border-radius: 0.2em;
-}
-
-.container-tags button {
-    display: inline-block;
-    margin-right:0.5em;
-    margin-bottom:0.5em;
-}
-
-button {
-    color: #262626;
-}
-
-@media screen and (max-width: 480px){
-    body {
-        font-size:1.4em;
-    }
-
-    p {
-        font-size:1.3em;
-    }
-
-    h2 {
-        font-size:2em;
-    }
-
-    input[type=text], input {
-        min-width: 16em;
-    }
-}
+/********************************************** Main page **********************************************/
 
 .title, .subtitle {
     /*padding-left:2em;*/
@@ -301,39 +294,52 @@ button {
     border:0.2em solid #fff;
 }
 
-@media screen and (max-width: 480px) {
-    .main-menu ul {
-        padding: 1.5em 0 0 0;
-        width: 100%;
-    }
+.imageclass {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
 
-    .main-menu ul li {
-        display: inline-block;
-        background-color: #B21F10;
-        padding: 0;
-        width: 33%;
-        text-align: center;
-        margin-bottom:0.3em;
-    }
-
-    .main-menu a {
-        color: #fff;
-        display: block;
-        width: 100%;
-        border:0.2em solid #B21F10;
-    }
-
-    .main-menu a:hover {
-        color: #B21F10;
-        background-color: #fff;
-        border:0.2em solid #B21F10;
-    }
+}
+.h3homepageclass{
+    margin-bottom: 1.5em;
 }
 
-/* Headline */
+.module {
+    padding:5em 3em;
+    /*margin-top:1.5em;*/
+    background: linear-gradient(
+            rgba(0, 0, 0, 0.45),
+            rgba(0, 0, 0, 0.45)
+    ),
+        /* bottom, image */
+    url(https://s23.postimg.org/dw87u86mj/image_4.png);
+    background-size: cover;
+    width: 100%;
+    height: 400px;
+}
+
+.module.two {
+    background: linear-gradient(
+            rgba(0, 0, 0, 0.45),
+            rgba(0, 0, 0, 0.45)
+    ),
+        /* bottom, image */
+    url(https://s29.postimg.org/yk66rxix3/image_3.png);
+    background-size: cover;
+}
+
+.module.three {
+    background: linear-gradient(
+            rgba(0, 0, 0, 0.45),
+            rgba(0, 0, 0, 0.45)
+    ),
+        /* bottom, image */
+    url(https://s28.postimg.org/6fu7j2j4d/image1_copy.png);
+    background-size: cover;
+}
+
+/********************************************** Main page - Headline **********************************************/
 .headline {
     padding: 5em 3em;
-    /*margin-top:1.5em;*/
     background: linear-gradient(
         rgba(0, 0, 0, 0.45),
         rgba(0, 0, 0, 0.45)
@@ -342,6 +348,11 @@ button {
     url(/img/live-rock.jpg);
     background-size: cover;
     margin: 0px 0 30px 0px;
+    text-align: center;
+}
+
+.headline .autocompleteLocation{
+    width:50%;
 }
 
 .headline h2 {
@@ -355,11 +366,7 @@ button {
     text-transform: none;
 }
 
-/* Styles for the form in headline */
-
-
 .headline form button {
-    display: block;
     background-color: #262626;
     border: 1px solid #fff;
     color: #fff;
@@ -371,138 +378,38 @@ button {
     color: #262626;
 }
 
-/* Overwrite react-select*/
 .headline form > div {
-    width:45%;
-}
-
-.imageclass {
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-    
-
-}
-.h3homepageclass{
-    margin-bottom: 1.5em;
-    font-size: 22px;
-}
-
-.module {
-    padding-right: 0px;
-    padding-left: 0px;
-    /*margin-top:1.5em;*/
-    background: linear-gradient(
-        rgba(0, 0, 0, 0.45),
-        rgba(0, 0, 0, 0.45)
-    ),
-    /* bottom, image */
-    url(https://s23.postimg.org/dw87u86mj/image_4.png);
-    background-size: cover;
-    width: 100%;
-    height: 350px;
-    margin: 0px 0px 0px 0px;
-    
-}
-.module2 {
-  padding: 5em 3em;
-    /*margin-top:1.5em;*/
-    background: linear-gradient(
-        rgba(0, 0, 0, 0.45),
-        rgba(0, 0, 0, 0.45)
-    ),
-    /* bottom, image */
-    url(https://s29.postimg.org/yk66rxix3/image_3.png);
-    background-size: cover;
-    width: 100%;
-    height: 350px;
-}
-.module3 {
-  padding: 5em 3em;
-    /*margin-top:1.5em;*/
-    background: linear-gradient(
-        rgba(0, 0, 0, 0.45),
-        rgba(0, 0, 0, 0.45)
-    ),
-    /* bottom, image */
-    url(https://s28.postimg.org/6fu7j2j4d/image1_copy.png);
-    background-size: cover;
-    width: 100%;
-    height: 350px;
-    margin: 0px 0px 0px 0px;
-}
-/*background: 
-    linear-gradient(
-      rgba(0, 0, 0, 0.6),
-      rgba(0, 0, 0, 0.6)
-    ),
-    url(https://s23.postimg.org/dw87u86mj/image_4.png);
-  background-size: cover;
-   width: 851px;
-  height: 324px;
-  background-position: center center; 
-  margin: 0px 0 0 0px;
-}*/
-
-.lr p {
-  font-family: 'Lato', sans-serif;
-  font-size: 20px;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-  color: white;
-  text-align: center;
-}
-.lr h3 {
-  font-family: 'Lato', sans-serif;
-  font-size: 40px;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 20%;
-  left: 50%;
-  color: white;
-  text-align: center;
-}
-.Select {
-    /*margin-top:1em;*/
-    font-size:1.2em;
-}
-
-.Select-control {
-    height:48px;
-}
-
-.Select-placeholder, .Select-value-label {
-    line-height:48px;
-}
-
-.headline .autocompleteLocation{
-    width:100%;
-}
-
-@media screen and (max-width: 480px) {
-
-    .headline form input {
-        width: 100%;
-        margin-bottom:0.5em;
-    }
-
-    .headline form button {
-        margin-right: 0;
-        margin-top:1em;
-    }
-}
-
-/* main content */
-.facts {
     text-align: center;
 }
 
-.facts p {
-    text-align: justify;
-    padding: 1em 1.5em;
-    
+.headline form .Select {
+    width:50%;
+    margin:1.5em auto;
 }
+
+.headline form .Select-multi-value-wrapper {
+    text-align: left;
+}
+
+.facts {
+    text-align: center;
+    color: #fff;
+}
+
+.facts h3 {
+    color: #fff;
+    font-weight:700;
+    font-size:2.5em;
+}
+
+.facts p {
+    font-size:1.8em;
+}
+
+
+
+
+
 
 .name {
     text-transform: capitalize;
@@ -622,12 +529,6 @@ section.instruments article img {
     margin-top: 1.0em;
 }
 
-@media screen and (max-width: 480px) {
-    .venue .details span:not(.fa){
-        display: inline-block;
-    }
-}
-
 /* Faq page */
 .faq img {
     margin-bottom:1.5em;
@@ -704,3 +605,64 @@ section.instruments article img {
     width: 1.5em;
 }
 
+@media screen and (max-width: 480px){
+    body {
+        font-size:1.4em;
+    }
+
+    p {
+        font-size:1.3em;
+    }
+
+    h2 {
+        font-size:2em;
+    }
+
+    input[type=text], input, .Select {
+        /*min-width: 16em;*/
+        min-width:16em;
+    }
+
+    .main-menu ul {
+        padding: 1.5em 0 0 0;
+        width: 100%;
+    }
+
+    .main-menu ul li {
+        display: inline-block;
+        background-color: #B21F10;
+        padding: 0;
+        width: 33%;
+        text-align: center;
+        margin-bottom:0.3em;
+    }
+
+    .main-menu a {
+        color: #fff;
+        display: block;
+        width: 100%;
+        border:0.2em solid #B21F10;
+    }
+
+    .main-menu a:hover {
+        color: #B21F10;
+        background-color: #fff;
+        border:0.2em solid #B21F10;
+    }
+
+    .headline form input {
+        width: 100%;
+        margin-bottom:0.5em;
+    }
+
+    .headline form button {
+        margin-right: 0;
+        margin-top:1em;
+    }
+
+    .venue .details span:not(.fa){
+        display: inline-block;
+    }
+
+
+}
