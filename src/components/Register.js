@@ -9,23 +9,24 @@ class Register extends Component {
     constructor(props){
         super(props);
         this.state = {
-            email: "",
-            password: "",
-            confirmPassword: "",
+            reg_email: "",
+            reg_password: "",
+            reg_confirmPassword: "",
+            login_email: "",
+            login_password: "",
         };
 
-        this.handleEmailChange = this.handleEmailChange.bind(this);
-        this.handlePassword = this.handlePassword.bind(this);
-        this.handleConfirmPassword = this.handleConfirmPassword.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.signUpWithEmail = this.signUpWithEmail.bind(this);
         this.signInWithGoogle = this.signInWithGoogle.bind(this);
         this.signInWithEmail = this.signInWithEmail.bind(this);
     }
 
     signInWithGoogle(){
-        let provider = new firebase.auth.GoogleAuthProvider();
+        let providerGoogle = new firebase.auth.GoogleAuthProvider();
+        let providerFacebook = new firebase.auth.FacebookAuthProvider();
 
-        FBAppAuth.signInWithPopup(provider).then(function(result) {
+        FBAppAuth.signInWithPopup(providerGoogle).then(function(result) {
             // This gives you a Google Access Token. You can use it to access the Google API.
             let token = result.credential.accessToken;
 
@@ -60,7 +61,9 @@ class Register extends Component {
         e.preventDefault();
         var self = this;
 
-        FBAppAuth.createUserWithEmailAndPassword(this.state.email, this.state.password).then(function () {
+        // here goes the check if password and confirmPassword match
+
+        FBAppAuth.createUserWithEmailAndPassword(this.state.reg_email, this.state.reg_password).then(function () {
             firebase.auth().currentUser.sendEmailVerification();
             browserHistory.push('/profile/edit/'+firebase.auth().currentUser.uid);
         }).catch(function(error) {
@@ -77,7 +80,9 @@ class Register extends Component {
 
             switch(errorCode) {
                 case 'auth/email-already-in-use':
-                    self.signInWithEmail(email, password, errorBox, errorMessageBox);
+                    // self.signInWithEmail(email, password, errorBox, errorMessageBox);
+                    errorBox.className = "alert alert-danger";
+                    errorMessageBox.innerHTML = '<span>Email already in use, try to login ;)</span>';
                     break;
                 case 'auth/invalid-email':
                     console.log('invalid email!');
@@ -86,7 +91,7 @@ class Register extends Component {
                     break;
                 case 'auth/weak-password':
                     errorBox.className = "alert alert-danger";
-                    errorMessageBox.innerHTML = 'Password is too weak! Choose one with at least 6 characters';
+                    errorMessageBox.innerHTML = '<span>Password is too weak! Choose one with at least 6 characters</span>';
                     break;
                 default:
                     break;
@@ -94,13 +99,16 @@ class Register extends Component {
         });
     }
 
-    signInWithEmail(email, password, errorBox, errorMessageBox){
-        FBAppAuth.signInWithEmailAndPassword(email, password).catch(function(error) {
+    signInWithEmail(){
+        FBAppAuth.signInWithEmailAndPassword(this.state.login_email, this.state.login_password).catch(function(error) {
             // Handle Errors here.
             let errorCode = error.code;
             let errorMessage = error.message;
 
             console.log('Sign in - ' + errorCode + ': ' + errorMessage);
+
+            let errorBox = document.getElementById('error-box');
+            let errorMessageBox = document.getElementById('error-message');
 
             switch(errorCode) {
                 case 'auth/wrong-password':
@@ -113,16 +121,8 @@ class Register extends Component {
         });
     }
 
-    handleEmailChange(event){
-        this.setState({email: event.target.value})
-    }
-
-    handlePassword(event){
-        this.setState({password: event.target.value})
-    }
-
-    handleConfirmPassword(event){
-        this.setState({confirmPassword: event.target.value})
+    handleChange(e){
+        this.setState({[e.target.name]: e.target.value});
     }
 
     render() {
@@ -135,11 +135,10 @@ class Register extends Component {
                     <h2>Sign in </h2>
                     <div className="form-group">
                         <form action="">
-                            <input type="text" value={this.state.email} onChange={this.handleEmailChange} placeholder="E-mail address"/>
-                            <input type="password" value={this.state.password} onChange={this.handlePassword} placeholder="Password" /> 
-                        
-                            <button type="submit" onClick={this.signUpWithEmail}>Sign in</button>
-                            <div  id="error-box" className="alert alert-danger hidden" role="alert">
+                            <input name="login_email" type="text" value={this.state.email} onChange={this.handleChange} placeholder="E-mail address"/>
+                            <input name="login_password" type="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
+                            <button type="submit" onClick={this.signInWithEmail}>Sign in</button>
+                            <div id="error-box" className="alert alert-danger hidden" role="alert">
                                 <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"> </span>
                                 <span className="sr-only">Error:</span>
                                 <span id="error-message">Email not valid. Check it again!</span>
@@ -148,18 +147,15 @@ class Register extends Component {
                     </div>
                     <button id="firebase-auth" onClick={this.signInWithGoogle}>Sign in with Google</button> 
                 </Col>
-            
 
-
-   
                 <Col xs={3} xsOffset={2}>
                     <h4> New to Jammin? </h4>
                     <h2>Sign up </h2>
                     <div className="form-group">
                         <form action="">
-                            <input type="text" value={this.state.email} onChange={this.handleEmailChange} placeholder="E-mail address"/>
-                            <input type="password" value={this.state.password} onChange={this.handlePassword} placeholder="Password" />
-                            <input type="password" value={this.state.confirmPassword} onChange={this.handleConfirmPassword} placeholder="Confirm password"/>
+                            <input name="reg_email" type="text" value={this.state.reg_email} onChange={this.handleChange} placeholder="E-mail address"/>
+                            <input name="reg_password" type="password" value={this.state.reg_password} onChange={this.handleChange} placeholder="Password" />
+                            <input name="reg_confirmPassword" type="password" value={this.state.reg_confirmPassword} onChange={this.handleChange} placeholder="Confirm password"/>
                             <button type="submit" onClick={this.signUpWithEmail}>Sign up</button>
                             <div  id="error-box" className="alert alert-danger hidden" role="alert">
                                 <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"> </span>
