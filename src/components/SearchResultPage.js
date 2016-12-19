@@ -58,32 +58,28 @@ class SearchResultPage extends Component {
                 // put all users in state
                 let musicListen = [];
                 let musicPlay = [];
-
                 let music_listened_no_duplicates = {};
                 let music_played_no_duplicates = {};
 
                 finalProfiles.map((user) => {
                     if(user.music_listen){
-                        Object.keys(user.music_listen).map(function(key){
-                            music_listened_no_duplicates[user.music_listen[key]] = (music_listened_no_duplicates[user.music_listen[key]] || 0) + 1;
-                        });
+                        for (let artist in user.music_listen){
+                            user.music_listen[artist] in music_listened_no_duplicates
+                                ? music_listened_no_duplicates[user.music_listen[artist]] = music_listened_no_duplicates[user.music_listen[artist]] + 1
+                                : music_listened_no_duplicates[user.music_listen[artist]] = 1;
+                        }
                     }
                     if(user.music_play){
-                        Object.keys(user.music_play).map(function(key){
-                            music_played_no_duplicates[user.music_play[key]] = (music_played_no_duplicates[user.music_play[key]] || 0) + 1;
-                        });
+                        for (let artist in user.music_play){
+                            user.music_play[artist] in music_played_no_duplicates
+                                ? music_played_no_duplicates[user.music_play[artist]] = music_played_no_duplicates[user.music_play[artist]] + 1
+                                : music_played_no_duplicates[user.music_play[artist]] = 1;
+                        }
                     }
                 });
 
-                console.log(music_listened_no_duplicates);
-
-                Object.keys(music_listened_no_duplicates).map(function (key) {
-                    musicListen.push(key);
-                });
-
-                Object.keys(music_played_no_duplicates).map(function (key) {
-                    musicPlay.push(key);
-                });
+                musicListen.push(music_listened_no_duplicates);
+                musicPlay.push(music_played_no_duplicates);
 
                 this.setState({users: finalProfiles, music_listen: musicListen, music_play: musicPlay});
 
@@ -194,15 +190,19 @@ class SearchResultPage extends Component {
                                     Influences
                                 </label>
                                 {this.state.music_listen.length ? this.state.music_listen.map((artist) => {
-                                    return <div><input type="checkbox" name={artist}/> {artist} </div>;
-                                }) : <p>No influences defined by the users</p>};
+                                    return Object.keys(artist).map(function(artist_name){
+                                        return <div><input type="checkbox" name={artist_name}/> {artist_name} ({artist[artist_name]}) </div>;
+                                    })
+                                }) : <p>No influences defined by the users</p>}
                             </Col>
                             <Col xs={6}>
                                 <label>
                                     Artists listened
                                 </label>
                                 {this.state.music_play.length ? this.state.music_play.map((artist) => {
-                                        return <div><input type="checkbox" name={artist}/> {artist} </div>;
+                                    return Object.keys(artist).map(function (artist_name) {
+                                        return <div><input type="checkbox" name={artist_name}/> {artist_name} ({artist[artist_name]}) </div>;
+                                    })
                                 }) : <p>No listened artists defined by the users</p>}
                             </Col>
                         </Row>
