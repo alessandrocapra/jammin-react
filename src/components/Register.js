@@ -127,11 +127,34 @@ class Register extends Component {
 
     render() {
         return (
+            <Row>
+            <Col xs={12} className="headline">
             <Row className="register">
-                <Col xs={3}>
-                    <h2>Sign up</h2>
-                    <button id="firebase-auth" onClick={this.signInWithGoogle}>Sign in with Google</button>
-                    <h3>Sign up via e-mail</h3>
+                <Col xs={3} xsOffset={2}>
+                    <h4> Returning Jammer? </h4>
+                    <h2>Sign in </h2>
+                    <div className="form-group">
+                        <form action="">
+                            <input type="text" value={this.state.email} onChange={this.handleEmailChange} placeholder="E-mail address"/>
+                            <input type="password" value={this.state.password} onChange={this.handlePassword} placeholder="Password" /> 
+                        
+                            <button type="submit" onClick={this.signUpWithEmail}>Sign in</button>
+                            <div  id="error-box" className="alert alert-danger hidden" role="alert">
+                                <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"> </span>
+                                <span className="sr-only">Error:</span>
+                                <span id="error-message">Email not valid. Check it again!</span>
+                            </div>
+                        </form>
+                    </div>
+                    <button id="firebase-auth" onClick={this.signInWithGoogle}>Sign in with Google</button> 
+                </Col>
+            
+
+
+   
+                <Col xs={3} xsOffset={2}>
+                    <h4> New to Jammin? </h4>
+                    <h2>Sign up </h2>
                     <div className="form-group">
                         <form action="">
                             <input type="text" value={this.state.email} onChange={this.handleEmailChange} placeholder="E-mail address"/>
@@ -145,35 +168,12 @@ class Register extends Component {
                             </div>
                         </form>
                     </div>
+                <button id="firebase-auth" onClick={this.signInWithGoogle}>Sign up with Google</button>
                 </Col>
-                <Col xs={9}>
-                    <h2>Take part in our incredible community!</h2>
-                    <section>
-                        <Row>
-                            <Col xs={6}>
-                                <img className="img-responsive" src="/img/venue1.jpg" alt=""/>
-                            </Col>
-                            <Col xs={6}>
-                                <h3>Meet lots of musicians</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid animi consectetur cumque delectus et eveniet, ex facilis fugit ipsum minima nemo nesciunt omnis quaerat quos repellat reprehenderit repudiandae voluptatem! Porro!</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque autem culpa cum deserunt ducimus eos error facilis illo, ipsam molestias natus nostrum odio optio qui quisquam quod similique ullam voluptate.</p>
-                            </Col>
-                        </Row>
-                    </section>
-                    <section>
-                        <Row>
-                            <Col xs={6}>
-                                <h3>Meet lots of musicians</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid animi consectetur cumque delectus et eveniet, ex facilis fugit ipsum minima nemo nesciunt omnis quaerat quos repellat reprehenderit repudiandae voluptatem! Porro!</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque autem culpa cum deserunt ducimus eos error facilis illo, ipsam molestias natus nostrum odio optio qui quisquam quod similique ullam voluptate.</p>
-                            </Col>
-                            <Col xs={6}>
-                                <img className="img-responsive" src="/img/venue1.jpg" alt=""/>
-                            </Col>
-                        </Row>
-                    </section>
-                </Col>
+    
             </Row>
+        </Col>
+    </Row>
         );
     }
 }
