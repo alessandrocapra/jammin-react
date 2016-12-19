@@ -11,14 +11,14 @@ class Venue extends Component{
                 <Col xs={12} sm={5}>
                     <img src={this.props.image} alt={this.props.name}/>
                 </Col>
-                <Col xs={12} sm={7}>
+                <Col xs={12} sm={6}>
                     <h2>{this.props.name}</h2>
                     <div className="details">
                         <span><FontAwesome name="globe"/> {this.props.location} </span>
                         <span><FontAwesome name="envelope"/> {this.props.contact}</span>
                     </div>
                     <Row>
-                        <Col xs={12} sm={7} className="venuedescription">
+                        <Col xs={12} sm={12} className="venuedescription">
                             <p>{this.props.description}</p>
                         </Col>
                        
