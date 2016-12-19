@@ -108,6 +108,8 @@ class Register extends Component {
                     errorMessageBox.innerHTML = 'Wrong password! Try again';
                     break;
             }
+        }).then(() => {
+            browserHistory.push('/profile/'+firebase.auth().currentUser.uid);
         });
     }
 
