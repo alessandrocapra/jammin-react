@@ -19,8 +19,7 @@ class Venue extends Component{
                     </div>
                     <Row>
                         <Col xs={12} sm={7} className="venuedescription">
-                            <p>Information from the database
-                            </p>
+                            <p>{this.props.description}</p>
                         </Col>
                        
                     </Row>

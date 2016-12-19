@@ -19,9 +19,9 @@ class VenuePage extends Component {
     render(){
         return(
             <Row>
-                <Venue name="Sound Mind" image="img/venue1.jpg" location="Nokiantie 2-4 C, 00510, Helsinki" contact="info@soundmind.fi"/>
-                <Venue name="City of Helsinki Studios for Youth" image="img/venue2.jpg" location="Helsinki" contact="http://tinyurl.com/HelsinkiYouth"/>
-                <Venue name="HelMet libraries Practise Rooms" image="img/venue2.jpg" location="Helsinki" contact="http://tinyurl.com/HelMetLibraries"/>
+                <Venue name="Sound Mind" image="img/venue1.jpg" location="Nokiantie 2-4 C, 00510, Helsinki" contact="info@soundmind.fi" description="Here goes the description"/>
+                <Venue name="City of Helsinki Studios for Youth" image="img/venue2.jpg" location="Helsinki" contact="http://tinyurl.com/HelsinkiYouth" description="Here goes another description"/>
+                <Venue name="HelMet libraries Practise Rooms" image="img/venue2.jpg" location="Helsinki" contact="http://tinyurl.com/HelMetLibraries" description="Here goes the lalala"/>
             </Row>
         );
     }
