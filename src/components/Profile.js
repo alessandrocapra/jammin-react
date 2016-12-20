@@ -54,16 +54,19 @@ class Profile extends Component {
                 <Col xs={12} sm={4}>
                     <Row>
                         <Col xs={12} className="left-sidebar">
-                            {this.state.user.image ? <img src={this.state.user.image} alt={this.state.user.name + this.state.user.surname} /> : <img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" alt={this.state.user.name + this.state.user.surname}/>}
                             <h2 className="name">{this.state.user.name} {this.state.user.surname}</h2>
+                            {this.state.user.image ? <img src={this.state.user.image} alt={this.state.user.name + this.state.user.surname} /> : <img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" alt={this.state.user.name + this.state.user.surname}/>}
+                            <Col xs={6} xsOffset={3}>
+                                <button id="contact_me_button">Contact me!</button>
+                            </Col>
                             <h4>{this.state.user.gender}, {this.state.user.age} years old</h4>
                             <h4> <FontAwesome name='globe' /> {this.state.user.location} </h4>
                             <section>
-                                <h3>Availability</h3>
-                                <p>{this.state.user.availability} times per week</p>
+                                 <h3>Availability</h3> 
+                                <p>{this.state.user.availability} times per week</p> 
                             </section>
                             <section className="reviews">
-                                <h3>Reviews</h3>
+                                 <h3>Reviews</h3> 
                                 <Review name="Eric Cartman" title="Amazing performance!" rating="rocket" instrument="Electric guitar" />
                                 <Review name="Stan Marsh" title="Ok-ish" rating="thumbs-up" instrument="Drums" />
                                 <Review name="Kyle Broflovski" title="WOW, just wow!" rating="rocket" instrument="Electric guitar" />
@@ -76,12 +79,11 @@ class Profile extends Component {
                         <Row>
                             <Col xs={12}>
                                 <h3>About me</h3>
-                                { firebase.auth().currentUser.uid === this.state.user.id ? (<button className="btn btn-default" onClick={this.handleEditButton}>Edit profile</button>) : (<div></div>) }
                                 <p>{this.state.user.about}</p>
+                                { firebase.auth().currentUser.uid === this.state.user.id ? (<button className="editprofile" onClick={this.handleEditButton}>Edit profile</button>) : (<div></div>) }
+            
                             </Col>
-                            <Col xs={4}>
-                                <button id="contact_me_button">Contact me!</button>
-                            </Col>
+                            
                         </Row>
                     </section>
                     <section className="soundcloud">
