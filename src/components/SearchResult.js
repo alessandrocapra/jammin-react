@@ -24,14 +24,14 @@ class SearchResult extends Component {
                     {this.props.user.gender ? <span>{this.props.user.gender}</span> : <div></div>}
                     <p><FontAwesome name="globe"/> {this.props.user.location}</p>
                     <p>{this.props.user.about}</p>
-                    <Row>
-                        <Col xs={6} className="music_influence">
+                    <Row className="result_info">
+                        <Col xs={6} className="filter_options">
                             <h4>Musical influences</h4>
                             {this.props.user.music_listen ? this.props.user.music_listen.map((artist) => {
                                 return <a key={artist} className="tag" href="#0"><span>{artist}</span></a>;
                             }) : <div>No artist specified</div>}
                         </Col>
-                        <Col xs={6} className="music_play">
+                        <Col xs={6} className="filter_options">
                             <h4>Music I play</h4>
                             {this.props.user.music_play ? this.props.user.music_play.map((artist) => {
                                 return <a className="tag" href="#0"><span>{artist}</span></a>;
