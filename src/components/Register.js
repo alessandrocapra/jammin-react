@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Row,Col} from 'react-bootstrap';
 import firebase from 'firebase';
 import {FBAppAuth} from '../modules/firebase';
+import {FBAppStorage} from '../modules/firebase';
 import {browserHistory} from 'react-router';
 
 class Register extends Component {
@@ -34,6 +35,11 @@ class Register extends Component {
 
             console.log('fb user: ', user);
 
+            FBAppStorage.ref('users/' + user.uid).set({
+                id: user.uid,
+                image: user.photoURL,
+            });
+
             browserHistory.push('profile/edit/' + user.uid);
             // ...
         }).catch(function(error) {
@@ -60,7 +66,6 @@ class Register extends Component {
 
             // The signed-in user info.
             let user = result.user;
-            console.log('user info after login: ', user);
 
             // hide register button, show logout
             let register = document.getElementById('register-li').parentNode;

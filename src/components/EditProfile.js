@@ -59,8 +59,8 @@ class EditProfile extends Component {
 
         return USER_DB.once('value').then(function (snapshot) {
             let user = snapshot.val();
-            let newUserState = update(this.state.user, {$merge: user});
-            this.setState({user: newUserState});
+            // let newUserState = update(this.state.user, {$merge: user});
+            this.setState({user: update(this.state.user, {$merge: user})});
         }.bind(this));
     }
 

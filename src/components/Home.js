@@ -8,23 +8,6 @@ import SearchForm from './SearchForm';
 
 class Home extends Component {
 
-    saveUser(e) {
-        e.preventDefault();
-
-        // var database = firebase.database();
-
-        // var location=e.target[0].value;
-        // var instrument=e.target[1].value;
-
-
-
-        // How to write in the DB
-        // database.ref('users/' + username).set({
-        //     username: username,
-        //     email: mail,
-        // });
-    }
-
     render() {
         return (
             <div>
