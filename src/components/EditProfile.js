@@ -236,7 +236,7 @@ class EditProfile extends Component {
                 </Row>
                 <Row className="edit">
                     <Col xs={3}>
-                        {this.state.user.image ? <div><img src={this.state.user.image} alt={this.state.user.name + this.state.user.surname}/><button value='Change profile pic' onClick={this.removeImage}>Change profile pic</button></div> :
+                        {this.state.user.image ? <div><img src={this.state.user.image} alt={this.state.user.name + this.state.user.surname}/><button value='Change profile pic' onClick={this.removeImage}>Change photo</button></div> :
                             <Dropzone accept={'image/*'} multiple={false} onDrop={this.onDrop}>
                                 <div>Add a profile picture!</div>
                             </Dropzone>}
@@ -245,7 +245,7 @@ class EditProfile extends Component {
                         <div className="form-group">
                             <Row>
                                 <Col xs={12}>
-                                    <h2>My info</h2>
+                                    <h2>My information</h2>
                                 </Col>
                             </Row>
                             <Row>
@@ -390,7 +390,7 @@ class EditProfile extends Component {
                             <Row>
                                 <div className="container-tags">
                                     {this.state.user.youtube.map((source,index) => {
-                                        return <Col xs={12} sm={6}> <Video key={index} source={source.video} /> <button onClick={this.removeYoutubeVideo.bind(this, index)}>X</button> </Col>;
+                                        return <Col xs={12} sm={6}> <button onClick={this.removeYoutubeVideo.bind(this, index)}>X</button> <Video key={index} source={source.video} /> </Col>;
                                         })
                                     }
                                 </div>
@@ -410,13 +410,13 @@ class EditProfile extends Component {
                             <Row>
                                 <div className="container-tags">
                                     {this.state.user.soundcloud.map((source,index) => {
-                                        return <Col xs={12} sm={6}> <Soundcloud source={source.track} /> <button onClick={this.removeSoundcloudSong.bind(this, index)}>X</button> </Col>;
+                                        return <Col xs={12} sm={6}> <button onClick={this.removeSoundcloudSong.bind(this, index)}>X</button><Soundcloud source={source.track} /></Col>;
                                     })
                                     }
                                 </div>
                             </Row>
                             <div className="text-center">
-                                <button onClick={this.saveData}>Save</button>
+                                <button id="contact_me_button" onClick={this.saveData}>Save</button>
                             </div>
                         </div>
                     </Col>
