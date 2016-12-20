@@ -46,8 +46,6 @@ class SearchResultPage extends Component {
                                 if(firebase.auth().currentUser && currentUser.id != firebase.auth().currentUser.uid) {
                                     currentUser.id = profile;
                                     finalProfiles.push(currentUser);
-                                } else {
-                                    finalProfiles.push(currentUser);
                                 }
                             }
                         });
