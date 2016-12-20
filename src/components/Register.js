@@ -132,7 +132,8 @@ class Register extends Component {
         });
     }
 
-    signInWithEmail(){
+    signInWithEmail(e){
+	e.preventDefault();
         FBAppAuth.signInWithEmailAndPassword(this.state.login_email, this.state.login_password).catch(function(error) {
             // Handle Errors here.
             let errorCode = error.code;
@@ -168,8 +169,8 @@ class Register extends Component {
                     <h2>Sign in </h2>
                     <div className="form-group">
                         <form action="">
-                            <input name="login_email" type="text" value={this.state.email} onChange={this.handleChange} placeholder="E-mail address"/>
-                            <input name="login_password" type="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
+                            <input name="login_email" type="text" value={this.state.login_email} onChange={this.handleChange} placeholder="E-mail address"/>
+                            <input name="login_password" type="password" value={this.state.login_password} onChange={this.handleChange} placeholder="Password" />
                             <button type="submit" onClick={this.signInWithEmail}>Sign in</button>
                             <div id="error-box" className="alert alert-danger hidden" role="alert">
                                 <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"> </span>
