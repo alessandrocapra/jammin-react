@@ -150,121 +150,37 @@ class SearchResultPage extends Component {
                 if (filters_selected.length == 0) {
                     // Show all elements -- no filter applied
                     $('.filter_options').each(function () {
-                        $(this).parents().eq(3).css('display', 'block');
+                        $(this).parents().eq(2).css('display', 'block');
                     });
                 } else {
                     $('.result_info').each(function () {
 
+                        // Get all the filter options for every user
+                        // returned with the search
+                        var user_filter_options = [];
+                        $(this).find('.tag').each(function(){
+                            user_filter_options.push($(this).text());
+                        });
+
+                        // Calculate the number of matching between
+                        // user_filter_options and the selected filters
                         var influences_matching = 0;
-                        for (var influence in filters_selected) {
-
-                            var user_filter_options = [];
-                            $(this).find('.tag').eq(0).each(function(){
-                                user_filter_options.push($(this).text());
-                            });
-
-                            $(this).find('.tag').eq(1).each(function(){
-                                user_filter_options.push($(this).text());
-                            });
-                            console.log(user_filter_options);
-
-                            for (var user_filter_option in user_filter_options){
-                                // console.log(user_filter_options[user_filter_option])
-                                if (user_filter_options[user_filter_option] == filters_selected[influence]){
-                                    influences_matching += 1;
-                                }
+                        for (var filter in filters_selected){
+                            if (user_filter_options.includes(filters_selected[filter])){
+                                influences_matching += 1;
                             }
-                            // user_filter_options.each(function () {
-                            //     console.log(this);
-                            //     if (this == filters_selected[influence]) {
-                            //         influences_matching += 1;
-                            //     }
-                            // });
                         }
 
+                        // Show and hide users based on filtering
                         if (influences_matching == filters_selected.length) {
-                            $(this).parents().eq(3).css('display', 'block');
+                            $(this).parents().eq(1).css('display', 'block');
                         } else {
-                            $(this).parents().eq(3).css('display', 'none');
+                            $(this).parents().eq(1).css('display', 'none');
                         }
                     })
                 }
             });
         });
-
-        {/*var influences_selected = [];*/}
-        {/*$(document).ready(function() {*/}
-            {/*$('#music_listen :checkbox').change(function() {*/}
-
-                {/*var selected = this.name;*/}
-                {/*if (this.checked) {*/}
-                    {/*influences_selected.push(selected);*/}
-                {/*} else {*/}
-                    {/*var index = influences_selected.indexOf(selected);*/}
-                    {/*influences_selected.splice(index, 1);*/}
-                {/*}*/}
-
-                {/*if (influences_selected.length == 0) {*/}
-                    {/*$('.music_influence').each(function () {*/}
-                        {/*$(this).parents().eq(3).css('display', 'block');*/}
-                    {/*});*/}
-                {/*} else {*/}
-                    {/*$('.music_influence').each(function () {*/}
-
-                        {/*var influences_matching = 0;*/}
-                        {/*for (var influence in influences_selected) {*/}
-                            {/*$(this).children('.tag').each(function () {*/}
-                                {/*if ($(this).text() == influences_selected[influence]) {*/}
-                                    {/*influences_matching += 1;*/}
-                                {/*}*/}
-                            {/*});*/}
-                        {/*}*/}
-
-                        {/*if (influences_matching == influences_selected.length) {*/}
-                            {/*$(this).parents().eq(3).css('display', 'block');*/}
-                        {/*} else {*/}
-                            {/*$(this).parents().eq(3).css('display', 'none');*/}
-                        {/*}*/}
-                    {/*})*/}
-                {/*}*/}
-            {/*});*/}
-
-            {/*var music_play_selected = [];*/}
-            {/*$('#music_play :checkbox').change(function () {*/}
-
-                {/*var selected = this.name;*/}
-                {/*if (this.checked) {*/}
-                    {/*music_play_selected.push(selected);*/}
-                {/*} else {*/}
-                    {/*var index = music_play_selected.indexOf(selected);*/}
-                    {/*music_play_selected.splice(index, 1);*/}
-                {/*}*/}
-
-                {/*if (music_play_selected.length == 0) {*/}
-                    {/*$('.music_play').each(function () {*/}
-                        {/*$(this).parents().eq(3).css('display', 'block');*/}
-                    {/*});*/}
-                {/*} else {*/}
-                    {/*$('.music_play').each(function () {*/}
-
-                        {/*var music_play_matching = 0;*/}
-                        {/*for (var music_play in music_play_selected) {*/}
-                            {/*$(this).children('.tag').each(function () {*/}
-                                {/*if ($(this).text() == music_play_selected[music_play]) {*/}
-                                    {/*music_play_matching += 1;*/}
-                                {/*}*/}
-                            {/*});*/}
-                        {/*}*/}
-
-        //                 if (music_play_matching == music_play_selected.length) {
-        //                     $(this).parents().eq(3).css('display', 'block');
-        //                 } else {
-        //                     $(this).parents().eq(3).css('display', 'none');
-        //                 }
-        //             })
-        //         }
-        //     })
-        // });
 
         return (
             <div className="searchResultPage">
