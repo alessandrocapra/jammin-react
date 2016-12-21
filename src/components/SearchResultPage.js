@@ -235,8 +235,8 @@ class SearchResultPage extends Component {
                                             value={this.state.availability}
                                             onChange={this.handleChange}
                                         />
-                                        <span>{this.state.availability} times per week</span>
                                     </label>
+                                    <span>{this.state.availability} times per week</span>
                                 </Col>
                             </Row>
 
