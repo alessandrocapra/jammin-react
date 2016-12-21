@@ -94,7 +94,7 @@ class Profile extends Component {
                         </Row>
                         <Row>
                             {this.state.user.soundcloud ? this.state.user.soundcloud.map(function(sound, index) {
-                                return <Col xs={12} sm={6}> <Soundcloud source={sound.track}/> </Col>;
+                                return <Col key={sound.track} xs={12} sm={6}> <Soundcloud source={sound.track}/> </Col>;
                             }) : <div></div>}
                         </Row>
                     </section>

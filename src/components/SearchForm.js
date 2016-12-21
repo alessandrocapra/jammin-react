@@ -43,8 +43,8 @@ class SearchForm extends Component {
                     types={['(regions)']} value={this.state.location} onChange={this.handleLocationChange}
                     className="autocompleteLocation" />
                 <div className="text-center">
-                    <select name="instruments" value={this.state.instrument} placeholder="Select instrument..." onChange={this.handleInstrumentChange}>
-                        <option value="selected" selected>Select an instrument...</option>
+                    <select name="instruments" value={this.state.instrument} onChange={this.handleInstrumentChange}>
+                        <option value="selected" disabled>Select an instrument...</option>
                         {this.props.instruments.map((instrument) => {
                             return <option key={instrument.value} value={instrument.label}>{instrument.label}</option>;
                         })}
