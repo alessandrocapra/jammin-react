@@ -40,7 +40,7 @@ class EditProfile extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleInstrumentChange= this.handleInstrumentChange.bind(this);
-        this.getOptions = this.getOptions.bind(this);
+        // this.getOptions = this.getOptions.bind(this);
         this.musicPlayChange = this.musicPlayChange.bind(this);
         this.musicListenChange = this.musicListenChange.bind(this);
         this.saveData = this.saveData.bind(this);
@@ -82,15 +82,18 @@ class EditProfile extends Component {
         }
     }
 
-    getOptions(){
-        var genres = this.props.route.genres;
-        var filter_options = [];
-        for (var genre in genres) {
-            console.log(genres[genre]);
-            filter_options.push({'value': genres[genre], 'label': genres[genre]});
-        }
-        return filter_options;
-    }
+    // getOptions(){
+    //     var genres = this.props.route.genres;
+    //
+    //     console.log(genres);
+    //
+    //     var filter_options = [];
+    //     for (var genre in genres) {
+    //         console.log(genres[genre]);
+    //         filter_options.push({'value': genres[genre], 'label': genres[genre]});
+    //     }
+    //     return filter_options;
+    // }
 
     musicPlayChange(val){
         let musicPlayArray = update(this.state.user.music_play, {$push: [val.value]});
@@ -345,7 +348,7 @@ class EditProfile extends Component {
                                         What I like to play
                                         <Select.Async
                                             name="music_play"
-                                            loadOptions={this.getOptions}
+                                            loadOptions={this.props.route.genres}
                                             onChange={this.musicPlayChange}
                                         />
                                     </label>
