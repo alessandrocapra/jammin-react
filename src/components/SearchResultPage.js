@@ -43,7 +43,11 @@ class SearchResultPage extends Component {
                         currentUser.instruments.map((instrument) => {
                             // if one of the instruments is the one in the search, add the profile to the component state
                             if(instrument.name == this.state.instrument.value){
-                                if(firebase.auth().currentUser && currentUser.id != firebase.auth().currentUser.uid) {
+                                console.log(firebase.auth().currentUser);
+                                if(firebase.auth().currentUser === null) {
+                                    currentUser.id = profile;
+                                    finalProfiles.push(currentUser);
+                                } else if (firebase.auth().currentUser && currentUser.id != firebase.auth().currentUser.uid) {
                                     currentUser.id = profile;
                                     finalProfiles.push(currentUser);
                                 }
@@ -80,7 +84,9 @@ class SearchResultPage extends Component {
                 musicListen.push(music_listened_no_duplicates);
                 musicPlay.push(music_played_no_duplicates);
 
-                this.setState({users: finalProfiles, music_listen: musicListen, music_play: musicPlay});
+                this.setState({users: finalProfiles, music_listen: musicListen, music_play: musicPlay}, () => {
+                    console.log('Inseriti in state: ', this.state.users);
+                });
 
             });
         });

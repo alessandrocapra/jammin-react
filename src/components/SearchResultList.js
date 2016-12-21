@@ -6,6 +6,8 @@ class SearchResultList extends Component {
 
     render(){
 
+        console.log('this.props.users in list: ', this.props.users);
+
         return(
             <Row>
                 {this.props.users.length ? Object.keys(this.props.users).map((user) => {
