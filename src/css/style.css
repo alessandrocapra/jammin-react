@@ -63,6 +63,12 @@ button {
     font-weight: 700;
 }
 
+select {
+    appearance: none;
+    background: #fff url("/img/chevron-down.png") no-repeat scroll 97% center / 3% auto;
+    width: 50%;
+}
+
 label {
     display: block;
 }
@@ -72,7 +78,7 @@ label input:not([type=radio]){
     width:100%;
 }
 
-input:not([type=radio]), button {
+input:not([type=radio]), button, select {
     font-size:1.2em;
     padding:0.5em;
     border-radius: 0.2em;
@@ -640,6 +646,15 @@ section.instruments article img {
         min-width:16em;
     }
 
+    .title a h1 {
+        font-size:6.5em;
+        text-align: center;
+    }
+
+    .subtitle h2 {
+        text-align: center;
+    }
+
     .main-menu ul {
         padding: 1.5em 0 0 0;
         width: 100%;
@@ -649,7 +664,7 @@ section.instruments article img {
         display: inline-block;
         background-color: #B21F10;
         padding: 0;
-        width: 33%;
+        width: 50%;
         text-align: center;
         margin-bottom:0.3em;
     }
@@ -667,7 +682,7 @@ section.instruments article img {
         border:0.2em solid #B21F10;
     }
 
-    .headline form input {
+    .headline form input, .headline form select, .headline .autocompleteLocation{
         width: 100%;
         margin-bottom:0.5em;
     }

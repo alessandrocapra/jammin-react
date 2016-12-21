@@ -26,10 +26,10 @@ class App extends Component {
 
         if(firebase.auth().currentUser){
             register_li.style.display = 'none';
-            logout_li.style.display = 'inline';
+            logout_li.style.display = 'inline-block';
         } else {
             profile_li.style.display = 'none';
-            register_li.style.display = 'inline';
+            register_li.style.display = 'inline-block';
             logout_li.style.display = 'none';
         }
     }
@@ -43,8 +43,8 @@ class App extends Component {
         if (user) {
             // Change main menu
             register_li.style.display = 'none';
-            logout_li.style.display = 'inline';
-            profile_li.style.display = 'inline';
+            logout_li.style.display = 'inline-block';
+            profile_li.style.display = 'inline-block';
 
             // this.saveUserData(user);
             this.setState({
