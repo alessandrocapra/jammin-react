@@ -67,6 +67,7 @@ select {
     appearance: none;
     background: #fff url("/img/chevron-down.png") no-repeat scroll 97% center / 3% auto;
     width: 50%;
+    color: #aaa;
 }
 
 label {
@@ -212,8 +213,12 @@ main > .row {
     margin-left:0.7em;
 }
 
-.edit input:not([type=radio]) {
+.edit input:not([type=radio]), .edit select {
     width: 100%;
+}
+
+.edit .Select {
+    margin-bottom:1em;
 }
 
 .edit input.inline {
@@ -221,7 +226,7 @@ main > .row {
     margin-bottom:1em;
 }
 
-.edit label input:not([type=radio]), .edit label textarea {
+.edit label input:not([type=radio]), .edit label textarea, .edit label select {
     display: block;
     margin-top:0.2em;
     margin-bottom:1em;
