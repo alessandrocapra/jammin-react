@@ -13,6 +13,7 @@ import {browserHistory} from 'react-router';
 import Video from './Video';
 import Soundcloud from './Soundcloud';
 import Instrument from './Instrument';
+import GenreList from '../data/genres';
 
 
 class EditProfile extends Component {
@@ -95,8 +96,9 @@ class EditProfile extends Component {
     //     return filter_options;
     // }
 
-    musicPlayChange(val){
-        let musicPlayArray = update(this.state.user.music_play, {$push: [val.value]});
+    musicPlayChange(event){
+        console.log('what has been clicked: ', event.target.value);
+        let musicPlayArray = update(this.state.user.music_play, {$push: [event.target.value]});
         this.setState({user: {...this.state.user, music_play: musicPlayArray}});
     }
 
@@ -346,11 +348,17 @@ class EditProfile extends Component {
                                 <Col xs={6}>
                                     <label htmlFor="music_play">
                                         What I like to play
-                                        <Select.Async
-                                            name="music_play"
-                                            loadOptions={this.props.route.genres}
-                                            onChange={this.musicPlayChange}
-                                        />
+                                        <select name="music_play" value={this.state.user.music_play} onChange={this.musicPlayChange}>
+                                            <option value="selected" disabled>Select a genre from the list</option>
+                                            {GenreList.map((genre) => {
+                                                let option = null;
+                                                if (this.state.user.music_play.includes(genre.label)){
+                                                    return <option key={genre.value} value={genre.label} disabled>{genre.label}</option>
+                                                } else {
+                                                    return <option key={genre.value} value={genre.label}>{genre.label}</option>
+                                                }
+                                            })}
+                                        </select>
                                     </label>
                                     <div id="music_like_container" className="container-tags">
                                         {this.state.user.music_play.map((name,index) => {

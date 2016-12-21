@@ -1,32 +1,32 @@
 const GenreList = [
     {
-        "value": "Art Punk",
-        "label": "Art Punk",
+        "value": "Alternative Rock",
+        "label": "Alternative Rock",
 
     },
     {
-        "value": "Art Punk",
-        "label": "Art Punk",
+        "value": "Blues",
+        "label": "Blues",
 
     },
     {
-        "value": "Art Punk",
-        "label": "Art Punk",
+        "value": "Classical",
+        "label": "Classical",
 
     },
     {
-        "value": "Art Punk",
-        "label": "Art Punk",
+        "value": "Folk Rock",
+        "label": "Folk Rock",
 
     },
     {
-        "value": "Art Punk",
-        "label": "Art Punk",
+        "value": "Grunge",
+        "label": "Grunge",
 
     },
     {
-        "value": "Art Punk",
-        "label": "Art Punk",
+        "value": "Indie Rock",
+        "label": "Indie Rock",
 
     },
 			// "Alternative Rock",
