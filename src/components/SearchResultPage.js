@@ -244,7 +244,7 @@ class SearchResultPage extends Component {
                                     <label>
                                         Influences
                                     </label>
-                                    <div>
+                                    <div id="filters1">
                                         {this.state.music_listen.length ? this.state.music_listen.map((artist) => {
                                             return Object.keys(artist).map(function(artist_name){
                                                 return <div><input type="checkbox" name={artist_name}/> {artist_name} ({artist[artist_name]}) </div>;
@@ -256,7 +256,7 @@ class SearchResultPage extends Component {
                                     <label>
                                         Artists listened
                                     </label>
-                                    <div>
+                                    <div id="filters2">
                                         {this.state.music_play.length ? this.state.music_play.map((artist) => {
                                             return Object.keys(artist).map(function (artist_name) {
                                                 return <div><input type="checkbox" name={artist_name}/> {artist_name} ({artist[artist_name]}) </div>;
