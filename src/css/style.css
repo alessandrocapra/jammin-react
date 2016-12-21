@@ -42,7 +42,6 @@ h3 {
 h4 {
     font-size: 1.6em;
     font-weight: 400;
-    color: #fff;
 }
 
 
@@ -512,6 +511,12 @@ section.instruments article img {
     cursor: pointer;
 }
 
+#showHideFilters {
+    font-size:0.8em;
+    cursor: pointer;
+    display: none;
+}
+
 .result button, #contact_me_button {
     display: block;
     margin: 1.5em auto 0 auto;
@@ -646,11 +651,6 @@ section.instruments article img {
         font-size:2em;
     }
 
-    input[type=text], input, .Select {
-        /*min-width: 16em;*/
-        min-width:16em;
-    }
-
     .title a h1 {
         font-size:6.5em;
         text-align: center;
@@ -699,6 +699,14 @@ section.instruments article img {
 
     .venue .details span:not(.fa){
         display: inline-block;
+    }
+
+    .filters {
+        display: none;
+    }
+
+    #showHideFilters {
+        display: inline;
     }
 
 
