@@ -681,7 +681,7 @@ section.instruments article img {
         border:0.2em solid #B21F10;
     }
 
-    .main-menu a:hover {
+    .main-menu a.active, .main-menu a:hover {
         color: #B21F10;
         background-color: #fff;
         border:0.2em solid #B21F10;

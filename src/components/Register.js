@@ -161,10 +161,8 @@ class Register extends Component {
 
     render() {
         return (
-            <Row>
-            <Col xs={12} className="headline">
-            <Row className="register">
-                <Col xs={3} xsOffset={2}>
+            <Row className="register headline">
+                <Col xs={12} sm={3} smOffset={2}>
                     <h4> Returning Jammer? </h4>
                     <h2>Sign in </h2>
                     <div className="form-group">
@@ -182,7 +180,7 @@ class Register extends Component {
                     <button id="firebase-auth" onClick={this.signInWithGoogle}>Sign in with Google</button> 
                 </Col>
 
-                <Col xs={3} xsOffset={2}>
+                <Col xs={12} sm={3} smOffset={2}>
                     <h4> New to Jammin? </h4>
                     <h2>Sign up </h2>
                     <div className="form-group">
@@ -201,10 +199,7 @@ class Register extends Component {
                 <button id="firebase-auth" onClick={this.signInWithGoogle}>Sign up with Google</button>
                 <button id="firebase-auth-facebook" onClick={this.signInWithFacebook}>Sign up with Facebook</button>
                 </Col>
-    
             </Row>
-        </Col>
-    </Row>
         );
     }
 }
