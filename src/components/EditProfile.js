@@ -13,6 +13,7 @@ import {browserHistory} from 'react-router';
 import Video from './Video';
 import Soundcloud from './Soundcloud';
 import Instrument from './Instrument';
+import GenreList from '../data/genres';
 
 
 class EditProfile extends Component {
@@ -35,11 +36,12 @@ class EditProfile extends Component {
                 youtube: [],
             },
             instruments: [],
+            music_listen: [],
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleInstrumentChange= this.handleInstrumentChange.bind(this);
-        this.getOptions = this.getOptions.bind(this);
+        // this.getOptions = this.getOptions.bind(this);
         this.musicPlayChange = this.musicPlayChange.bind(this);
         this.musicListenChange = this.musicListenChange.bind(this);
         this.saveData = this.saveData.bind(this);
@@ -81,24 +83,22 @@ class EditProfile extends Component {
         }
     }
 
-    getOptions(input, callback){
-        var options = [];
-        if(input.length){
-            $.getJSON( "https://api.spotify.com/v1/search?q=" + input + "*&type=artist", function( data ) {
-                var artistsArray = data.artists.items;
-                $.each(artistsArray, function(key, value){
-                    options.push({value: value.name, label: value.name});
-                });
-            });
-        }
+    // getOptions(){
+    //     var genres = this.props.route.genres;
+    //
+    //     console.log(genres);
+    //
+    //     var filter_options = [];
+    //     for (var genre in genres) {
+    //         console.log(genres[genre]);
+    //         filter_options.push({'value': genres[genre], 'label': genres[genre]});
+    //     }
+    //     return filter_options;
+    // }
 
-        setTimeout(function() {
-            callback(null, {options: options});
-        }, 500);
-    }
-
-    musicPlayChange(val){
-        let musicPlayArray = update(this.state.user.music_play, {$push: [val.value]});
+    musicPlayChange(event){
+        console.log('what has been clicked: ', event.target.value);
+        let musicPlayArray = update(this.state.user.music_play, {$push: [event.target.value]});
         this.setState({user: {...this.state.user, music_play: musicPlayArray}});
     }
 
@@ -135,6 +135,10 @@ class EditProfile extends Component {
 
     handleInstrumentChange(val){
         this.setState({instruments: {...this.state.instruments, name: val.value }});
+    }
+
+    handleMusicListenChange(val){
+        this.setState({music_listen: {...this.state.music_listen, name: val.value }});
     }
 
     saveInstrument(){
@@ -344,11 +348,17 @@ class EditProfile extends Component {
                                 <Col xs={6}>
                                     <label htmlFor="music_play">
                                         What I like to play
-                                        <Select.Async
-                                            name="music_play"
-                                            loadOptions={this.getOptions}
-                                            onChange={this.musicPlayChange}
-                                        />
+                                        <select name="music_play" value={this.state.user.music_play} onChange={this.musicPlayChange}>
+                                            <option value="selected" disabled>Select a genre from the list</option>
+                                            {GenreList.map((genre) => {
+                                                let option = null;
+                                                if (this.state.user.music_play.includes(genre.label)){
+                                                    return <option key={genre.value} value={genre.label} disabled>{genre.label}</option>
+                                                } else {
+                                                    return <option key={genre.value} value={genre.label}>{genre.label}</option>
+                                                }
+                                            })}
+                                        </select>
                                     </label>
                                     <div id="music_like_container" className="container-tags">
                                         {this.state.user.music_play.map((name,index) => {
@@ -360,10 +370,11 @@ class EditProfile extends Component {
                                 <Col xs={6}>
                                     <label htmlFor="music_listen">
                                         Music influencers
-                                        <Select.Async
+                                        <Select
                                             name="music_listen"
-                                            loadOptions={this.getOptions}
-                                            onChange={this.musicListenChange}
+                                            value={this.state.music_listen.name}
+                                            options={this.props.route.genres}
+                                            onChange={this.handleMusicListenChange}
                                         />
                                     </label>
                                     <div className="container-tags">

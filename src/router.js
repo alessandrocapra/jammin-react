@@ -14,6 +14,8 @@ import My404Component from './components/My404Component';
 
 // import static data
 import InstrumentList from './data/instruments';
+import GenreList from './data/genres';
+
 
 // defining routes
 const routes = (
@@ -27,7 +29,7 @@ const routes = (
       <Route path="venues" component={Venues} />
       <Route path="faq" component={Faq} />
       <Route path="/profile/:userId" component={Profile} />
-      <Route path="/profile/edit/:userId" component={EditProfile} instruments={InstrumentList}/>
+      <Route path="/profile/edit/:userId" component={EditProfile} instruments={InstrumentList} genres={GenreList}/>
       <Route path="register" component={Register} />
       <Route path="search/:location/:instrument" component={SearchResultPage} instruments={InstrumentList}/>
       <Route path='*' status={404} component={My404Component} />
