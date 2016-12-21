@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Autocomplete from 'react-google-autocomplete';
-import Select from 'react-select';
 import {browserHistory} from 'react-router';
 
 import 'react-select/dist/react-select.css';
@@ -22,13 +21,14 @@ class SearchForm extends Component {
         this.setState({location: event.target.value});
     }
 
-    handleInstrumentChange(value){
-        this.setState({instrument: value});
+    handleInstrumentChange(event){
+        console.log('instrument clicked: ', event.target.value);
+        this.setState({instrument: event.target.value});
     }
 
     handleSubmit(event){
         event.preventDefault();
-        browserHistory.push('search/' + this.state.location + '/' + this.state.instrument.label);
+        browserHistory.push('search/' + this.state.location + '/' + this.state.instrument);
     }
 
     render(){
@@ -43,10 +43,10 @@ class SearchForm extends Component {
                     types={['(regions)']} value={this.state.location} onChange={this.handleLocationChange}
                     className="autocompleteLocation" />
                 <div className="text-center">
-
                     <select name="instruments" value={this.state.instrument} placeholder="Select instrument..." onChange={this.handleInstrumentChange}>
+                        <option value="selected" selected>Select an instrument...</option>
                         {this.props.instruments.map((instrument) => {
-                            return <option key={instrument.value} value={instrument.value}>{instrument.label}</option>
+                            return <option key={instrument.value} value={instrument.label}>{instrument.label}</option>;
                         })}
                     </select>
                 </div>
