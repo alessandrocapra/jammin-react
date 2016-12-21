@@ -44,6 +44,13 @@ h4 {
     font-weight: 400;
 }
 
+h8 {
+    font-size: 1.6em;
+    font-weight: 400;
+    color: #fff;
+}
+
+
 
 iframe {
     width: 100%;

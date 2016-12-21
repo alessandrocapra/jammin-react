@@ -163,7 +163,7 @@ class Register extends Component {
         return (
             <Row className="register headline">
                 <Col xs={12} sm={3} smOffset={2}>
-                    <h4> Returning Jammer? </h4>
+                    <h8> Returning Jammer? </h8>
                     <h2>Sign in </h2>
                     <div className="form-group">
                         <form action="">
@@ -181,7 +181,7 @@ class Register extends Component {
                 </Col>
 
                 <Col xs={12} sm={3} smOffset={2}>
-                    <h4> New to Jammin? </h4>
+                    <h8> New to Jammin? </h8>
                     <h2>Sign up </h2>
                     <div className="form-group">
                         <form action="">

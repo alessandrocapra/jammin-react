@@ -59,8 +59,11 @@ class Profile extends Component {
                             <Col xs={6} xsOffset={3}>
                                 <button id="contact_me_button">Contact me!</button>
                             </Col>
-                            <h4>{this.state.user.gender}, {this.state.user.age} years old</h4>
+                            <Col xs={12} xsOffset={3}>
                             <h4> <FontAwesome name='globe' /> {this.state.user.location} </h4>
+                            <p>{this.state.user.gender}, {this.state.user.age} years old</p>
+        
+                            </Col>
                             <section>
                                  <h3>Availability</h3> 
                                 <p>{this.state.user.availability} times per week</p> 
