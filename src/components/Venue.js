@@ -17,12 +17,7 @@ class Venue extends Component{
                         <span><FontAwesome name="globe"/> {this.props.location} </span>
                         <span><FontAwesome name="envelope"/> {this.props.contact}</span>
                     </div>
-                    <Row>
-                        <Col xs={12} sm={12} className="venuedescription">
-                            <p>{this.props.description}</p>
-                        </Col>
-                       
-                    </Row>
+                    <p className="venuedescription">{this.props.description}</p>
                 </Col>
             </Row>
         );

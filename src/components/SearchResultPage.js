@@ -226,17 +226,16 @@ class SearchResultPage extends Component {
                                         />
                                     </label>
                                     <label>
-                                        Availability
+                                        Availability - {this.state.availability} times per week
                                         <input
                                             type="range"
                                             name="availability"
                                             max="7"
-                                            min="2"
+                                            min="1"
                                             value={this.state.availability}
                                             onChange={this.handleChange}
                                         />
                                     </label>
-                                    <span>{this.state.availability} times per week</span>
                                 </Col>
                             </Row>
 
@@ -245,7 +244,7 @@ class SearchResultPage extends Component {
                                     <label>
                                         Influences
                                     </label>
-                                    <div id="filters1">
+                                    <div>
                                         {this.state.music_listen.length ? this.state.music_listen.map((artist) => {
                                             return Object.keys(artist).map(function(artist_name){
                                                 return <div><input type="checkbox" name={artist_name}/> {artist_name} ({artist[artist_name]}) </div>;
@@ -257,7 +256,7 @@ class SearchResultPage extends Component {
                                     <label>
                                         Artists listened
                                     </label>
-                                    <div id="filters2">
+                                    <div>
                                         {this.state.music_play.length ? this.state.music_play.map((artist) => {
                                             return Object.keys(artist).map(function (artist_name) {
                                                 return <div><input type="checkbox" name={artist_name}/> {artist_name} ({artist[artist_name]}) </div>;

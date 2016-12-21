@@ -6,7 +6,7 @@ class Review extends Component {
         return(
             <article>
                 <header>
-                    <FontAwesome name='rocket' size='2x'/>
+                    <FontAwesome name={this.props.rating} size='2x'/>
                     <h4>{this.props.title}</h4>
                     <p><strong>{this.props.instrument}</strong></p>
                 </header>

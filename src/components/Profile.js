@@ -63,22 +63,18 @@ class Profile extends Component {
                     <Row>
                         <Col xs={12} className="left-sidebar">
                             <h2 className="name">{this.state.user.name} {this.state.user.surname}</h2>
-                            {this.state.user.image ? <img src={this.state.user.image} alt={this.state.user.name + this.state.user.surname} /> : <img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" alt={this.state.user.name + this.state.user.surname}/>}
+                            {this.state.user.image ? <div className="profile-pic"><img src={this.state.user.image} alt={this.state.user.name + this.state.user.surname} /></div> : <img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" alt={this.state.user.name + this.state.user.surname}/>}
                             <div className="text-center">
                                 <button id="contact_me_button">Contact me!</button>
                             </div>
-                            <Col xs={6} xsOffset={3}>
-
                             <h4> <FontAwesome name='globe' /> {this.state.user.location} </h4>
-                            <p>{this.state.user.gender}, {this.state.user.age} years old</p>
-        
-                            </Col>
+                            <h4>{this.state.user.gender}, {this.state.user.age} years old</h4>
                             <section>
-                                 <h3>Availability</h3> 
-                                <p>{this.state.user.availability} times per week</p> 
+                                 <h3>Availability</h3>
+                                <p>{this.state.user.availability} times per week</p>
                             </section>
                             <section className="reviews">
-                                 <h3>Reviews</h3> 
+                                 <h3>Reviews</h3>
                                 <Review name="Eric Cartman" title="Amazing performance!" rating="rocket" instrument="Electric guitar" />
                                 <Review name="Stan Marsh" title="Ok-ish" rating="thumbs-up" instrument="Drums" />
                                 <Review name="Kyle Broflovski" title="WOW, just wow!" rating="rocket" instrument="Electric guitar" />

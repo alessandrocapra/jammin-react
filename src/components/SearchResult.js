@@ -15,7 +15,7 @@ class SearchResult extends Component {
         <Col xs={12}>
             <Row className="result">
                 <Col xs={12} sm={4}>
-                    <img src={this.props.user.image} alt={this.props.user.name} onClick={this.goToProfile.bind(this)}/>
+                    <div className="profile-pic"><img src={this.props.user.image} alt={this.props.user.name} onClick={this.goToProfile.bind(this)}/></div>
                     <button>Contact me!</button>
                 </Col>
                 <Col xs={12} sm={8}>
@@ -26,13 +26,13 @@ class SearchResult extends Component {
                     <p>{this.props.user.about}</p>
                     <Row className="result_info">
                         <Col xs={12} sm={6} className="filter_options">
-                            <h4>Musical influences</h4>
+                            <h4>Influences</h4>
                             {this.props.user.music_listen ? this.props.user.music_listen.map((artist) => {
                                 return <a key={artist} className="tag" href="#0"><span>{artist}</span></a>;
                             }) : <div>No artist specified</div>}
                         </Col>
                         <Col xs={12} sm={6} className="filter_options">
-                            <h4>Music I play</h4>
+                            <h4>Genres played</h4>
                             {this.props.user.music_play ? this.props.user.music_play.map((artist) => {
                                 return <a className="tag" href="#0"><span>{artist}</span></a>;
                             }) : <div>No artist specified</div>}
