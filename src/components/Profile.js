@@ -50,11 +50,12 @@ class Profile extends Component {
     render(){
 
         let editButton = null;
-        if (firebase.auth().currentUser !== null){
+        if (firebase.auth().currentUser === null){
             editButton = <div></div>;
-        } else if(firebase.auth().currentUser && firebase.auth().currentUser === this.state.user.id ){
+        } else if(firebase.auth().currentUser && firebase.auth().currentUser.uid === this.state.user.id ){
             editButton = <button className="editprofile" onClick={this.handleEditButton}>Edit profile</button>;
         }
+        console.log('fucking edit: ', editButton);
 
         return(
             <Row>
@@ -63,10 +64,9 @@ class Profile extends Component {
                         <Col xs={12} className="left-sidebar">
                             <h2 className="name">{this.state.user.name} {this.state.user.surname}</h2>
                             {this.state.user.image ? <img src={this.state.user.image} alt={this.state.user.name + this.state.user.surname} /> : <img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" alt={this.state.user.name + this.state.user.surname}/>}
-
-                            <Col xs={6} xsOffset={3}>
+                            <div className="text-center">
                                 <button id="contact_me_button">Contact me!</button>
-                            </Col>
+                            </div>
                             <Col xs={6} xsOffset={3}>
 
                             <h4> <FontAwesome name='globe' /> {this.state.user.location} </h4>
@@ -93,9 +93,7 @@ class Profile extends Component {
                                 <h3>About me</h3>
                                 <p>{this.state.user.about}</p>
                                 { editButton }
-            
                             </Col>
-                            
                         </Row>
                     </section>
                     <section className="soundcloud">
