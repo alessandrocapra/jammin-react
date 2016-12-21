@@ -96,40 +96,47 @@ class Register extends Component {
 
         // here goes the check if password and confirmPassword match
 
-        FBAppAuth.createUserWithEmailAndPassword(this.state.reg_email, this.state.reg_password).then(function () {
-            firebase.auth().currentUser.sendEmailVerification();
-            browserHistory.push('/profile/edit/'+firebase.auth().currentUser.uid);
-        }).catch(function(error) {
-            // Handle Errors here.
-            let errorCode = error.code;
-            let errorMessage = error.message;
-            console.log(errorCode + ': ' + errorMessage);
+        if (this.state.reg_password != this.state.reg_confirmPassword) {
+            document.getElementById('password').style = "border: #B21F10 2px solid";
+            document.getElementById('confirm_password').style = "border: #B21F10 2px solid";
+            document.getElementById('password-mismatching-error-box').className = "alert alert-danger";
+        } else {
 
-            let email = self.state.email;
-            let password = self.state.password;
+            FBAppAuth.createUserWithEmailAndPassword(this.state.reg_email, this.state.reg_password).then(function () {
+                firebase.auth().currentUser.sendEmailVerification();
+                browserHistory.push('/profile/edit/' + firebase.auth().currentUser.uid);
+            }).catch(function (error) {
+                // Handle Errors here.
+                let errorCode = error.code;
+                let errorMessage = error.message;
+                console.log(errorCode + ': ' + errorMessage);
 
-            let errorBox = document.getElementById('error-box');
-            let errorMessageBox = document.getElementById('error-message');
+                let email = self.state.email;
+                let password = self.state.password;
 
-            switch(errorCode) {
-                case 'auth/email-already-in-use':
-                    // self.signInWithEmail(email, password, errorBox, errorMessageBox);
-                    errorBox.className = "alert alert-danger";
-                    errorMessageBox.innerHTML = '<span>Email already in use, try to login ;)</span>';
-                    break;
-                case 'auth/invalid-email':
-                    console.log('invalid email!');
-                    errorBox.className = "alert alert-danger";
-                    errorMessageBox.innerHTML = '<span>Invalid email! Check it again!</span>';
-                    break;
-                case 'auth/weak-password':
-                    errorBox.className = "alert alert-danger";
-                    errorMessageBox.innerHTML = '<span>Password is too weak! Choose one with at least 6 characters</span>';
-                    break;
-                default:
-                    break;
-            }
-        });
+                let errorBox = document.getElementById('error-box');
+                let errorMessageBox = document.getElementById('error-message');
+
+                switch (errorCode) {
+                    case 'auth/email-already-in-use':
+                        // self.signInWithEmail(email, password, errorBox, errorMessageBox);
+                        errorBox.className = "alert alert-danger";
+                        errorMessageBox.innerHTML = '<span>Email already in use, try to login ;)</span>';
+                        break;
+                    case 'auth/invalid-email':
+                        console.log('invalid email!');
+                        errorBox.className = "alert alert-danger";
+                        errorMessageBox.innerHTML = '<span>Invalid email! Check it again!</span>';
+                        break;
+                    case 'auth/weak-password':
+                        errorBox.className = "alert alert-danger";
+                        errorMessageBox.innerHTML = '<span>Password is too weak! Choose one with at least 6 characters</span>';
+                        break;
+                    default:
+                        break;
+                }
+            });
+        }
     }
 
     signInWithEmail(e){
@@ -186,8 +193,13 @@ class Register extends Component {
                     <div className="form-group">
                         <form action="">
                             <input name="reg_email" type="text" value={this.state.reg_email} onChange={this.handleChange} placeholder="E-mail address"/>
-                            <input name="reg_password" type="password" value={this.state.reg_password} onChange={this.handleChange} placeholder="Password" />
-                            <input name="reg_confirmPassword" type="password" value={this.state.reg_confirmPassword} onChange={this.handleChange} placeholder="Confirm password"/>
+                            <input name="reg_password" id="password" type="password" value={this.state.reg_password} onChange={this.handleChange} placeholder="Password" />
+                            <input name="reg_confirmPassword" id="confirm_password" type="password" value={this.state.reg_confirmPassword} onChange={this.handleChange} placeholder="Confirm password"/>
+                            <div  id="password-mismatching-error-box" className="alert alert-danger hidden" role="alert">
+                                <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"> </span>
+                                <span className="sr-only">Error:</span>
+                                <span id="error-message">The passwords don't match!</span>
+                            </div>
                             <button type="submit" onClick={this.signUpWithEmail}>Sign up</button>
                             <div  id="error-box" className="alert alert-danger hidden" role="alert">
                                 <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"> </span>
