@@ -26,7 +26,7 @@ class EditProfile extends Component {
                 age: "",
                 gender: "",
                 availability: "",
-                location: "",
+                location: [],
                 about: "",
                 image: "",
                 instruments: [],
@@ -298,12 +298,22 @@ class EditProfile extends Component {
                                         <Autocomplete
                                             name="location"
                                             onPlaceSelected={(place) => {
+                                                let placeArray = [];
+                                                placeArray.push(place);
+                                                console.log('placeArray: ', placeArray);
                                                 console.log('setting ' + place.name + ' as location in state');
-                                                this.setState({user: { ...this.state.user, location: place.name}});
+                                                this.setState({user: { ...this.state.user, location: update(this.state.user.location, {$push: [place]})}}, () => {
+                                                    console.log('location state after update: ',this.state.user.location);
+                                                });
                                             }}
                                             types={['(regions)']} value={this.state.user.location} onChange={this.handleChange}
                                             className="autocompleteLocation" />
                                     </label>
+                                    <div className="container-tags">
+                                        {/*{this.state.user.location.map((place) => {*/}
+                                            {/*return <button>{place}</button>;*/}
+                                        {/*})}*/}
+                                    </div>
                                 </Col>
                                 <Col xs={12} sm={6}>
                                     <label htmlFor="availability">
