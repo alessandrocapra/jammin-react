@@ -55,7 +55,6 @@ class Profile extends Component {
         } else if(firebase.auth().currentUser && firebase.auth().currentUser.uid === this.state.user.id ){
             editButton = <button className="editprofile" onClick={this.handleEditButton}>Edit profile</button>;
         }
-        console.log('fucking edit: ', editButton);
 
         return(
             <Row>
@@ -65,7 +64,9 @@ class Profile extends Component {
                             <h2 className="name">{this.state.user.name} {this.state.user.surname}</h2>
                             {this.state.user.image ? <div className="profile-pic"><img src={this.state.user.image} alt={this.state.user.name + this.state.user.surname} /></div> : <img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" alt={this.state.user.name + this.state.user.surname}/>}
                             <div className="text-center">
-                                <button id="contact_me_button">Contact me!</button>
+                                <form action={"mailto:" + this.state.user.name + '.' + this.state.user.surname + '@jammin.com'}>
+                                    <input type="submit" value="Contact me!" id="contact_me_button"/>
+                                </form>
                             </div>
                             <h4> <FontAwesome name='globe' /> {this.state.user.location} </h4>
                             <h4>{this.state.user.gender}, {this.state.user.age} years old</h4>
