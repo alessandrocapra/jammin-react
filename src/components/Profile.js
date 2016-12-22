@@ -67,11 +67,12 @@ class Profile extends Component {
                             <div className="text-center">
                                 <button id="contact_me_button">Contact me!</button>
                             </div>
-                            <h4> <FontAwesome name='globe' /> {this.state.user.location} </h4>
-                            <h4>{this.state.user.gender}, {this.state.user.age} years old</h4>
+                            <h4> <FontAwesome name='globe' /> {this.state.user.location ? this.state.user.location : 'Location not specified'} </h4>
+                            <h4> {this.state.user.gender ? (this.state.user.gender === 'male' ? <div><FontAwesome name="male"/> {this.state.user.gender}</div> : <div><FontAwesome name="female"/>{this.state.user.gender}</div>) : 'Gender not specified'}</h4>
+                            {this.state.user.age ? <h4>{this.state.user.age} years old</h4> : <p>Age not specified</p>}
                             <section>
                                  <h3>Availability</h3>
-                                <p>{this.state.user.availability} times per week</p>
+                                 {this.state.user.availability ? <p>{this.state.user.availability} times per week</p> : <p>Availability not specified</p>}
                             </section>
                             <section className="reviews">
                                  <h3>Reviews</h3>
