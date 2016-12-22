@@ -217,13 +217,20 @@ main > .row {
     position: absolute;
     cursor: pointer;
     top:0;
-    right: 0;
+    right: 5em;
+    height:100%;
     margin:0;
-    padding:0.8em;
+    padding:1.6em 0.7em;
     font-size:1.2em;
     font-weight:700;
     color: #fff;
     background-color: #B21F10;
+}
+
+.delete-video {
+    position: absolute;
+    top: -1em;
+    right: 0.3em;
 }
 
 .container-tags {
@@ -256,7 +263,7 @@ main > .row {
     right: 0;
     background: #b21f10;
     color: #fff;
-    padding:0.7em;
+    padding:0.2em 0.6em;
     margin-left:0.7em;
 }
 

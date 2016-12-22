@@ -397,13 +397,12 @@ class EditProfile extends Component {
                                 <Col xs={12}>
                                     <input className="inline" type="text" name="youtube" onChange={this.handleChange}/>
                                     <button onClick={this.addYoutubeVideo}>Add video</button>
-
                                 </Col>
                             </Row>
                             <Row>
                                 <div className="container-tags">
                                     {this.state.user.youtube.map((source,index) => {
-                                        return <Col xs={12} sm={6}> <button onClick={this.removeYoutubeVideo.bind(this, index)}>X</button> <Video key={index} source={source.video} /> </Col>;
+                                        return <Col xs={12} sm={6}> <button className="delete-video" onClick={this.removeYoutubeVideo.bind(this, index)}>X</button> <Video key={index} source={source.video} /> </Col>;
                                         })
                                     }
                                 </div>
