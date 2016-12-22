@@ -246,7 +246,7 @@ class SearchResultPage extends Component {
                                     </label>
                                     <div id="filters1">
                                         {this.state.music_listen.length ? this.state.music_listen.map((artist) => {
-                                            return Object.keys(artist).map(function(artist_name){
+                                            return Object.keys(artist).sort().map(function(artist_name){
                                                 return <div><input type="checkbox" name={artist_name}/> {artist_name} ({artist[artist_name]}) </div>;
                                             })
                                         }) : <p>No influences defined by the users</p>}
@@ -258,9 +258,10 @@ class SearchResultPage extends Component {
                                     </label>
                                     <div id="filters2">
                                         {this.state.music_play.length ? this.state.music_play.map((artist) => {
-                                            return Object.keys(artist).map(function (artist_name) {
+                                            return Object.keys(artist).sort().map(function (artist_name) {
+                                                console.log('inside', artist_name, artist[artist_name]);
                                                 return <div><input type="checkbox" name={artist_name}/> {artist_name} ({artist[artist_name]}) </div>;
-                                            })
+                                            });
                                         }) : <p>No listened artists defined by the users</p>}
                                     </div>
                                 </Col>
