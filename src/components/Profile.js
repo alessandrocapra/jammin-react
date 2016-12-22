@@ -88,7 +88,7 @@ class Profile extends Component {
                         <Row>
                             <Col xs={12}>
                                 <h3>About me</h3>
-                                <p>{this.state.user.about}</p>
+                                <p>{this.state.user.about ? this.state.user.about : 'Description not filled in by user'}</p>
                                 { editButton }
                             </Col>
                         </Row>
@@ -102,7 +102,7 @@ class Profile extends Component {
                         <Row>
                             {this.state.user.soundcloud ? this.state.user.soundcloud.map(function(sound, index) {
                                 return <Col key={sound.track} xs={12} sm={6}> <Soundcloud source={sound.track}/> </Col>;
-                            }) : <div></div>}
+                            }) : <Col xs={12}><p>No tracks uploaded by the user</p></Col>}
                         </Row>
                     </section>
                     <section className="instruments">
@@ -114,7 +114,7 @@ class Profile extends Component {
                         <Row>
                             {this.state.user.instruments ? this.state.user.instruments.map(function (instrument, index) {
                                 return <Instrument name={instrument.name} experience={instrument.experience}/>;
-                            }) : <div></div>}
+                            }) : <Col xs={12}><p>No instruments have been set by the user.</p></Col>}
                         </Row>
                     </section>
                     <Row>
@@ -123,7 +123,7 @@ class Profile extends Component {
                                 <h3>Influences</h3>
                                 {this.state.user.music_listen ? this.state.user.music_listen.map(function (artist, index) {
                                     return <a className="tag" href="#"><span>{artist}</span></a>;
-                                }) : <div></div>}
+                                }) : <Col xs={12}><p>No influent artists have been selected by the user.</p></Col>}
                             </section>
                         </Col>
                         <Col xs={12} sm={6}>
@@ -131,7 +131,7 @@ class Profile extends Component {
                                 <h3>Genres I like to play</h3>
                                 {this.state.user.music_play ? this.state.user.music_play.map(function (artist, index) {
                                     return <a className="tag" href="#"><span>{artist}</span></a>;
-                                }) : <div></div>}
+                                }) : <Col xs={12}><p>No genres have been set yet.</p></Col>}
                             </section>
                         </Col>
                     </Row>
@@ -148,7 +148,7 @@ class Profile extends Component {
 
                             {this.state.user.youtube ? this.state.user.youtube.map(function(source, index) {
                                 return <Col xs={12} sm={6}> <Video source={source.video}/> </Col>;
-                            }) : <div></div>}
+                            }) : <Col xs={12}><p>No videos uploaded by the user yet.</p></Col>}
 
                         </Row>
                     </section>
