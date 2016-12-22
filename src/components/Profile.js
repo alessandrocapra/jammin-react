@@ -50,12 +50,17 @@ class Profile extends Component {
     render(){
 
         let editButton = null;
+        let contactButton = null;
+
         if (firebase.auth().currentUser === null){
             editButton = <div></div>;
+            contactButton = <div></div>;
         } else if(firebase.auth().currentUser && firebase.auth().currentUser.uid === this.state.user.id ){
             editButton = <button className="editprofile" onClick={this.handleEditButton}>Edit profile</button>;
+            contactButton = <div></div>;
+        } else if(firebase.auth().currentUser.uid !== this.state.user.id){
+            contactButton = <button id="contact_me_button">Contact me!</button>;
         }
-        console.log('fucking edit: ', editButton);
 
         return(
             <Row>
@@ -65,10 +70,10 @@ class Profile extends Component {
                             <h2 className="name">{this.state.user.name} {this.state.user.surname}</h2>
                             {this.state.user.image ? <div className="profile-pic"><img src={this.state.user.image} alt={this.state.user.name + this.state.user.surname} /></div> : <img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" alt={this.state.user.name + this.state.user.surname}/>}
                             <div className="text-center">
-                                <button id="contact_me_button">Contact me!</button>
+                                {contactButton}
                             </div>
                             <h4> <FontAwesome name='globe' /> {this.state.user.location ? this.state.user.location : 'Location not specified'} </h4>
-                            <h4> {this.state.user.gender ? (this.state.user.gender === 'male' ? <div><FontAwesome name="male"/> {this.state.user.gender}</div> : <div><FontAwesome name="female"/>{this.state.user.gender}</div>) : 'Gender not specified'}</h4>
+                            <h4> {this.state.user.gender ? (this.state.user.gender === 'male' ? <div><FontAwesome name="male"/> {this.state.user.gender}</div> : <div><FontAwesome name="female"/> {this.state.user.gender}</div>) : 'Gender not specified'}</h4>
                             {this.state.user.age ? <h4>{this.state.user.age} years old</h4> : <p>Age not specified</p>}
                             <section>
                                  <h3>Availability</h3>
