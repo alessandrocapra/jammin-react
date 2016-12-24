@@ -258,34 +258,33 @@ class EditProfile extends Component {
                             <Row>
                                 <Col xs={12} sm={6}>
                                     <label htmlFor="name">
-                                        Name <input type="text" name="name" value={this.state.user.name} onChange={this.handleChange}/>
+                                       <p> Name </p> <input type="text" name="name" value={this.state.user.name} onChange={this.handleChange}/>
                                     </label>
                                 </Col>
                                 <Col xs={12} sm={6}>
                                     <label htmlFor="surname">
-                                        Surname <input type="text" name="surname" value={this.state.user.surname} onChange={this.handleChange}/>
+                                        <p> Surname </p> <input type="text" name="surname" value={this.state.user.surname} onChange={this.handleChange}/>
                                     </label>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col xs={12} sm={6}>
                                     <label htmlFor="age">
-                                        Age <input type="text" name="age" placeholder="e.g. 23" value={this.state.user.age} onChange={this.handleChange}/>
+                                       <p> Age </p> <input type="text" name="age" placeholder="e.g. 23" value={this.state.user.age} onChange={this.handleChange}/>
                                     </label>
                                 </Col>
                                 <Col xs={12} sm={6}>
                                     <label id="radio-gender">
-                                        Gender
+                                       <p> Gender </p>
                                         <div className="radio">
                                             <label>
                                                 <input type="radio" name="gender" value="male" checked={this.state.user.gender === 'male'} onChange={this.handleChange}/>
                                                 Male
                                             </label>
-                                        </div>
-                                        <div className="radio">
                                             <label>
                                                 <input type="radio" name="gender" value="female" checked={this.state.user.gender === 'female'} onChange={this.handleChange} />
                                                 Female
+
                                             </label>
                                         </div>
                                     </label>
@@ -294,7 +293,7 @@ class EditProfile extends Component {
                             <Row>
                                 <Col xs={12} sm={6}>
                                     <label htmlFor="location">
-                                        Location
+                                        <p> Location </p>
                                         <Autocomplete
                                             name="location"
                                             onPlaceSelected={(place) => {
@@ -307,14 +306,14 @@ class EditProfile extends Component {
                                 </Col>
                                 <Col xs={12} sm={6}>
                                     <label htmlFor="availability">
-                                        Availability <input type="text" name="availability" value={this.state.user.availability} onChange={this.handleChange}/>
+                                        <p> How many times a week you are available to jam? </p> <input type="text" name="availability" placeholder="Please just put a number in e.g. 2" value={this.state.user.availability} onChange={this.handleChange}/>
                                     </label>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col xs={12}>
                                     <label htmlFor="about">
-                                        About me <textarea name="about" id="" cols="30" rows="10" placeholder="Present yourself to other musicians!" value={this.state.user.about} onChange={this.handleChange}></textarea>
+                                        <p> About me </p> <textarea name="about" id="" cols="30" rows="10" placeholder="Present yourself to other musicians!" value={this.state.user.about} onChange={this.handleChange}></textarea>
                                     </label>
                                 </Col>
                             </Row>
@@ -350,7 +349,7 @@ class EditProfile extends Component {
                             <Row>
                                 <Col xs={6}>
                                     <label htmlFor="music_play">
-                                        What I like to play
+                                        <p> What I like to play </p>
                                         <select name="music_play" value={this.state.user.music_play} onChange={this.musicPlayChange}>
                                             <option value="selected" disabled>Select a genre from the list</option>
                                             {GenreList.map((genre) => {
@@ -372,7 +371,7 @@ class EditProfile extends Component {
                                 </Col>
                                 <Col xs={6}>
                                     <label htmlFor="music_listen">
-                                        Music influencers
+                                        <p> Music influencers </p>
                                         <Select.Async
                                             name="music_listen"
                                             loadOptions={this.getOptions}
@@ -390,7 +389,7 @@ class EditProfile extends Component {
                             <Row>
                                 <Col xs={12}>
                                     <h2>Youtube</h2>
-                                    <p>Add here the Youtube links to videos that show how awesome you are!</p>
+                                    <p>Add here the Youtube links to videos of you playing showing how awesome you are!</p>
                                 </Col>
                             </Row>
                             <Row>

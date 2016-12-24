@@ -254,7 +254,7 @@ class SearchResultPage extends Component {
                                 </Col>
                                 <Col xs={12} sm={6}>
                                     <label>
-                                        <h5> Artists listened </h5>
+                                        <h5> Genres Played </h5>
                                     </label>
                                     <div id="filters2">
                                         {this.state.music_play.length ? this.state.music_play.map((artist) => {

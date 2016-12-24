@@ -38,7 +38,7 @@ h3 {
 }
 
 h4 {
-    font-size: 1.8em;
+    font-size: 1.3em;
     font-weight: 400;
     color: #262626;
 }
@@ -47,6 +47,13 @@ h5 {
     font-size: 1.2em;
     font-weight: 1200;
     color: #262626;
+
+}
+
+h8 {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #fff;
 
 }
 
