@@ -37,6 +37,7 @@ class EditProfile extends Component {
             },
             instruments: [],
             music_listen: [],
+            location: "",
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -70,6 +71,9 @@ class EditProfile extends Component {
         switch (e.target.name) {
             case 'experience':
                 this.setState({instruments: {...this.state.instruments, experience: e.target.value}});
+                break;
+            case location:
+                this.setState({location: e.target.value});
                 break;
             case 'youtube':
                 this.setState({youtube: {...this.state.youtube, video: e.target.value}});
@@ -296,23 +300,20 @@ class EditProfile extends Component {
                                     <label htmlFor="location">
                                         Location
                                         <Autocomplete
-                                            name="location"
                                             onPlaceSelected={(place) => {
-                                                let placeArray = [];
-                                                placeArray.push(place);
-                                                console.log('placeArray: ', placeArray);
-                                                console.log('setting ' + place.name + ' as location in state');
-                                                this.setState({user: { ...this.state.user, location: update(this.state.user.location, {$push: [place]})}}, () => {
-                                                    console.log('location state after update: ',this.state.user.location);
-                                                });
+                                                {/*console.log('setting ' + place.name + ' as location in state');*/}
+                                                {/*let placeArray = update(this.state.user.location, {$push: [place.name]});*/}
+                                                {/*console.log('placeArray: ', placeArray);*/}
+                                                this.setState(update(this.state.user, {location: { $push: [place.name]} }))
                                             }}
+                                            name="location"
                                             types={['(regions)']} value={this.state.user.location} onChange={this.handleChange}
                                             className="autocompleteLocation" />
                                     </label>
                                     <div className="container-tags">
-                                        {/*{this.state.user.location.map((place) => {*/}
+                                        {/*{this.state.user.location ? this.state.user.location.map((place) => {*/}
                                             {/*return <button>{place}</button>;*/}
-                                        {/*})}*/}
+                                        {/*}) : <p>No locations specified by user.</p>}*/}
                                     </div>
                                 </Col>
                                 <Col xs={12} sm={6}>
