@@ -13,7 +13,7 @@ body {
     
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5 {
     font-family:'Montserrat', sans-serif;
     text-transform: capitalize;
     color: #B21F10;
@@ -41,6 +41,13 @@ h4 {
     font-size: 1.8em;
     font-weight: 400;
     color: #262626;
+}
+
+h5 {
+    font-size: 1.2em;
+    font-weight: 1200;
+    color: #262626;
+
 }
 
 p, span {
@@ -757,6 +764,11 @@ section.instruments article img {
     #showHideFilters {
         display: inline;
     }
+
+    .bold {
+        font-weight:bold !important;
+    }
+
 
 
 }

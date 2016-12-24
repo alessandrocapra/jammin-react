@@ -201,7 +201,7 @@ class SearchResultPage extends Component {
                             <Row>
                                 <Col xs={12}>
                                     <label>
-                                        Location
+                                            <h5> Location </h5>
                                         <Autocomplete
                                             name="location"
                                             onPlaceSelected={(place) => {
@@ -217,7 +217,7 @@ class SearchResultPage extends Component {
                                         />
                                     </label>
                                     <label>
-                                        Instrument
+                                        <h5> Instrument </h5>
                                         <Select
                                             name="instrument"
                                             value={this.state.instrument}
@@ -226,7 +226,7 @@ class SearchResultPage extends Component {
                                         />
                                     </label>
                                     <label>
-                                        Availability - {this.state.availability} times per week
+                                       <h5> Availability - {this.state.availability} times per week </h5>
                                         <input
                                             type="range"
                                             name="availability"
@@ -242,7 +242,7 @@ class SearchResultPage extends Component {
                             <Row>
                                 <Col xs={12} sm={6}>
                                     <label>
-                                        Influences
+                                        <h5> Influences </h5>
                                     </label>
                                     <div id="filters1">
                                         {this.state.music_listen.length ? this.state.music_listen.map((artist) => {
@@ -254,7 +254,7 @@ class SearchResultPage extends Component {
                                 </Col>
                                 <Col xs={12} sm={6}>
                                     <label>
-                                        Artists listened
+                                        <h5> Artists listened </h5>
                                     </label>
                                     <div id="filters2">
                                         {this.state.music_play.length ? this.state.music_play.map((artist) => {
@@ -270,7 +270,7 @@ class SearchResultPage extends Component {
                             <Row>
                                 <Col xs={12}>
                                     <label>
-                                        Reviews
+                                        <h5> Reviews </h5>
                                     </label>
                                     <input type="checkbox" name="review"/> Rockstar <br/>
                                     <input type="checkbox" name="review"/> Super <br/>
