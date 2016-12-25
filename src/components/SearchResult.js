@@ -18,12 +18,11 @@ class SearchResult extends Component {
         <Col xs={12}>
             <Row className="result">
                 <Col xs={12} sm={4}>
-                    <div className="profile-pic"><div className="image" style={{'background' : 'url(' + this.props.user.image + ')', 'background-size' : 'cover', 'background-repeat' : 'no-repeat'}} onClick={this.goToProfile.bind(this)}/></div>
+                    <div className="profile-pic"><div className="image" style={{'background' : 'url(' + this.props.user.image + ')', 'backgroundSize' : 'cover', 'backgroundRepeat' : 'no-repeat'}} onClick={this.goToProfile.bind(this)}/></div>
                     <button>Contact me!</button>
                 </Col>
                 <Col xs={12} sm={8}>
                     <h3>{this.props.user.name} {this.props.user.surname}</h3>
-                    {/*<strong><p> <FontAwesome name='globe' /> {this.props.user.location ? this.props.user.location : 'Location not specified'} </p></strong>*/}
                     <strong>{this.props.user.gender ? (this.props.user.gender === 'male' ? <p><FontAwesome name="male"/> {this.props.user.gender}</p> : <p><FontAwesome name="female"/>{this.props.user.gender}</p>) : 'Gender not specified'}</strong>
                     {this.props.user.age ? <strong><p>{this.props.user.age} years old</p></strong> : <p>Age not specified</p>}
                     <p>{this.props.user.about}</p>
@@ -38,7 +37,7 @@ class SearchResult extends Component {
                             <h4>Genres played</h4>
                             {this.props.user.music_play ? this.props.user.music_play.map((artist) => {
                                 return <a className="tag" href="#0"><span>{artist}</span></a>;
-                            }) : <div>No artist specified</div>}
+                            }) : <div>No genres specified</div>}
                         </Col>
                     </Row>
                 </Col>
