@@ -52,6 +52,7 @@ class EditProfile extends Component {
         this.removeInstrument = this.removeInstrument.bind(this);
         this.onDrop = this.onDrop.bind(this);
         this.removeImage = this.removeImage.bind(this);
+        this.removeLocation = this.removeLocation.bind(this);
 
     }
 
@@ -72,7 +73,7 @@ class EditProfile extends Component {
             case 'experience':
                 this.setState({instruments: {...this.state.instruments, experience: e.target.value}});
                 break;
-            case location:
+            case 'location':
                 this.setState({location: e.target.value});
                 break;
             case 'youtube':
@@ -225,6 +226,10 @@ class EditProfile extends Component {
         this.setState({user: update(this.state.user, {music_play: {$splice: [[index,1]]}})});
     }
 
+    removeLocation(index){
+        this.setState({user: update(this.state.user, {location: {$splice: [[index,1]]}})});
+    }
+
     removeMusicInfluencer(index){
         this.setState({user: update(this.state.user, {music_listen: {$splice: [[index,1]]}})});
     }
@@ -301,19 +306,18 @@ class EditProfile extends Component {
                                         Location
                                         <Autocomplete
                                             onPlaceSelected={(place) => {
-                                                {/*console.log('setting ' + place.name + ' as location in state');*/}
-                                                {/*let placeArray = update(this.state.user.location, {$push: [place.name]});*/}
-                                                {/*console.log('placeArray: ', placeArray);*/}
-                                                this.setState(update(this.state.user, {location: { $push: [place.name]} }))
+                                                this.setState({user: {...this.state.user, location: update(this.state.user.location, {$push: [place.name]})}, location: ""});
                                             }}
                                             name="location"
-                                            types={['(regions)']} value={this.state.user.location} onChange={this.handleChange}
+                                            types={['(regions)']}
+                                            value={this.state.location}
+                                            onChange={this.handleChange}
                                             className="autocompleteLocation" />
                                     </label>
                                     <div className="container-tags">
-                                        {/*{this.state.user.location ? this.state.user.location.map((place) => {*/}
-                                            {/*return <button>{place}</button>;*/}
-                                        {/*}) : <p>No locations specified by user.</p>}*/}
+                                        {this.state.user.location ? this.state.user.location.map((place, index) => {
+                                            return <a href="#0" value={place} key={place} className="tag">{place} <span onClick={this.removeLocation.bind(this, index)}>x</span></a>;
+                                        }) : <p>No locations specified by user.</p>}
                                     </div>
                                 </Col>
                                 <Col xs={12} sm={6}>
