@@ -801,14 +801,21 @@ section.instruments article img {
     }
 
     .delete-element {
+        top:1em;
         right:0;
         padding-top:0.2em;
-        height:40%;
+        height:20%;
     }
 
     .container-elements {
         padding-right:1.5em;
     }
+
+    .container-elements img {
+        width:6em;
+        margin-top:1em;
+    }
+
     .edit input.inline, .edit input.inline + button {
         width: 100%;
     }
@@ -817,4 +824,6 @@ section.instruments article img {
         margin-top:0;
         margin-bottom:1em;
     }
+
+    /*.instrument img*/
 }
