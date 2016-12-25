@@ -252,7 +252,7 @@ class EditProfile extends Component {
                 </Row>
                 <Row className="edit">
                     <Col xs={12} sm={3}>
-                        {this.state.user.image ? <div><img className="profile-pic" src={this.state.user.image} alt={this.state.user.name + this.state.user.surname}/><button value='Change profile pic' onClick={this.removeImage}>Change photo</button></div> :
+                        {this.state.user.image ? <div className="text-center"><div className="profile-pic"><div className="image" style={{'background' : 'url(' + this.state.user.image + ')', 'background-size' : 'cover', 'background-repeat' : 'no-repeat'}}/></div><button value='Change profile pic' onClick={this.removeImage}>Change photo</button></div> :
                             <Dropzone accept={'image/*'} multiple={false} onDrop={this.onDrop}>
                                 <div>Add a profile picture!</div>
                             </Dropzone>}

@@ -15,7 +15,7 @@ class SearchResult extends Component {
         <Col xs={12}>
             <Row className="result">
                 <Col xs={12} sm={4}>
-                    <div className="profile-pic"><img src={this.props.user.image} alt={this.props.user.name} onClick={this.goToProfile.bind(this)}/></div>
+                    <div className="profile-pic"><div className="image" style={{'background' : 'url(' + this.props.user.image + ')', 'background-size' : 'cover', 'background-repeat' : 'no-repeat'}} onClick={this.goToProfile.bind(this)}/></div>
                     <button>Contact me!</button>
                 </Col>
                 <Col xs={12} sm={8}>

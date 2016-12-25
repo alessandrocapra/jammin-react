@@ -68,7 +68,7 @@ class Profile extends Component {
                     <Row>
                         <Col xs={12} className="left-sidebar">
                             <h2 className="name">{this.state.user.name} {this.state.user.surname}</h2>
-                            {this.state.user.image ? <div className="profile-pic"><img src={this.state.user.image} alt={this.state.user.name + this.state.user.surname} /></div> : <img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" alt={this.state.user.name + this.state.user.surname}/>}
+                            {this.state.user.image ? <div className="profile-pic"><div className="image" style={{'background' : 'url(' + this.state.user.image + ')', 'background-size' : 'cover', 'background-repeat' : 'no-repeat'}}/></div> : <div className="image" style={{'background' : 'url(' + this.state.user.image + ')', 'background-size' : 'cover', 'background-repeat' : 'no-repeat'}}></div>}
                             <div className="text-center">
                                 {contactButton}
                             </div>
