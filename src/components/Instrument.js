@@ -17,7 +17,7 @@ class Instrument extends Component {
             if(instrument.value === this.props.name){
                 instrumImage = instrument.image;
             }
-        })
+        });
 
         return(
             <Col className="instrument" xs={12} sm={6}>

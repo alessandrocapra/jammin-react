@@ -313,11 +313,29 @@ main > .row {
     position: relative;
 }
 
-.edit #instrument-form .Select, .edit #instrument-form input, .edit #instrument-form button {
+.edit #instrument-form select, .edit #instrument-form input, .edit #instrument-form button {
     display: inline-block;
     width:30%;
     margin:auto 1em auto auto;
     vertical-align: middle;
+}
+
+.edit #saveProfile {
+    background: none;
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+    bottom: 0;
+    left: 0;
+    margin:0 auto;
+
+}
+
+.edit #saveProfile > button {
+    margin:1em  auto;
+    padding-left:6em;
+    padding-right:6em;
+
 }
 
 /********************************************** Main page **********************************************/
@@ -776,6 +794,27 @@ section.instruments article img {
         font-weight:bold !important;
     }
 
+    .edit #instrument-form select, .edit #instrument-form input, .edit #instrument-form button {
+        display: block;
+        width:100%;
+        margin-bottom:0.5em;
+    }
 
+    .delete-element {
+        right:0;
+        padding-top:0.2em;
+        height:40%;
+    }
 
+    .container-elements {
+        padding-right:1.5em;
+    }
+    .edit input.inline, .edit input.inline + button {
+        width: 100%;
+    }
+
+    .edit input.inline + button {
+        margin-top:0;
+        margin-bottom:1em;
+    }
 }

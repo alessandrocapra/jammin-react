@@ -141,8 +141,8 @@ class EditProfile extends Component {
         });
     }
 
-    handleInstrumentChange(val){
-        this.setState({instruments: {...this.state.instruments, name: val.value }});
+    handleInstrumentChange(event){
+        this.setState({instruments: {...this.state.instruments, name: event.target.value }});
     }
 
     handleMusicListenChange(val){
@@ -251,13 +251,13 @@ class EditProfile extends Component {
                     </Col>
                 </Row>
                 <Row className="edit">
-                    <Col xs={3}>
+                    <Col xs={12} sm={3}>
                         {this.state.user.image ? <div><img className="profile-pic" src={this.state.user.image} alt={this.state.user.name + this.state.user.surname}/><button value='Change profile pic' onClick={this.removeImage}>Change photo</button></div> :
                             <Dropzone accept={'image/*'} multiple={false} onDrop={this.onDrop}>
                                 <div>Add a profile picture!</div>
                             </Dropzone>}
                     </Col>
-                    <Col xs={9}>
+                    <Col xs={12} sm={9}>
                         <div className="form-group">
                             <Row>
                                 <Col xs={12}>
@@ -339,20 +339,30 @@ class EditProfile extends Component {
                             </Row>
                             <Row>
                                 <Col xs={12} id="instrument-form">
-                                    <Select
-                                        name="instruments"
-                                        value={this.state.instruments.name}
-                                        options={this.props.route.instruments}
-                                        onChange={this.handleInstrumentChange}
-                                    />
-                                    <input type="text" name="experience" placeholder="Years of experience.." value={this.state.user.experience} onChange={this.handleChange}/>
+                                    <select name="instruments" value={this.state.instruments.name} onChange={this.handleInstrumentChange}>
+                                        <option value="selected" disabled>Select an instrument from the list</option>
+                                        {this.props.route.instruments.map((instrument_list) => {
+                                            let option = null;
+                                            console.log('instrument_list: ', instrument_list);
+                                            return this.state.user.instruments.map((instrument) => {
+                                                console.log('instrument: ', instrument);
+                                                if (instrument.name === instrument_list.value){
+                                                    console.log(instrument.name + ' = ' + instrument_list.value);
+                                                    return <option  value={instrument_list.value} disabled>{instrument_list.label}</option>;
+                                                } else {
+                                                    return <option  value={instrument_list.value}>{instrument_list.label}</option>;
+                                                }
+                                            })
+                                        })}
+                                    </select>
+                                    <input type="text" name="experience" placeholder="Years of experience.." value={this.state.instruments.experience} onChange={this.handleChange}/>
                                     <button id="add-instrument" onClick={this.saveInstrument}>Add instrument</button>
                                 </Col>
                             </Row>
                             <Row>
                                 <div className="container-tags">
                                     {this.state.user.instruments.map((instrument, index) => {
-                                        return <Instrument key={instrument.name} index={index} removeInstrument={this.removeInstrument} name={instrument.name} experience={instrument.experience}/>;
+                                        return <Instrument index={index} removeInstrument={this.removeInstrument} name={instrument.name} experience={instrument.experience}/>;
                                     })}
                                 </div>
                             </Row>
@@ -362,7 +372,7 @@ class EditProfile extends Component {
                                 </Col>
                             </Row>
                             <Row>
-                                <Col xs={6}>
+                                <Col xs={12} sm={6}>
                                     <label htmlFor="music_play">
                                         <p> What I like to play </p>
                                         <select name="music_play" value={this.state.user.music_play} onChange={this.musicPlayChange}>
@@ -384,7 +394,7 @@ class EditProfile extends Component {
                                         }
                                     </div>
                                 </Col>
-                                <Col xs={6}>
+                                <Col xs={12} sm={6}>
                                     <label htmlFor="music_listen">
                                         <p> Music influencers </p>
                                         <Select.Async
@@ -436,13 +446,13 @@ class EditProfile extends Component {
                             <Row>
                                 <div className="container-tags">
                                     {this.state.user.soundcloud.map((source,index) => {
-                                        return <Col xs={12} sm={6}> <button onClick={this.removeSoundcloudSong.bind(this, index)}>X</button><Soundcloud source={source.track} /></Col>;
+                                        return <Col xs={12} sm={6}> <button className="delete-video" onClick={this.removeSoundcloudSong.bind(this, index)}>X</button><Soundcloud source={source.track} /></Col>;
                                     })
                                     }
                                 </div>
                             </Row>
-                            <div className="text-center">
-                                <button id="contact_me_button" onClick={this.saveData}>Save</button>
+                            <div className="text-center" id="saveProfile">
+                                <button onClick={this.saveData}>Save profile</button>
                             </div>
                         </div>
                     </Col>
