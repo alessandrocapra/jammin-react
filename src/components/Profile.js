@@ -72,7 +72,6 @@ class Profile extends Component {
                             <div className="text-center">
                                 {contactButton}
                             </div>
-                            <h4> <FontAwesome name='globe' /> {this.state.user.location ? this.state.user.location : 'Location not specified'} </h4>
                             <h4> {this.state.user.gender ? (this.state.user.gender === 'male' ? <div><FontAwesome name="male"/> {this.state.user.gender}</div> : <div><FontAwesome name="female"/> {this.state.user.gender}</div>) : 'Gender not specified'}</h4>
                             {this.state.user.age ? <h4>{this.state.user.age} years old</h4> : <p>Age not specified</p>}
                             <section>
@@ -91,10 +90,16 @@ class Profile extends Component {
                 <Col xs={12} sm={8} className="profile_content">
                     <section>
                         <Row>
-                            <Col xs={12}>
+                            <Col xs={12} sm={6}>
                                 <h3>About me</h3>
                                 <p>{this.state.user.about ? this.state.user.about : 'Description not filled in by user'}</p>
                                 { editButton }
+                            </Col>
+                            <Col xs={12} sm={6}>
+                                <h3>Where I play</h3>
+                                {this.state.user.location ? this.state.user.location.map(function(location) {
+                                        return <a href="#0" value={location} className="tag" key={location}>{location}</a>;
+                                    }) : <p>No tracks uploaded by the user</p>}
                             </Col>
                         </Row>
                     </section>
