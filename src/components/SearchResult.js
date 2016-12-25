@@ -11,6 +11,9 @@ class SearchResult extends Component {
     }
 
     render(){
+
+        console.log(this.props.user.name + ' music_play: ', this.props.user.music_play);
+
         return(
         <Col xs={12}>
             <Row className="result">

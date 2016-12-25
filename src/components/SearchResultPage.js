@@ -39,12 +39,8 @@ class SearchResultPage extends Component {
                 Object.keys(profilesArray).map((profile) => {
                     let currentUser = profilesArray[profile];
                     if(currentUser.location){
-                        console.log(currentUser.name + ' locations: ', currentUser.location);
                         currentUser.location.map((place) => {
-                            console.log(currentUser.name + ' plays in ' + place);
                             if(place === this.state.location){
-                                console.log('place = state.location');
-                                console.log(currentUser.name + ' has instruments: ', currentUser.instruments);
                                 if(currentUser.instruments.length){
                                     currentUser.instruments.map((instrument) => {
                                         // if one of the instruments is the one in the search, add the profile to the component state
