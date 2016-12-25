@@ -20,7 +20,7 @@ class SearchResult extends Component {
                 </Col>
                 <Col xs={12} sm={8}>
                     <h3>{this.props.user.name} {this.props.user.surname}</h3>
-                    <strong><p> <FontAwesome name='globe' /> {this.props.user.location ? this.props.user.location : 'Location not specified'} </p></strong>
+                    {/*<strong><p> <FontAwesome name='globe' /> {this.props.user.location ? this.props.user.location : 'Location not specified'} </p></strong>*/}
                     <strong>{this.props.user.gender ? (this.props.user.gender === 'male' ? <p><FontAwesome name="male"/> {this.props.user.gender}</p> : <p><FontAwesome name="female"/>{this.props.user.gender}</p>) : 'Gender not specified'}</strong>
                     {this.props.user.age ? <strong><p>{this.props.user.age} years old</p></strong> : <p>Age not specified</p>}
                     <p>{this.props.user.about}</p>
