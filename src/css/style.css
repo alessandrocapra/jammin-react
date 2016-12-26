@@ -57,6 +57,15 @@ h8 {
 
 }
 
+h9 {
+    font-size: 1.6em;
+    font-weight: 1200 !important;
+    color: #262626;
+    margin-bottom: 20px !important;
+    padding-bottom: 20px !important;
+
+}
+
 p, span {
     font-size:1.2em;
     text-align: justify;
@@ -658,6 +667,20 @@ section.instruments article img {
 /* Faq page */
 .faq img {
     margin-bottom:1.5em;
+}
+
+.module.four {
+    background: linear-gradient(
+            rgba(0, 0, 0, 0.45),
+            rgba(0, 0, 0, 0.45)
+    ),
+        /* bottom, image */
+    url(/img/live-rock.jpg);
+    background-size: cover;
+}
+.faq section p {
+    margin-top:0;
+    color: #fff;
 }
 
 /* Videos */
