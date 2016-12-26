@@ -7,8 +7,7 @@ class Faq extends Component {
             <div>
                 <Row className="faq">
                     <Col xs={12}>
-                        <h2>To be defined</h2>
-                        <p>Coming soon</p>
+                        <h2>Coming soon</h2>
                         <img src="img/live-rock.jpg" alt="Long live rock & roll"/>
                     </Col>
                 </Row>
