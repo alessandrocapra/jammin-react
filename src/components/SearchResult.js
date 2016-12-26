@@ -11,20 +11,22 @@ class SearchResult extends Component {
     }
 
     render(){
+
+        console.log(this.props.user.name + ' music_play: ', this.props.user.music_play);
+
         return(
         <Col xs={12}>
             <Row className="result">
                 <Col xs={12} sm={4}>
-                    <div className="profile-pic"><img src={this.props.user.image} alt={this.props.user.name} onClick={this.goToProfile.bind(this)}/></div>
+                    <div className="profile-pic"><div className="image" style={{'background' : 'url(' + this.props.user.image + ')', 'backgroundSize' : 'cover', 'backgroundRepeat' : 'no-repeat'}} onClick={this.goToProfile.bind(this)}/></div>
                     <form action={"mailto:" + this.props.user.name + '.' + this.props.user.surname + '@jammin.com'}>
                         <input type="submit" value="Contact me!" id="contact_me_button"/>
                     </form>
                 </Col>
                 <Col xs={12} sm={8}>
                     <h3>{this.props.user.name} {this.props.user.surname}</h3>
-                    {this.props.user.age ? <span>{this.props.user.age} years old, </span> : <div></div>}
-                    {this.props.user.gender ? <span>{this.props.user.gender}</span> : <div></div>}
-                    <p><FontAwesome name="globe"/> {this.props.user.location}</p>
+                    <strong>{this.props.user.gender ? (this.props.user.gender === 'male' ? <p><FontAwesome name="male"/> {this.props.user.gender}</p> : <p><FontAwesome name="female"/>{this.props.user.gender}</p>) : 'Gender not specified'}</strong>
+                    {this.props.user.age ? <strong><p>{this.props.user.age} years old</p></strong> : <p>Age not specified</p>}
                     <p>{this.props.user.about}</p>
                     <Row className="result_info">
                         <Col xs={12} sm={6} className="filter_options">
@@ -37,7 +39,7 @@ class SearchResult extends Component {
                             <h4>Genres played</h4>
                             {this.props.user.music_play ? this.props.user.music_play.map((artist) => {
                                 return <a className="tag" href="#0"><span>{artist}</span></a>;
-                            }) : <div>No artist specified</div>}
+                            }) : <div>No genres specified</div>}
                         </Col>
                     </Row>
                 </Col>

@@ -13,7 +13,7 @@ body {
     
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5 {
     font-family:'Montserrat', sans-serif;
     text-transform: capitalize;
     color: #B21F10;
@@ -38,9 +38,32 @@ h3 {
 }
 
 h4 {
-    font-size: 1.8em;
+    font-size: 1.3em;
     font-weight: 400;
     color: #262626;
+}
+
+h5 {
+    font-size: 1.2em;
+    font-weight: 1200;
+    color: #262626;
+
+}
+
+h8 {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #fff;
+
+}
+
+h9 {
+    font-size: 1.6em;
+    font-weight: 1200 !important;
+    color: #262626;
+    margin-bottom: 20px !important;
+    padding-bottom: 20px !important;
+
 }
 
 p, span {
@@ -58,20 +81,33 @@ img {
 }
 
 .profile-pic {
-    width: 250px;
+    width: 100%;
     height: 250px;
-    background-position: center center;
-    background-repeat: no-repeat;
-    overflow: hidden;
-    margin:0 auto;
 }
 
-.profile-pic img {
-    min-height: 100%;
-    min-width: 100%;
-    opacity: 1;
-    margin-top: 1.5em;
-    cursor: pointer
+.left-sidebar .profile-pic{
+    height:414px;
+}
+
+@media screen and (max-width: 480px){
+    .left-sidebar .profile-pic{
+        height:260px;
+    }
+
+    .edit .profile-pic {
+        height:290px;
+    }
+}
+
+.edit .profile-pic {
+    height:330px;
+}
+
+.profile-pic .image {
+    height: 100%;
+    background-size: contain;
+    background-position: center;
+    border-radius: 0.2em;
 }
 
 button {
@@ -217,13 +253,20 @@ main > .row {
     position: absolute;
     cursor: pointer;
     top:0;
-    right: 0;
+    right: 5em;
+    height:100%;
     margin:0;
-    padding:0.8em;
+    padding:1.6em 0.7em;
     font-size:1.2em;
     font-weight:700;
     color: #fff;
     background-color: #B21F10;
+}
+
+.delete-video {
+    position: absolute;
+    top: -1em;
+    right: 0.3em;
 }
 
 .container-tags {
@@ -256,7 +299,7 @@ main > .row {
     right: 0;
     background: #b21f10;
     color: #fff;
-    padding:0.7em;
+    padding:0.2em 0.6em;
     margin-left:0.7em;
 }
 
@@ -292,11 +335,29 @@ main > .row {
     position: relative;
 }
 
-.edit #instrument-form .Select, .edit #instrument-form input, .edit #instrument-form button {
+.edit #instrument-form select, .edit #instrument-form input, .edit #instrument-form button {
     display: inline-block;
     width:30%;
     margin:auto 1em auto auto;
     vertical-align: middle;
+}
+
+.edit #saveProfile {
+    background: none;
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+    bottom: 0;
+    left: 0;
+    margin:0 auto;
+
+}
+
+.edit #saveProfile > button {
+    margin:1em  auto;
+    padding-left:6em;
+    padding-right:6em;
+
 }
 
 /********************************************** Main page **********************************************/
@@ -608,6 +669,24 @@ section.instruments article img {
     margin-bottom:1.5em;
 }
 
+.faq h3 {
+    text-transform: none;
+}
+
+.module.four {
+    background: linear-gradient(
+            rgba(0, 0, 0, 0.45),
+            rgba(0, 0, 0, 0.45)
+    ),
+        /* bottom, image */
+    url(/img/live-rock.jpg);
+    background-size: cover;
+}
+.faq section p {
+    margin-top:0;
+    color: #fff;
+}
+
 /* Videos */
 .videos iframe {
     width: 100%;
@@ -751,5 +830,40 @@ section.instruments article img {
         display: inline;
     }
 
+    .bold {
+        font-weight:bold !important;
+    }
 
+    .edit #instrument-form select, .edit #instrument-form input, .edit #instrument-form button {
+        display: block;
+        width:100%;
+        margin-bottom:0.5em;
+    }
+
+    .delete-element {
+        top:1em;
+        right:0;
+        padding-top:0.2em;
+        height:20%;
+    }
+
+    .container-elements {
+        padding-right:1.5em;
+    }
+
+    .container-elements img {
+        width:6em;
+        margin-top:1em;
+    }
+
+    .edit input.inline, .edit input.inline + button {
+        width: 100%;
+    }
+
+    .edit input.inline + button {
+        margin-top:0;
+        margin-bottom:1em;
+    }
+
+    /*.instrument img*/
 }

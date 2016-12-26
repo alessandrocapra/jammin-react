@@ -26,7 +26,7 @@ class EditProfile extends Component {
                 age: "",
                 gender: "",
                 availability: "",
-                location: "",
+                location: [],
                 about: "",
                 image: "",
                 instruments: [],
@@ -37,6 +37,7 @@ class EditProfile extends Component {
             },
             instruments: [],
             music_listen: [],
+            location: "",
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -51,6 +52,7 @@ class EditProfile extends Component {
         this.removeInstrument = this.removeInstrument.bind(this);
         this.onDrop = this.onDrop.bind(this);
         this.removeImage = this.removeImage.bind(this);
+        this.removeLocation = this.removeLocation.bind(this);
 
     }
 
@@ -70,6 +72,9 @@ class EditProfile extends Component {
         switch (e.target.name) {
             case 'experience':
                 this.setState({instruments: {...this.state.instruments, experience: e.target.value}});
+                break;
+            case 'location':
+                this.setState({location: e.target.value});
                 break;
             case 'youtube':
                 this.setState({youtube: {...this.state.youtube, video: e.target.value}});
@@ -136,8 +141,8 @@ class EditProfile extends Component {
         });
     }
 
-    handleInstrumentChange(val){
-        this.setState({instruments: {...this.state.instruments, name: val.value }});
+    handleInstrumentChange(event){
+        this.setState({instruments: {...this.state.instruments, name: event.target.value }});
     }
 
     handleMusicListenChange(val){
@@ -221,6 +226,10 @@ class EditProfile extends Component {
         this.setState({user: update(this.state.user, {music_play: {$splice: [[index,1]]}})});
     }
 
+    removeLocation(index){
+        this.setState({user: update(this.state.user, {location: {$splice: [[index,1]]}})});
+    }
+
     removeMusicInfluencer(index){
         this.setState({user: update(this.state.user, {music_listen: {$splice: [[index,1]]}})});
     }
@@ -242,13 +251,13 @@ class EditProfile extends Component {
                     </Col>
                 </Row>
                 <Row className="edit">
-                    <Col xs={3}>
-                        {this.state.user.image ? <div><img className="profile-pic" src={this.state.user.image} alt={this.state.user.name + this.state.user.surname}/><button value='Change profile pic' onClick={this.removeImage}>Change photo</button></div> :
+                    <Col xs={12} sm={3}>
+                        {this.state.user.image ? <div className="text-center"><div className="profile-pic"><div className="image" style={{'background' : 'url(' + this.state.user.image + ')', 'background-size' : 'cover', 'background-repeat' : 'no-repeat'}}/></div><button value='Change profile pic' onClick={this.removeImage}>Change photo</button></div> :
                             <Dropzone accept={'image/*'} multiple={false} onDrop={this.onDrop}>
                                 <div>Add a profile picture!</div>
                             </Dropzone>}
                     </Col>
-                    <Col xs={9}>
+                    <Col xs={12} sm={9}>
                         <div className="form-group">
                             <Row>
                                 <Col xs={12}>
@@ -258,34 +267,33 @@ class EditProfile extends Component {
                             <Row>
                                 <Col xs={12} sm={6}>
                                     <label htmlFor="name">
-                                        Name <input type="text" name="name" value={this.state.user.name} onChange={this.handleChange}/>
+                                       <p> Name </p> <input type="text" name="name" value={this.state.user.name} onChange={this.handleChange}/>
                                     </label>
                                 </Col>
                                 <Col xs={12} sm={6}>
                                     <label htmlFor="surname">
-                                        Surname <input type="text" name="surname" value={this.state.user.surname} onChange={this.handleChange}/>
+                                        <p> Surname </p> <input type="text" name="surname" value={this.state.user.surname} onChange={this.handleChange}/>
                                     </label>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col xs={12} sm={6}>
                                     <label htmlFor="age">
-                                        Age <input type="text" name="age" placeholder="e.g. 23" value={this.state.user.age} onChange={this.handleChange}/>
+                                       <p> Age </p> <input type="text" name="age" placeholder="e.g. 23" value={this.state.user.age} onChange={this.handleChange}/>
                                     </label>
                                 </Col>
                                 <Col xs={12} sm={6}>
                                     <label id="radio-gender">
-                                        Gender
+                                       <p> Gender </p>
                                         <div className="radio">
                                             <label>
                                                 <input type="radio" name="gender" value="male" checked={this.state.user.gender === 'male'} onChange={this.handleChange}/>
                                                 Male
                                             </label>
-                                        </div>
-                                        <div className="radio">
                                             <label>
                                                 <input type="radio" name="gender" value="female" checked={this.state.user.gender === 'female'} onChange={this.handleChange} />
                                                 Female
+
                                             </label>
                                         </div>
                                     </label>
@@ -294,27 +302,33 @@ class EditProfile extends Component {
                             <Row>
                                 <Col xs={12} sm={6}>
                                     <label htmlFor="location">
-                                        Location
+                                        <p> Location </p>
                                         <Autocomplete
-                                            name="location"
                                             onPlaceSelected={(place) => {
-                                                console.log('setting ' + place.name + ' as location in state');
-                                                this.setState({user: { ...this.state.user, location: place.name}});
+                                                this.setState({user: {...this.state.user, location: update(this.state.user.location, {$push: [place.name]})}, location: ""});
                                             }}
-                                            types={['(regions)']} value={this.state.user.location} onChange={this.handleChange}
+                                            name="location"
+                                            types={['(regions)']}
+                                            value={this.state.location}
+                                            onChange={this.handleChange}
                                             className="autocompleteLocation" />
                                     </label>
+                                    <div className="container-tags">
+                                        {this.state.user.location ? this.state.user.location.map((place, index) => {
+                                            return <a href="#0" value={place} key={place} className="tag">{place} <span onClick={this.removeLocation.bind(this, index)}>x</span></a>;
+                                        }) : <p>No locations specified by user.</p>}
+                                    </div>
                                 </Col>
                                 <Col xs={12} sm={6}>
                                     <label htmlFor="availability">
-                                        Availability <input type="text" name="availability" value={this.state.user.availability} onChange={this.handleChange}/>
+                                        <p> How many times a week you are available to jam? </p> <input type="text" name="availability" placeholder="Please just put a number in e.g. 2" value={this.state.user.availability} onChange={this.handleChange}/>
                                     </label>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col xs={12}>
                                     <label htmlFor="about">
-                                        About me <textarea name="about" id="" cols="30" rows="10" placeholder="Present yourself to other musicians!" value={this.state.user.about} onChange={this.handleChange}></textarea>
+                                        <p> About me </p> <textarea name="about" id="" cols="30" rows="10" placeholder="Present yourself to other musicians!" value={this.state.user.about} onChange={this.handleChange}></textarea>
                                     </label>
                                 </Col>
                             </Row>
@@ -325,20 +339,30 @@ class EditProfile extends Component {
                             </Row>
                             <Row>
                                 <Col xs={12} id="instrument-form">
-                                    <Select
-                                        name="instruments"
-                                        value={this.state.instruments.name}
-                                        options={this.props.route.instruments}
-                                        onChange={this.handleInstrumentChange}
-                                    />
-                                    <input type="text" name="experience" placeholder="Years of experience.." value={this.state.user.experience} onChange={this.handleChange}/>
+                                    <select name="instruments" value={this.state.instruments.name} onChange={this.handleInstrumentChange}>
+                                        <option value="selected" disabled>Select an instrument from the list</option>
+                                        {this.props.route.instruments.map((instrument_list) => {
+                                            let option = null;
+                                            console.log('instrument_list: ', instrument_list);
+                                            return this.state.user.instruments.map((instrument) => {
+                                                console.log('instrument: ', instrument);
+                                                if (instrument.name === instrument_list.value){
+                                                    console.log(instrument.name + ' = ' + instrument_list.value);
+                                                    return <option  value={instrument_list.value} disabled>{instrument_list.label}</option>;
+                                                } else {
+                                                    return <option  value={instrument_list.value}>{instrument_list.label}</option>;
+                                                }
+                                            })
+                                        })}
+                                    </select>
+                                    <input type="text" name="experience" placeholder="Years of experience.." value={this.state.instruments.experience} onChange={this.handleChange}/>
                                     <button id="add-instrument" onClick={this.saveInstrument}>Add instrument</button>
                                 </Col>
                             </Row>
                             <Row>
                                 <div className="container-tags">
                                     {this.state.user.instruments.map((instrument, index) => {
-                                        return <Instrument key={instrument.name} index={index} removeInstrument={this.removeInstrument} name={instrument.name} experience={instrument.experience}/>;
+                                        return <Instrument index={index} removeInstrument={this.removeInstrument} name={instrument.name} experience={instrument.experience}/>;
                                     })}
                                 </div>
                             </Row>
@@ -348,9 +372,9 @@ class EditProfile extends Component {
                                 </Col>
                             </Row>
                             <Row>
-                                <Col xs={6}>
+                                <Col xs={12} sm={6}>
                                     <label htmlFor="music_play">
-                                        What I like to play
+                                        <p> What I like to play </p>
                                         <select name="music_play" value={this.state.user.music_play} onChange={this.musicPlayChange}>
                                             <option value="selected" disabled>Select a genre from the list</option>
                                             {GenreList.map((genre) => {
@@ -370,9 +394,9 @@ class EditProfile extends Component {
                                         }
                                     </div>
                                 </Col>
-                                <Col xs={6}>
+                                <Col xs={12} sm={6}>
                                     <label htmlFor="music_listen">
-                                        Music influencers
+                                        <p> Music influencers </p>
                                         <Select.Async
                                             name="music_listen"
                                             loadOptions={this.getOptions}
@@ -390,20 +414,19 @@ class EditProfile extends Component {
                             <Row>
                                 <Col xs={12}>
                                     <h2>Youtube</h2>
-                                    <p>Add here the Youtube links to videos that show how awesome you are!</p>
+                                    <p>Add here the Youtube links to videos of you playing showing how awesome you are!</p>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col xs={12}>
                                     <input className="inline" type="text" name="youtube" onChange={this.handleChange}/>
                                     <button onClick={this.addYoutubeVideo}>Add video</button>
-
                                 </Col>
                             </Row>
                             <Row>
                                 <div className="container-tags">
                                     {this.state.user.youtube.map((source,index) => {
-                                        return <Col xs={12} sm={6}> <button onClick={this.removeYoutubeVideo.bind(this, index)}>X</button> <Video key={index} source={source.video} /> </Col>;
+                                        return <Col xs={12} sm={6}> <button className="delete-video" onClick={this.removeYoutubeVideo.bind(this, index)}>X</button> <Video key={index} source={source.video} /> </Col>;
                                         })
                                     }
                                 </div>
@@ -423,13 +446,13 @@ class EditProfile extends Component {
                             <Row>
                                 <div className="container-tags">
                                     {this.state.user.soundcloud.map((source,index) => {
-                                        return <Col xs={12} sm={6}> <button onClick={this.removeSoundcloudSong.bind(this, index)}>X</button><Soundcloud source={source.track} /></Col>;
+                                        return <Col xs={12} sm={6}> <button className="delete-video" onClick={this.removeSoundcloudSong.bind(this, index)}>X</button><Soundcloud source={source.track} /></Col>;
                                     })
                                     }
                                 </div>
                             </Row>
-                            <div className="text-center">
-                                <button id="contact_me_button" onClick={this.saveData}>Save</button>
+                            <div className="text-center" id="saveProfile">
+                                <button onClick={this.saveData}>Save profile</button>
                             </div>
                         </div>
                     </Col>

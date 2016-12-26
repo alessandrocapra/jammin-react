@@ -50,10 +50,18 @@ class Profile extends Component {
     render(){
 
         let editButton = null;
+        let contactButton = null;
+
         if (firebase.auth().currentUser === null){
             editButton = <div></div>;
+            contactButton = <div></div>;
         } else if(firebase.auth().currentUser && firebase.auth().currentUser.uid === this.state.user.id ){
             editButton = <button className="editprofile" onClick={this.handleEditButton}>Edit profile</button>;
+            contactButton = <div></div>;
+        } else if(firebase.auth().currentUser.uid !== this.state.user.id){
+            contactButton = <form action={"mailto:" + this.state.user.name + '.' + this.state.user.surname + '@jammin.com'}>
+                                    <input type="submit" value="Contact me!" id="contact_me_button"/>
+                                </form>;
         }
 
         return(
@@ -62,17 +70,15 @@ class Profile extends Component {
                     <Row>
                         <Col xs={12} className="left-sidebar">
                             <h2 className="name">{this.state.user.name} {this.state.user.surname}</h2>
-                            {this.state.user.image ? <div className="profile-pic"><img src={this.state.user.image} alt={this.state.user.name + this.state.user.surname} /></div> : <img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" alt={this.state.user.name + this.state.user.surname}/>}
+                            {this.state.user.image ? <div className="profile-pic"><div className="image" style={{'background' : 'url(' + this.state.user.image + ')', 'background-size' : 'cover', 'background-repeat' : 'no-repeat'}}/></div> : <div className="image" style={{'background' : 'url(' + this.state.user.image + ')', 'background-size' : 'cover', 'background-repeat' : 'no-repeat'}}></div>}
                             <div className="text-center">
-                                <form action={"mailto:" + this.state.user.name + '.' + this.state.user.surname + '@jammin.com'}>
-                                    <input type="submit" value="Contact me!" id="contact_me_button"/>
-                                </form>
+                                {contactButton}
                             </div>
-                            <h4> <FontAwesome name='globe' /> {this.state.user.location} </h4>
-                            <h4>{this.state.user.gender}, {this.state.user.age} years old</h4>
+                            <h4> {this.state.user.gender ? (this.state.user.gender === 'male' ? <div><FontAwesome name="male"/> {this.state.user.gender}</div> : <div><FontAwesome name="female"/> {this.state.user.gender}</div>) : 'Gender not specified'}</h4>
+                            {this.state.user.age ? <h4>{this.state.user.age} years old</h4> : <p>Age not specified</p>}
                             <section>
                                  <h3>Availability</h3>
-                                <p>{this.state.user.availability} times per week</p>
+                                 {this.state.user.availability ? <p>{this.state.user.availability} times per week</p> : <p>Availability not specified</p>}
                             </section>
                             <section className="reviews">
                                  <h3>Reviews</h3>
@@ -86,10 +92,16 @@ class Profile extends Component {
                 <Col xs={12} sm={8} className="profile_content">
                     <section>
                         <Row>
-                            <Col xs={12}>
+                            <Col xs={12} sm={6}>
                                 <h3>About me</h3>
-                                <p>{this.state.user.about}</p>
+                                <p>{this.state.user.about ? this.state.user.about : 'Description not filled in by user'}</p>
                                 { editButton }
+                            </Col>
+                            <Col xs={12} sm={6}>
+                                <h3>Where I play</h3>
+                                {this.state.user.location ? this.state.user.location.map(function(location) {
+                                        return <a href="#0" value={location} className="tag" key={location}>{location}</a>;
+                                    }) : <p>No tracks uploaded by the user</p>}
                             </Col>
                         </Row>
                     </section>
@@ -102,7 +114,7 @@ class Profile extends Component {
                         <Row>
                             {this.state.user.soundcloud ? this.state.user.soundcloud.map(function(sound, index) {
                                 return <Col key={sound.track} xs={12} sm={6}> <Soundcloud source={sound.track}/> </Col>;
-                            }) : <div></div>}
+                            }) : <Col xs={12}><p>No tracks uploaded by the user</p></Col>}
                         </Row>
                     </section>
                     <section className="instruments">
@@ -114,7 +126,7 @@ class Profile extends Component {
                         <Row>
                             {this.state.user.instruments ? this.state.user.instruments.map(function (instrument, index) {
                                 return <Instrument name={instrument.name} experience={instrument.experience}/>;
-                            }) : <div></div>}
+                            }) : <Col xs={12}><p>No instruments have been set by the user.</p></Col>}
                         </Row>
                     </section>
                     <Row>
@@ -123,7 +135,7 @@ class Profile extends Component {
                                 <h3>Influences</h3>
                                 {this.state.user.music_listen ? this.state.user.music_listen.map(function (artist, index) {
                                     return <a className="tag" href="#"><span>{artist}</span></a>;
-                                }) : <div></div>}
+                                }) : <Col xs={12}><p>No influent artists have been selected by the user.</p></Col>}
                             </section>
                         </Col>
                         <Col xs={12} sm={6}>
@@ -131,7 +143,7 @@ class Profile extends Component {
                                 <h3>Genres I like to play</h3>
                                 {this.state.user.music_play ? this.state.user.music_play.map(function (artist, index) {
                                     return <a className="tag" href="#"><span>{artist}</span></a>;
-                                }) : <div></div>}
+                                }) : <Col xs={12}><p>No genres have been set yet.</p></Col>}
                             </section>
                         </Col>
                     </Row>
@@ -148,7 +160,7 @@ class Profile extends Component {
 
                             {this.state.user.youtube ? this.state.user.youtube.map(function(source, index) {
                                 return <Col xs={12} sm={6}> <Video source={source.video}/> </Col>;
-                            }) : <div></div>}
+                            }) : <Col xs={12}><p>No videos uploaded by the user yet.</p></Col>}
 
                         </Row>
                     </section>

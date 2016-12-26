@@ -34,26 +34,31 @@ class SearchResultPage extends Component {
         let finalProfiles = [];
 
         this.setState({users: [], music_play: [], music_listen: []}, () => {
-            FBAppDB.ref('users').orderByChild('location').equalTo(this.state.location).on('value', (snapshot) => {
+            FBAppDB.ref('users').on('value', (snapshot) => {
                 let profilesArray = snapshot.val();
                 Object.keys(profilesArray).map((profile) => {
                     let currentUser = profilesArray[profile];
-                    if(currentUser.instruments.length){
-                        currentUser.instruments.map((instrument) => {
-                            // if one of the instruments is the one in the search, add the profile to the component state
-                            if(instrument.name == this.state.instrument.value){
-                                console.log(firebase.auth().currentUser);
-                                if(firebase.auth().currentUser === null) {
-                                    currentUser.id = profile;
-                                    finalProfiles.push(currentUser);
-                                } else if (firebase.auth().currentUser && currentUser.id != firebase.auth().currentUser.uid) {
-                                    currentUser.id = profile;
-                                    finalProfiles.push(currentUser);
+                    if(currentUser.location){
+                        currentUser.location.map((place) => {
+                            if(place === this.state.location){
+                                if(currentUser.instruments.length){
+                                    currentUser.instruments.map((instrument) => {
+                                        // if one of the instruments is the one in the search, add the profile to the component state
+                                        if(instrument.name == this.state.instrument.value){
+                                            if(firebase.auth().currentUser === null) {
+                                                currentUser.id = profile;
+                                                finalProfiles.push(currentUser);
+                                            } else if (firebase.auth().currentUser && currentUser.id != firebase.auth().currentUser.uid) {
+                                                currentUser.id = profile;
+                                                finalProfiles.push(currentUser);
+                                            }
+                                        }
+                                    });
+                                } else {
+                                    console.log('Error: no profiles with instruments available!');
                                 }
                             }
                         });
-                    } else {
-                        console.log('Error: no profiles with instruments available!');
                     }
                 });
 
@@ -110,7 +115,7 @@ class SearchResultPage extends Component {
         switch (e.target.name){
             case 'location':
                 this.setState({[e.target.name]: e.target.value}, () => {
-                    this.cleanResults();
+                    // this.cleanResults();
                     // this.getProfiles();
                 });
                 break;
@@ -201,13 +206,12 @@ class SearchResultPage extends Component {
                             <Row>
                                 <Col xs={12}>
                                     <label>
-                                        Location
+                                            <h5> Location </h5>
                                         <Autocomplete
                                             name="location"
                                             onPlaceSelected={(place) => {
                                                 console.log(place);
                                                 this.setState({location: place.name}, () => {
-                                                    this.cleanResults();
                                                     this.getProfiles();
                                                 });
                                             }}
@@ -217,7 +221,7 @@ class SearchResultPage extends Component {
                                         />
                                     </label>
                                     <label>
-                                        Instrument
+                                        <h5> Instrument </h5>
                                         <Select
                                             name="instrument"
                                             value={this.state.instrument}
@@ -226,7 +230,7 @@ class SearchResultPage extends Component {
                                         />
                                     </label>
                                     <label>
-                                        Availability - {this.state.availability} times per week
+                                       <h5> Availability - {this.state.availability} times per week </h5>
                                         <input
                                             type="range"
                                             name="availability"
@@ -242,11 +246,11 @@ class SearchResultPage extends Component {
                             <Row>
                                 <Col xs={12} sm={6}>
                                     <label>
-                                        Influences
+                                        <h5> Influences </h5>
                                     </label>
                                     <div id="filters1">
                                         {this.state.music_listen.length ? this.state.music_listen.map((artist) => {
-                                            return Object.keys(artist).map(function(artist_name){
+                                            return Object.keys(artist).sort().map(function(artist_name){
                                                 return <div><input type="checkbox" name={artist_name}/> {artist_name} ({artist[artist_name]}) </div>;
                                             })
                                         }) : <p>No influences defined by the users</p>}
@@ -254,13 +258,13 @@ class SearchResultPage extends Component {
                                 </Col>
                                 <Col xs={12} sm={6}>
                                     <label>
-                                        Artists listened
+                                        <h5> Genres Played </h5>
                                     </label>
                                     <div id="filters2">
                                         {this.state.music_play.length ? this.state.music_play.map((artist) => {
-                                            return Object.keys(artist).map(function (artist_name) {
+                                            return Object.keys(artist).sort().map(function (artist_name) {
                                                 return <div><input type="checkbox" name={artist_name}/> {artist_name} ({artist[artist_name]}) </div>;
-                                            })
+                                            });
                                         }) : <p>No listened artists defined by the users</p>}
                                     </div>
                                 </Col>
@@ -269,7 +273,7 @@ class SearchResultPage extends Component {
                             <Row>
                                 <Col xs={12}>
                                     <label>
-                                        Reviews
+                                        <h5> Reviews </h5>
                                     </label>
                                     <input type="checkbox" name="review"/> Rockstar <br/>
                                     <input type="checkbox" name="review"/> Super <br/>
