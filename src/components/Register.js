@@ -19,42 +19,8 @@ class Register extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.signUpWithEmail = this.signUpWithEmail.bind(this);
-        this.signInWithFacebook = this.signInWithFacebook.bind(this);
         this.signInWithGoogle = this.signInWithGoogle.bind(this);
         this.signInWithEmail = this.signInWithEmail.bind(this);
-    }
-
-    signInWithFacebook(){
-        let provider = new firebase.auth.FacebookAuthProvider();
-
-        firebase.auth().signInWithPopup(provider).then(function(result) {
-            // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-            var token = result.credential.accessToken;
-            // The signed-in user info.
-            var user = result.user;
-
-            console.log('fb user: ', user);
-
-            FBAppStorage.ref('users/' + user.uid).set({
-                id: user.uid,
-                image: user.photoURL,
-            });
-
-            browserHistory.push('profile/edit/' + user.uid);
-            // ...
-        }).catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-
-            console.log(errorCode + ': ' + errorMessage);
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            // ...
-        });
-
     }
 
     signInWithGoogle(){
@@ -219,7 +185,6 @@ class Register extends Component {
                         </form>
                     </div>
                 <button id="firebase-auth" onClick={this.signInWithGoogle}>Sign up with Google</button>
-                <button id="firebase-auth-facebook" onClick={this.signInWithFacebook}>Sign up with Facebook</button>
                 </Col>
             </Row>
         );
