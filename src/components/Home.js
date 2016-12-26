@@ -32,7 +32,7 @@ class Home extends Component {
                     </Col>
                     </Row>
                     <Row>
-                    <Col xs={12} className= "imageclass">
+                    <Col xs={12} className="imageclass">
                         <div className="module two">
                         <h3>Find musicians</h3>
                         <p>Create a free profile, find musicians, contact them, form or join jammer groups to play music together.</p>

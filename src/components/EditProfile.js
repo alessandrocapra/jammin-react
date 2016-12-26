@@ -195,6 +195,8 @@ class EditProfile extends Component {
                     case firebase.storage.TaskState.RUNNING: // or 'running'
                         console.log('Upload is running');
                         break;
+                    default:
+                        break;
                 }
             }, function(error) {
                 switch (error.code) {
@@ -208,6 +210,8 @@ class EditProfile extends Component {
 
                     case 'storage/unknown':
                         // Unknown error occurred, inspect error.serverResponse
+                        break;
+                    default:
                         break;
                 }
             }, function() {

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Row,Col} from 'react-bootstrap';
 import firebase from 'firebase';
 import {FBAppAuth} from '../modules/firebase';
-import {FBAppStorage} from '../modules/firebase';
 import {browserHistory} from 'react-router';
 
 class Register extends Component {
@@ -28,7 +27,7 @@ class Register extends Component {
 
         FBAppAuth.signInWithPopup(providerGoogle).then(function(result) {
             // This gives you a Google Access Token. You can use it to access the Google API.
-            let token = result.credential.accessToken;
+            // let token = result.credential.accessToken;
 
             // The signed-in user info.
             let user = result.user;
@@ -46,12 +45,12 @@ class Register extends Component {
 
         }).catch(function(error) {
             // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
+            // var errorCode = error.code;
+            // var errorMessage = error.message;
             // The email of the user's account used.
-            var email = error.email;
+            // var email = error.email;
             // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
+            // var credential = error.credential;
             // ...
         });
     }
