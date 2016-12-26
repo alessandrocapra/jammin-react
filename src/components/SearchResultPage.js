@@ -17,7 +17,7 @@ class SearchResultPage extends Component {
         this.state = {
             location: "",
             instrument: [],
-            availability: 2,
+            availability: 1,
             music_play: [],
             music_listen: [],
             reviews: [],
@@ -88,9 +88,7 @@ class SearchResultPage extends Component {
                 musicListen.push(music_listened_no_duplicates);
                 musicPlay.push(music_played_no_duplicates);
 
-                this.setState({users: finalProfiles, music_listen: musicListen, music_play: musicPlay}, () => {
-                    console.log('Inseriti in state: ', this.state.users);
-                });
+                this.setState({users: finalProfiles, music_listen: musicListen, music_play: musicPlay});
 
             });
         });
@@ -117,6 +115,21 @@ class SearchResultPage extends Component {
                 this.setState({[e.target.name]: e.target.value}, () => {
                     // this.cleanResults();
                     // this.getProfiles();
+                });
+                break;
+            case 'availability':
+                this.setState({[e.target.name]: e.target.value});
+                $(document).ready(() => {
+                    $('.result .user-availability').each(() => {
+                        console.log('this: ', this);
+                        if($(this).text() <= this.state.availability){
+                            console.log('Hide the profile! profile: ' + $(this).text() + ', state availability: ' + this.state.availability);
+                            $(this).parent('.result').hide();
+                        } else {
+                            $(this).parent('.result').show();
+                            console.log('Show the profile! profile: ' + $(this).text() + ', state availability: ' + this.state.availability);
+                        }
+                    });
                 });
                 break;
             default:
