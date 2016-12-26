@@ -256,7 +256,7 @@ class EditProfile extends Component {
                 </Row>
                 <Row className="edit">
                     <Col xs={12} sm={3}>
-                        {this.state.user.image ? <div className="text-center"><div className="profile-pic"><div className="image" style={{'background' : 'url(' + this.state.user.image + ')', 'background-size' : 'cover', 'background-repeat' : 'no-repeat'}}/></div><button value='Change profile pic' onClick={this.removeImage}>Change photo</button></div> :
+                        {this.state.user.image ? <div className="text-center"><div className="profile-pic"><div className="image" style={{'background' : 'url(' + this.state.user.image + ')', 'backgroundSize' : 'cover', 'backgroundRepeat' : 'no-repeat'}}/></div><button value='Change profile pic' onClick={this.removeImage}>Change photo</button></div> :
                             <Dropzone accept={'image/*'} multiple={false} onDrop={this.onDrop}>
                                 <div>Add a profile picture!</div>
                             </Dropzone>}
@@ -347,11 +347,8 @@ class EditProfile extends Component {
                                         <option value="selected" disabled>Select an instrument from the list</option>
                                         {this.props.route.instruments.map((instrument_list) => {
                                             let option = null;
-                                            console.log('instrument_list: ', instrument_list);
                                             return this.state.user.instruments.map((instrument) => {
-                                                console.log('instrument: ', instrument);
                                                 if (instrument.name === instrument_list.value){
-                                                    console.log(instrument.name + ' = ' + instrument_list.value);
                                                     return <option  value={instrument_list.value} disabled>{instrument_list.label}</option>;
                                                 } else {
                                                     return <option  value={instrument_list.value}>{instrument_list.label}</option>;
