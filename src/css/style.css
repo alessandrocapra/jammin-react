@@ -669,6 +669,10 @@ section.instruments article img {
     margin-bottom:1.5em;
 }
 
+.faq h3 {
+    text-transform: none;
+}
+
 .module.four {
     background: linear-gradient(
             rgba(0, 0, 0, 0.45),
