@@ -119,18 +119,6 @@ class SearchResultPage extends Component {
                 break;
             case 'availability':
                 this.setState({[e.target.name]: e.target.value});
-                $(document).ready(() => {
-                    $('.result .user-availability').each(() => {
-                        console.log('this: ', this);
-                        if($(this).text() <= this.state.availability){
-                            console.log('Hide the profile! profile: ' + $(this).text() + ', state availability: ' + this.state.availability);
-                            $(this).parent('.result').hide();
-                        } else {
-                            $(this).parent('.result').show();
-                            console.log('Show the profile! profile: ' + $(this).text() + ', state availability: ' + this.state.availability);
-                        }
-                    });
-                });
                 break;
             default:
                 this.setState({[e.target.name]: e.target.value});
@@ -154,6 +142,19 @@ class SearchResultPage extends Component {
 
         var filters_selected = [];
         $(document).ready(() => {
+
+            // $('.result .user-availability').each(() => {
+            //     console.log('this: ', this);
+            //     if($(this).text() <= this.state.availability){
+            //         console.log('Hide the profile! profile: ' + $(this).text() + ', state availability: ' + this.state.availability);
+            //         $(this).parent('.result').hide();
+            //     } else {
+            //         $(this).parent('.result').show();
+            //         console.log('Show the profile! profile: ' + $(this).text() + ', state availability: ' + this.state.availability);
+            //     }
+            // });
+
+
             $('#filters1 :checkbox, #filters2 :checkbox').change(function() {
 
                 // Get checkbox values
@@ -242,17 +243,17 @@ class SearchResultPage extends Component {
                                             onChange={this.handleInstrumentChange}
                                         />
                                     </label>
-                                    <label>
-                                       <h5> Availability - {this.state.availability} times per week </h5>
-                                        <input
-                                            type="range"
-                                            name="availability"
-                                            max="7"
-                                            min="1"
-                                            value={this.state.availability}
-                                            onChange={this.handleChange}
-                                        />
-                                    </label>
+                                    {/*<label>*/}
+                                       {/*<h5> Availability - {this.state.availability} times per week </h5>*/}
+                                        {/*<input*/}
+                                            {/*type="range"*/}
+                                            {/*name="availability"*/}
+                                            {/*max="7"*/}
+                                            {/*min="1"*/}
+                                            {/*value={this.state.availability}*/}
+                                            {/*onChange={this.handleChange}*/}
+                                        {/*/>*/}
+                                    {/*</label>*/}
                                 </Col>
                             </Row>
 
