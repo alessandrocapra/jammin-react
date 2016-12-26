@@ -19,7 +19,9 @@ class SearchResult extends Component {
             <Row className="result">
                 <Col xs={12} sm={4}>
                     <div className="profile-pic"><div className="image" style={{'background' : 'url(' + this.props.user.image + ')', 'backgroundSize' : 'cover', 'backgroundRepeat' : 'no-repeat'}} onClick={this.goToProfile.bind(this)}/></div>
-                    <button>Contact me!</button>
+                    <form action={"mailto:" + this.props.user.name + '.' + this.props.user.surname + '@jammin.com'}>
+                        <input type="submit" value="Contact me!" id="contact_me_button"/>
+                    </form>
                 </Col>
                 <Col xs={12} sm={8}>
                     <h3>{this.props.user.name} {this.props.user.surname}</h3>

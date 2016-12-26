@@ -59,7 +59,9 @@ class Profile extends Component {
             editButton = <button className="editprofile" onClick={this.handleEditButton}>Edit profile</button>;
             contactButton = <div></div>;
         } else if(firebase.auth().currentUser.uid !== this.state.user.id){
-            contactButton = <button id="contact_me_button">Contact me!</button>;
+            contactButton = <form action={"mailto:" + this.state.user.name + '.' + this.state.user.surname + '@jammin.com'}>
+                                    <input type="submit" value="Contact me!" id="contact_me_button"/>
+                                </form>;
         }
 
         return(
