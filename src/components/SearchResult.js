@@ -2,23 +2,79 @@ import React, {Component} from 'react';
 import {Row, Col} from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 import {browserHistory} from 'react-router';
-
+import firebase from 'firebase';
+import Modal from 'react-modal';
 class SearchResult extends Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            modalIsOpen: false,
+        };
+
+        this.goToProfile = this.goToProfile.bind(this);
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+    }
 
     goToProfile(){
         console.log('the user is ', this.props.user);
         browserHistory.push(`/profile/${this.props.user.id}`);
     }
 
+    openModal(){
+        this.setState({modalIsOpen: true});
+    }
+
+    closeModal(){
+        this.setState({modalIsOpen: false});
+    }
+
     render(){
+
+        let contactUser = null;
+        if(!firebase.auth().currentUser){
+            // create the code to display the modal, under same appearance as the normal button
+            contactUser = <button type="button" id="contact_me_button" onClick={this.openModal}>Contact me!</button>
+
+        } else {
+            // user logged in, allow to contact through the normal button
+            contactUser = <form action={"mailto:" + this.props.user.name + '.' + this.props.user.surname + '@jammin.com'}>
+                <input type="submit" value="Contact me!" id="contact_me_button"/>
+            </form>;
+        }
+
+        const customStyles = {
+            overlay : {
+                backgroundColor   : 'rgba(0, 0, 0, 0.75)'
+            },
+            content : {
+                top: '20%',
+                left: '20%',
+                right: '20%',
+                bottom: '20%',
+            }
+        };
+
         return(
         <Col xs={12}>
             <Row className="result">
                 <Col xs={12} sm={4}>
                     <div className="profile-pic"><div className="image" style={{'background' : 'url(' + this.props.user.image + ')', 'backgroundSize' : 'cover', 'backgroundRepeat' : 'no-repeat'}} onClick={this.goToProfile.bind(this)}/></div>
-                    <form action={"mailto:" + this.props.user.name + '.' + this.props.user.surname + '@jammin.com'}>
-                        <input type="submit" value="Contact me!" id="contact_me_button"/>
-                    </form>
+                    {contactUser}
+                    <Modal
+                        isOpen={this.state.modalIsOpen}
+                        style={customStyles}
+                        onRequestClose={this.closeModal}
+                        contentLabel="Example Modal"
+                    >
+
+                        <h2 ref="subtitle">Contacting users</h2>
+                        <p>To be able to contact Jammin users, please <a href="/register">register</a>, it's free! </p>
+                        <div className="text-center" style={{'marginTop':'2.5em'}}>
+                            <button onClick={this.closeModal} >close</button>
+                        </div>
+                    </Modal>
                 </Col>
                 <Col xs={12} sm={8}>
                     <h3>{this.props.user.name} {this.props.user.surname}</h3>
