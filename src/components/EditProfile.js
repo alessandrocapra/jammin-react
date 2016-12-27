@@ -345,15 +345,17 @@ class EditProfile extends Component {
                                 <Col xs={12} id="instrument-form">
                                     <select name="instruments" value={this.state.instruments.name} onChange={this.handleInstrumentChange}>
                                         <option value="selected" disabled>Select an instrument from the list</option>
-                                        {this.props.route.instruments.map((instrument_list) => {
+                                        {this.props.route.instruments.map((instrument) => {
+                                            console.log('props instrum: ', instrument);
                                             let option = null;
-                                            return this.state.user.instruments.map((instrument) => {
-                                                if (instrument.name === instrument_list.value){
-                                                    return <option  value={instrument_list.value} disabled>{instrument_list.label}</option>;
-                                                } else {
-                                                    return <option  value={instrument_list.value}>{instrument_list.label}</option>;
-                                                }
-                                            })
+                                            if (this.state.user.instruments.filter(function(e) {return e.name == instrument.value}).length>0){
+                                                console.log('instrument already in state');
+                                                option = <option value={instrument.value} disabled>{instrument.label}</option>;
+                                            } else {
+                                                console.log('instrument NOT already in state');
+                                                option = <option value={instrument.value}>{instrument.label}</option>;
+                                            }
+                                            return option;
                                         })}
                                     </select>
                                     <input type="text" name="experience" placeholder="Years of experience.." value={this.state.instruments.experience} onChange={this.handleChange}/>
