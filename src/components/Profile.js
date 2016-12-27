@@ -3,6 +3,7 @@ import { Row, Col } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 import firebase from 'firebase';
 import {browserHistory} from 'react-router';
+import Modal from 'react-modal';
 
 // import components
 import Review from './Review';
@@ -15,11 +16,14 @@ class Profile extends Component {
         super(props);
         this.state = {
             user: {
-            }
+            },
+            modalIsOpen: false,
         };
 
         this.checkUser = this.checkUser.bind(this);
         this.handleEditButton = this.handleEditButton.bind(this);
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
 
     componentWillMount() {
@@ -47,6 +51,14 @@ class Profile extends Component {
         browserHistory.push('/profile/edit/' + firebase.auth().currentUser.uid);
     }
 
+    openModal(){
+        this.setState({modalIsOpen: true});
+    }
+
+    closeModal(){
+        this.setState({modalIsOpen: false});
+    }
+
     render(){
 
         let editButton = null;
@@ -54,7 +66,7 @@ class Profile extends Component {
 
         if (firebase.auth().currentUser === null){
             editButton = <div></div>;
-            contactButton = <div></div>;
+            contactButton = <button type="button" id="contact_me_button" onClick={this.openModal}>Contact me!</button>
         } else if(firebase.auth().currentUser && firebase.auth().currentUser.uid === this.state.user.id ){
             editButton = <button className="editprofile" onClick={this.handleEditButton}>Edit profile</button>;
             contactButton = <div></div>;
@@ -63,6 +75,18 @@ class Profile extends Component {
                                     <input type="submit" value="Contact me!" id="contact_me_button"/>
                                 </form>;
         }
+
+        const customStyles = {
+            overlay : {
+                backgroundColor   : 'rgba(0, 0, 0, 0.75)'
+            },
+            content : {
+                top: '20%',
+                left: '20%',
+                right: '20%',
+                bottom: '20%',
+            }
+        };
 
         return(
             <Row>
@@ -73,6 +97,19 @@ class Profile extends Component {
                             {this.state.user.image ? <div className="profile-pic"><div className="image" style={{'background' : 'url(' + this.state.user.image + ')', 'backgroundSize' : 'cover', 'backgroundRepeat' : 'no-repeat'}}/></div> : <div className="image" style={{'background' : 'url(' + this.state.user.image + ')', 'backgroundSize' : 'cover', 'backgroundRepeat' : 'no-repeat'}}></div>}
                             <div className="text-center">
                                 {contactButton}
+                                <Modal
+                                    isOpen={this.state.modalIsOpen}
+                                    style={customStyles}
+                                    onRequestClose={this.closeModal}
+                                    contentLabel="Example Modal"
+                                >
+
+                                    <h2 ref="subtitle">Contacting users</h2>
+                                    <p>To be able to contact Jammin users, please <a href="/register">register</a>, it's free! </p>
+                                    <div className="text-center" style={{'marginTop':'2.5em'}}>
+                                        <button onClick={this.closeModal} >close</button>
+                                    </div>
+                                </Modal>
                             </div>
                             <h4> {this.state.user.gender ? (this.state.user.gender === 'male' ? <div><FontAwesome name="male"/> {this.state.user.gender}</div> : <div><FontAwesome name="female"/> {this.state.user.gender}</div>) : 'Gender not specified'}</h4>
                             {this.state.user.age ? <h4>{this.state.user.age} years old</h4> : <p>Age not specified</p>}
