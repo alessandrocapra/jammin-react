@@ -29,6 +29,19 @@ class Register extends Component {
             // This gives you a Google Access Token. You can use it to access the Google API.
             // let token = result.credential.accessToken;
 
+            let id = result.user.uid;
+            let firstName = result.user.displayName.split(' ')[0];
+            let lastName = result.user.displayName.split(' ')[1];
+            let email = result.user.email;
+            let pic = result.user.photoURL;
+            firebase.database().ref('users/' + id).set({
+                id: id,
+                name: firstName,
+                surname: lastName,
+                email: email,
+                image: pic,
+            });
+
             // The signed-in user info.
             let user = result.user;
 
