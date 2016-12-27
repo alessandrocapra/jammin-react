@@ -89,6 +89,10 @@ img {
     height:414px;
 }
 
+.groups .profile-pic {
+    height: 360px;
+}
+
 @media screen and (max-width: 480px){
     .left-sidebar .profile-pic{
         height:260px;
@@ -462,6 +466,19 @@ main > .row {
     background-size: cover;
 }
 
+.groups {
+    text-align: center;
+    margin-bottom:7em;
+}
+
+.groups .container-elements h4, .groups .container-elements p {
+    text-align: left;
+}
+
+.groups p{
+    font-size:1em;
+}
+
 /********************************************** Main page - Headline **********************************************/
 .headline {
     padding: 5em 3em;
@@ -671,6 +688,8 @@ section.instruments article img {
 
 .faq h3 {
     text-transform: none;
+    font-size:1.5em;
+    line-height:1.3em;
 }
 
 .module.four {
