@@ -66,6 +66,10 @@ h9 {
 
 }
 
+.fa {
+    padding-right:.75em;
+}
+
 p, span {
     font-size:1.2em;
     text-align: justify;
@@ -362,6 +366,10 @@ main > .row {
     padding-left:6em;
     padding-right:6em;
 
+}
+
+.edit .ReactModalPortal .ReactModal__Content.ReactModal__Content--after-open img{
+    width:10%;
 }
 
 /********************************************** Main page **********************************************/

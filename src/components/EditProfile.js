@@ -8,6 +8,8 @@ import update from 'immutability-helper';
 import {FBAppStorage} from '../modules/firebase';
 import Dropzone from 'react-dropzone';
 import {browserHistory} from 'react-router';
+import Modal from 'react-modal';
+import FontAwesome from 'react-fontawesome';
 
 // import components
 import Video from './Video';
@@ -38,6 +40,7 @@ class EditProfile extends Component {
             instruments: [],
             music_listen: [],
             location: "",
+            modalIsOpen: false,
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -53,6 +56,9 @@ class EditProfile extends Component {
         this.onDrop = this.onDrop.bind(this);
         this.removeImage = this.removeImage.bind(this);
         this.removeLocation = this.removeLocation.bind(this);
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+
 
     }
 
@@ -246,7 +252,30 @@ class EditProfile extends Component {
         this.setState({user: update(this.state.user, {soundcloud: {$splice: [[index,1]]}})});
     }
 
+    openModal(){
+        this.setState({modalIsOpen: true});
+        $('#saveProfile').hide();
+    }
+
+    closeModal(){
+        this.setState({modalIsOpen: false});
+        $('#saveProfile').show();
+    }
+
     render() {
+
+        const customStyles = {
+            overlay : {
+                backgroundColor   : 'rgba(0, 0, 0, 0.75)'
+            },
+            content : {
+                top: '10%',
+                left: '10%',
+                right: '10%',
+                bottom: '10%',
+            }
+        };
+
         return (
             <div>
                 <Row>
@@ -346,13 +375,10 @@ class EditProfile extends Component {
                                     <select name="instruments" value={this.state.instruments.name} onChange={this.handleInstrumentChange}>
                                         <option value="selected" disabled>Select an instrument from the list</option>
                                         {this.props.route.instruments.map((instrument) => {
-                                            console.log('props instrum: ', instrument);
                                             let option = null;
                                             if (this.state.user.instruments.filter(function(e) {return e.name == instrument.value}).length>0){
-                                                console.log('instrument already in state');
                                                 option = <option value={instrument.value} disabled>{instrument.label}</option>;
                                             } else {
-                                                console.log('instrument NOT already in state');
                                                 option = <option value={instrument.value}>{instrument.label}</option>;
                                             }
                                             return option;
@@ -438,12 +464,29 @@ class EditProfile extends Component {
                                 <Col xs={12}>
                                     <h2>Soundcloud</h2>
                                     <p>Add here the Soundcloud links!</p>
+                                    <a href="#0" onClick={this.openModal}><FontAwesome name="question-circle"/>How do I add a Soundcloud track?</a>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col xs={12}>
                                     <input className="inline" type="text" name="soundcloud" onChange={this.handleChange}/>
                                     <button onClick={this.addSoundcloudTrack}>Add track</button>
+                                    <Modal
+                                        isOpen={this.state.modalIsOpen}
+                                        style={customStyles}
+                                        onRequestClose={this.closeModal}
+                                        contentLabel="Example Modal"
+                                    >
+
+                                        <h2 ref="subtitle">Adding the EMBED code</h2>
+                                        <p>After selecting a track, click on the <code>Share</code> button and select <code>EMBED</code>. Copy the given code in Jammin.</p>
+                                        <div className="text-center">
+                                            <img src="/img/how-to-use-soundcloud.gif" alt="How to use Soundcloud"/>
+                                        </div>
+                                        <div className="text-center">
+                                            <button onClick={this.closeModal} style={{'position':'fixed', 'bottom':'15%', 'left':'50%', 'marginLeft':'-6%'}}>close</button>
+                                        </div>
+                                    </Modal>
                                 </Col>
                             </Row>
                             <Row>
