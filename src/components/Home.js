@@ -53,7 +53,7 @@ class Home extends Component {
                 <div>
                     <Row>
                         <Col xs={12} className="h3homepageclass">
-                            <h2 className="text-center"> Some groups suggested for you </h2>
+                            <h2 className="text-center"> Groups of Jammers you could join </h2>
                         </Col>
                     </Row>
                     <Row className="groups">

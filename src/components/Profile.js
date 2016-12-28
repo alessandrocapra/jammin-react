@@ -145,7 +145,7 @@ class Profile extends Component {
                     <section className="soundcloud">
                         <Row>
                             <Col xs={12}>
-                                <h3>My tracks</h3>
+                                <h3>Tracks I listen to</h3>
                             </Col>
                         </Row>
                         <Row>
@@ -187,7 +187,7 @@ class Profile extends Component {
                     <section className="videos">
                         <Row>
                             <Col xs={12}>
-                                <h3>Videos</h3>
+                                <h3>Videos of me playing</h3>
                             </Col>
                         </Row>
                         <Row>

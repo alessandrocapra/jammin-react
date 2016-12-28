@@ -384,7 +384,7 @@ class EditProfile extends Component {
                                             return option;
                                         })}
                                     </select>
-                                    <input type="text" name="experience" placeholder="Years of experience.." value={this.state.instruments.experience} onChange={this.handleChange}/>
+                                    <input type="text" name="experience" placeholder="Years of experience e.g. 2" value={this.state.instruments.experience} onChange={this.handleChange}/>
                                     <button id="add-instrument" onClick={this.saveInstrument}>Add instrument</button>
                                 </Col>
                             </Row>
@@ -463,7 +463,7 @@ class EditProfile extends Component {
                             <Row>
                                 <Col xs={12}>
                                     <h2>Soundcloud</h2>
-                                    <p>Add here the Soundcloud links!</p>
+                                    <p>Add here the Soundcloud links to share some tracks you like listening to!</p>
                                     <a href="#0" onClick={this.openModal}><FontAwesome name="question-circle"/>How do I add a Soundcloud track?</a>
                                 </Col>
                             </Row>
