@@ -57,12 +57,6 @@ class Home extends Component {
                         </Col>
                     </Row>
                     <Row className="groups">
-                        <Col xs={12}>
-                            <h4>Genres they want to play</h4>
-                            <a href="#0" className="tag">Hard Rock</a>
-                            <a href="#0" className="tag">Classic Rock</a>
-                            <a href="#0" className="tag">Metal</a>
-                        </Col>
                         <Col xs={12} sm={3}>
                             <div className="profile-pic">
                                 <div className="image" style={{'background' : 'url(img/bonham.jpg)', 'backgroundSize' : 'cover', 'backgroundRepeat' : 'no-repeat'}}/>
@@ -109,14 +103,14 @@ class Home extends Component {
                             <h3>This could be you!</h3>
                             <button>Join this group</button>
                         </Col>
-                    </Row>
-                    <Row className="groups">
                         <Col xs={12}>
                             <h4>Genres they want to play</h4>
-                            <a href="#0" className="tag">Jazz</a>
-                            <a href="#0" className="tag">Blues</a>
-                            <a href="#0" className="tag">Rockabilly</a>
+                            <a href="#0" className="tag">Hard Rock</a>
+                            <a href="#0" className="tag">Classic Rock</a>
+                            <a href="#0" className="tag">Metal</a>
                         </Col>
+                    </Row>
+                    <Row className="groups">
                         <Col xs={12} sm={3}>
                             <div className="profile-pic">
                                 <div className="image" style={{'background' : 'url(https://firebasestorage.googleapis.com/v0/b/jammin-e10be.appspot.com/o/profile-pictures%2Fixk00r6dcYYh3e9Lua5PYZuJlnj1?alt=media&token=8f5598d0-92b9-4c9d-b153-9edc20d5d919)', 'backgroundSize' : 'cover', 'backgroundRepeat' : 'no-repeat'}}/>
@@ -162,6 +156,12 @@ class Home extends Component {
                             </div>
                             <h3>This could be you!</h3>
                             <button>Join this group</button>
+                        </Col>
+                        <Col xs={12}>
+                            <h4>Genres they want to play</h4>
+                            <a href="#0" className="tag">Jazz</a>
+                            <a href="#0" className="tag">Blues</a>
+                            <a href="#0" className="tag">Rockabilly</a>
                         </Col>
                     </Row>
                 </div>

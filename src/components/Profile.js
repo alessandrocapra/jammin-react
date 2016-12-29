@@ -145,7 +145,7 @@ class Profile extends Component {
                     <section className="soundcloud">
                         <Row>
                             <Col xs={12}>
-                                <h3>Tracks I listen to</h3>
+                                <h3>My tracks</h3>
                             </Col>
                         </Row>
                         <Row>
