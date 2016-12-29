@@ -119,40 +119,40 @@ class Home extends Component {
                         </Col>
                         <Col xs={12} sm={3}>
                             <div className="profile-pic">
-                                <div className="image" style={{'background' : 'url(img/bonham.jpg)', 'backgroundSize' : 'cover', 'backgroundRepeat' : 'no-repeat'}}/>
+                                <div className="image" style={{'background' : 'url(https://firebasestorage.googleapis.com/v0/b/jammin-e10be.appspot.com/o/profile-pictures%2Fixk00r6dcYYh3e9Lua5PYZuJlnj1?alt=media&token=8f5598d0-92b9-4c9d-b153-9edc20d5d919)', 'backgroundSize' : 'cover', 'backgroundRepeat' : 'no-repeat'}}/>
                             </div>
-                            <h3>John Bonham</h3>
+                            <h3>Jesse Rauhama</h3>
                             <div className="container-elements">
-                                <img src="img/instruments/drum-set.svg" alt="Drums"/>
+                                <img src="img/instruments/piano.svg" alt="Piano"/>
                                 <div style={{"display" : "inline-block"}}>
-                                    <h4>Drums</h4>
-                                    <p>9 years of experience</p>
+                                    <h4>Piano</h4>
+                                    <p>3 years of experience</p>
                                 </div>
                             </div>
                         </Col>
                         <Col xs={12} sm={3}>
                             <div className="profile-pic">
-                                <div className="image" style={{'background' : 'url(img/hendrix.jpeg)', 'backgroundSize' : 'cover', 'backgroundRepeat' : 'no-repeat'}}/>
+                                <div className="image" style={{'background' : 'url(https://firebasestorage.googleapis.com/v0/b/jammin-e10be.appspot.com/o/profile-pictures%2FJqESd5auZhZNoK5XinYhcWnpLC53?alt=media&token=6b815464-0e8c-4ef8-810d-45d9d57a5115)', 'backgroundSize' : 'cover', 'backgroundRepeat' : 'no-repeat'}}/>
                             </div>
-                            <h3>Jimi Hendrix</h3>
+                            <h3>Tatiana Karpenko</h3>
+                            <div className="container-elements">
+                                <img src="img/instruments/harmonica.svg" alt="Harmonica"/>
+                                <div style={{"display" : "inline-block"}}>
+                                    <h4>Harmonica</h4>
+                                    <p>3 years of experience</p>
+                                </div>
+                            </div>
+                        </Col>
+                        <Col xs={12} sm={3}>
+                            <div className="profile-pic">
+                                <div className="image" style={{'background' : 'url(https://firebasestorage.googleapis.com/v0/b/jammin-e10be.appspot.com/o/profile-pictures%2FfpgDZoGro4gz9XzAP5qzD0vR9mA2?alt=media&token=63660295-af7f-425a-a2d1-3a8f95b691fc)', 'backgroundSize' : 'cover', 'backgroundRepeat' : 'no-repeat'}}/>
+                            </div>
+                            <h3>Stefan Krawblowski</h3>
                             <div className="container-elements">
                                 <img src="img/instruments/electric-guitar-1.svg" alt="Electric guitar"/>
                                 <div style={{"display" : "inline-block"}}>
                                     <h4>Electric guitar</h4>
-                                    <p>11 years of experience</p>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col xs={12} sm={3}>
-                            <div className="profile-pic">
-                                <div className="image" style={{'background' : 'url(img/entwistle.jpg)', 'backgroundSize' : 'cover', 'backgroundRepeat' : 'no-repeat'}}/>
-                            </div>
-                            <h3>John Entwistle</h3>
-                            <div className="container-elements">
-                                <img src="img/instruments/electric-guitar.svg" alt="Bass guitar"/>
-                                <div style={{"display" : "inline-block"}}>
-                                    <h4>Bass guitar</h4>
-                                    <p>5 years of experience</p>
+                                    <p>2 years of experience</p>
                                 </div>
                             </div>
                         </Col>
