@@ -57,6 +57,12 @@ class Home extends Component {
                         </Col>
                     </Row>
                     <Row className="groups">
+                        <Col xs={12}>
+                            <h4>Genres they want to play</h4>
+                            <a href="#0" className="tag">Hard Rock</a>
+                            <a href="#0" className="tag">Classic Rock</a>
+                            <a href="#0" className="tag">Metal</a>
+                        </Col>
                         <Col xs={12} sm={3}>
                             <div className="profile-pic">
                                 <div className="image" style={{'background' : 'url(img/bonham.jpg)', 'backgroundSize' : 'cover', 'backgroundRepeat' : 'no-repeat'}}/>
@@ -105,6 +111,12 @@ class Home extends Component {
                         </Col>
                     </Row>
                     <Row className="groups">
+                        <Col xs={12}>
+                            <h4>Genres they want to play</h4>
+                            <a href="#0" className="tag">Jazz</a>
+                            <a href="#0" className="tag">Blues</a>
+                            <a href="#0" className="tag">Rockabilly</a>
+                        </Col>
                         <Col xs={12} sm={3}>
                             <div className="profile-pic">
                                 <div className="image" style={{'background' : 'url(img/bonham.jpg)', 'backgroundSize' : 'cover', 'backgroundRepeat' : 'no-repeat'}}/>

@@ -87,6 +87,8 @@ img {
 .profile-pic {
     width: 100%;
     height: 250px;
+    overflow: hidden;
+    cursor: pointer;
 }
 
 .left-sidebar .profile-pic{
@@ -116,6 +118,11 @@ img {
     background-size: contain;
     background-position: center;
     border-radius: 0.2em;
+    transition: all .2s ease-in-out;
+}
+
+.profile-pic .image:hover {
+    transform:scale(1.25);
 }
 
 button {
@@ -476,7 +483,12 @@ main > .row {
 
 .groups {
     text-align: center;
-    margin-bottom:7em;
+    margin-bottom:1em;
+    padding-bottom: 1em;
+}
+
+.groups:nth-child(2){
+    border-bottom:.75em solid #B21F10;
 }
 
 .groups .container-elements h4, .groups .container-elements p {
@@ -485,6 +497,10 @@ main > .row {
 
 .groups p{
     font-size:1em;
+}
+
+.groups a.tag {
+    margin-bottom:1.5em;
 }
 
 /********************************************** Main page - Headline **********************************************/
