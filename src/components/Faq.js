@@ -21,7 +21,7 @@ class Faq extends Component {
                         </Col>
                         <Col xs={12} sm={4}>
                             <h3>What if someone leaves a bad review on my profile, after playing with me?</h3>
-                            <p>The reviews have been introduced as an additional measure to help express one’s ability to play a music instrument. All reviews are reviewed by Jammin staff to ensure they are written in appropriate language. Besides pure community is very friendly, so you shouldn’t worry too much.</p>
+                            <p>The reviews have been introduced as an additional measure to help express one’s ability to play a music instrument. All reviews are reviewed by Jammin staff to ensure they are written in appropriate language. Besides our community is very friendly, so you shouldn’t worry too much.</p>
                         </Col>
                     </Row>
                     <h3 className="text-center"> Have more questions? Email our team: jammin@gmail.com </h3>
